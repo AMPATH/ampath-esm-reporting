@@ -1,0 +1,61 @@
+<div class="row" *ngIf="hasContacts">
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <label for="number-days">Last date of elicitation :</label>
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <span style="color: firebrick">{{ maxElicitationDate }}</span>
+  </div>
+</div>
+
+<div class="row" *ngIf="hasContacts && children_status">
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <label for="number-days">Children below 19 years :</label>
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <span style="color: firebrick">{{ children_status }}</span>
+  </div>
+</div>
+
+<div class="row" *ngIf="hasContacts && children_elicitation_status">
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <label for="number-days">Children elicited by partner :</label>
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <span style="color: firebrick">{{ children_elicitation_status }}</span>
+  </div>
+</div>
+
+<div class="row" *ngIf="hasContacts && hasChildrenBeenElicited">
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <label for="number-days">Children elicited :</label>
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <span style="color: firebrick">{{ hasChildrenBeenElicited }}</span>
+  </div>
+</div>
+
+<div class="row" *ngIf="hasContacts && childrenTestingConsentGiven">
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <label for="number-days">Children Testing Consent Given :</label>
+  </div>
+  <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+    <span style="color: firebrick">{{ childrenTestingConsentGiven }}</span>
+  </div>
+</div>
+
+<div style="margin-top: 1rem">
+  <ag-grid-angular
+    *ngIf="indexContacts.length"
+    #agGrid
+    style="width: 100%; height: 250px; length: 400px"
+    class="ag-blue"
+    [rowData]="indexContacts"
+    [gridOptions]="gridOptions"
+  >
+    ></ag-grid-angular
+  >
+  <hr />
+  <div *ngIf="!indexContacts.length">
+    <h4>No contact history available</h4>
+  </div>
+</div>

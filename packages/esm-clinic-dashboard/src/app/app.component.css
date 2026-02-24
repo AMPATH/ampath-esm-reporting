@@ -1,0 +1,9 @@
+.clinic-dashboard-container {
+  padding: 1rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.clinic-dashboard-container h2 {
+  margin-bottom: 0.5rem;
+  color: #161616;
+}

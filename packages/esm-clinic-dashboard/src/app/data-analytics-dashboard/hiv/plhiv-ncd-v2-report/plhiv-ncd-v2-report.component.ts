@@ -1,0 +1,126 @@
+import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { take } from 'rxjs/operators';
+import * as rison from 'rison-node';
+import dayjs from 'dayjs';
+
+import { ActivatedRoute, Router } from '@angular/router';
+import { PlhivNcdV2ResourceService } from 'src/app/etl-api/plhiv-ncd-v2-resource.service';
+import { PlhivNcdV2ReportBaseComponent } from 'src/app/hiv-care-lib/plhiv-ncd-v2-report/plhiv-ncd-v2-report-base/plhiv-ncd-v2-report-base.component';
+import { DataAnalyticsDashboardService } from '../../services/data-analytics-dashboard.services';
+
+@Component({
+  standalone: false,
+  selector: 'plhiv-ncd-v2-report',
+  templateUrl:
+    '../../../hiv-care-lib/plhiv-ncd-v2-report/plhiv-ncd-v2-report-base/plhiv-ncd-v2-report-base.component.html'
+  // styleUrls: ['./plhiv-ncd-v2-report.component.css']
+})
+export class PlhivNcdV2ReportComponent
+  extends PlhivNcdV2ReportBaseComponent
+  implements OnInit {
+  public enabledControls = 'monthControl,locationControl';
+  public enabledControls2 = 'datesControl,locationControl';
+  constructor(
+    public router: Router,
+    public route: ActivatedRoute,
+    public plhivNcdV2ResourceService: PlhivNcdV2ResourceService,
+    private dataAnalyticsDashboardService: DataAnalyticsDashboardService,
+    private location: Location
+  ) {
+    super(router, route, plhivNcdV2ResourceService);
+  }
+
+  public ngOnInit() {
+    this.loadReportParamsFromUrl();
+  }
+
+  public generateReport() {
+    this.setSelectedLocation();
+    this.setIsAggregated();
+    this.storeParamsInUrl();
+
+    if (Array.isArray(this.locationUuids) && this.locationUuids.length > 0) {
+      this.params = {
+        locationUuids: this.getSelectedLocations(this.locationUuids),
+        month: dayjs(this._month).endOf('month').format('YYYY-MM-DD'),
+        startDate: dayjs(this._startDate).format('YYYY-MM-DD'),
+        endDate: dayjs(this._month).endOf('month').format('YYYY-MM-DD'),
+        reportName: this.reportName,
+        currentView: this.currentView,
+        isAggregated: this.getIsAggregated()
+      };
+      super.generateReport();
+      super.showDraftReportAlert(this._month);
+    } else {
+      this.errorMessage = 'Locations are required!';
+    }
+  }
+
+  public storeParamsInUrl() {
+    const state = {
+      locationUuids: this.getSelectedLocations(this.locationUuids),
+      month: dayjs(this._month).endOf('month').format('YYYY-MM-DD'),
+      startDate: dayjs(this._startDate).format('YYYY-MM-DD'),
+      endDate: dayjs(this._month).endOf('month').format('YYYY-MM-DD'),
+      reportName: this.reportName,
+      currentView: this.currentView,
+      isAggregated: this.getIsAggregated()
+    };
+    const stateUrl = rison.encode(state);
+    const path = this.router.parseUrl(this.location.path());
+    path.queryParams = {
+      state: stateUrl
+    };
+
+    this.location.replaceState(path.toString());
+  }
+
+  public loadReportParamsFromUrl() {
+    const path = this.router.parseUrl(this.location.path());
+
+    if (path.queryParams['state']) {
+      const state = rison.decode(path.queryParams['state']);
+      this.month = state.month;
+      this.locationUuids = state.locations;
+      this.startDate = state.startDate;
+      this.endDate = state.endDate;
+      this.currentView = state.currentView;
+      this.isAggregated = state.isAggregated;
+    }
+
+    if (path.queryParams['state']) {
+      this.generateReport();
+    }
+  }
+
+  public setSelectedLocation() {
+    this.dataAnalyticsDashboardService
+      .getSelectedLocations()
+      .pipe(take(1))
+      .subscribe((data) => {
+        if (data) {
+          this.locationUuids = data.locations;
+        }
+      });
+  }
+
+  private getSelectedLocations(locationUuids: Array<any>): string {
+    return locationUuids.map((location) => location.value).join(',');
+  }
+
+  public setIsAggregated() {
+    this.dataAnalyticsDashboardService
+      .getIsAggregated()
+      .pipe()
+      .subscribe((data) => {
+        if (data) {
+          this.isAggregated = data.isAggregated;
+        }
+      });
+  }
+
+  private getIsAggregated() {
+    return this.isAggregated;
+  }
+}

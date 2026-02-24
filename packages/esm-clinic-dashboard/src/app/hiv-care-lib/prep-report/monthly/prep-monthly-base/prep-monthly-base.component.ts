@@ -1,0 +1,144 @@
+import { Component, OnInit, Output } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import * as _ from 'lodash';
+import dayjs from 'dayjs';
+import { PrepMonthlyResourceService } from 'src/app/etl-api/prep-monthly-resource.service';
+
+@Component({
+  standalone: false,
+  selector: 'prep-monthly-report-base',
+  templateUrl: './prep-monthly-base.component.html',
+  styleUrls: ['./prep-monthly-base.component.css']
+})
+export class PrepMonthlyReportBaseComponent implements OnInit {
+  @Output()
+  public params: any;
+
+  public indicators: string;
+  public selectedIndicators = [];
+  public prepReportSummaryData: any = [];
+  public columnDefs: any = [];
+  public reportName = 'PrEP Monthly Report';
+  public currentView = 'monthly';
+  public currentViewBelow = 'pdf';
+  public month: string;
+
+  public statusError = false;
+  public errorMessage = '';
+  public showInfoMessage = false;
+  public isLoading = false;
+  public reportHead: any;
+  public pinnedBottomRowData: any = [];
+  public enabledControls = 'monthControl';
+  public _month: string;
+  public isReleased = true;
+
+  public _locationUuids: any = [];
+
+  public get locationUuids(): Array<string> {
+    return this._locationUuids;
+  }
+
+  public set locationUuids(v: Array<string>) {
+    const locationUuids = [];
+    _.each(v, (location: any) => {
+      if (location.value) {
+        locationUuids.push(location);
+      }
+    });
+    this._locationUuids = locationUuids;
+  }
+
+  public _isAggregated = false;
+  public get isAggregated(): boolean {
+    return this._isAggregated;
+  }
+
+  public set isAggregated(v: boolean) {
+    this._isAggregated = v;
+  }
+
+  constructor(
+    public router: Router,
+    public route: ActivatedRoute,
+    public prepReport: PrepMonthlyResourceService
+  ) {
+    this.route.queryParams.subscribe((params: any) => {
+      if (params) {
+        params.month === undefined
+          ? (this._month = dayjs()
+              .subtract(1, 'M')
+              .endOf('month')
+              .format('YYYY-MM-DD'))
+          : (this._month = params.month);
+      }
+      this.showDraftReportAlert(this._month);
+    });
+  }
+
+  ngOnInit() {}
+
+  public generateReport() {}
+
+  public onMonthChange(value): any {
+    this._month = dayjs(value).endOf('month').format('YYYY-MM-DD');
+  }
+
+  public storeParamsInUrl(params: any) {
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: params
+    });
+  }
+
+  public getPrepMonthlyAggReport(params: any) {
+    this.columnDefs = [];
+    this.prepReportSummaryData = [];
+
+    this.storeParamsInUrl(params);
+    this.isLoading = true;
+    this.prepReport.getPrepMonthlyAggReport(params).subscribe((data) => {
+      if (data.error) {
+        this.showInfoMessage = true;
+        this.errorMessage = `There has been an error while loading the report, please retry again`;
+        this.isLoading = false;
+      } else {
+        this.showInfoMessage = false;
+        this.columnDefs = data.sectionDefinitions;
+        this.prepReportSummaryData = data.result;
+        this.isLoading = false;
+        this.showDraftReportAlert(this._month);
+      }
+    });
+  }
+
+  public indicatorSelected($event: any) {
+    const location = this.params.isAggregated
+      ? this.params.locationUuids
+      : $event.locationUuids;
+    this.router.navigate(['patient-list'], {
+      relativeTo: this.route,
+      queryParams: {
+        indicators: $event.indicator,
+        indicatorHeader: $event.indicatorHeader,
+        month: $event.month,
+        locationUuids: location
+      }
+    });
+  }
+
+  public setParams() {
+    this.params = {
+      locationUuids: this._locationUuids,
+      month: dayjs(this._month).format('YYYY-MM-DD')
+    };
+  }
+
+  public showDraftReportAlert(date) {
+    if (date != null && date >= dayjs().endOf('month').format('YYYY-MM-DD')) {
+      this.isReleased = false;
+    } else {
+      this.isReleased = true;
+    }
+  }
+}

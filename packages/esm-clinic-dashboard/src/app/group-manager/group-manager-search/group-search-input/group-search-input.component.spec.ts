@@ -1,0 +1,47 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { GroupSearchInputComponent } from './group-search-input.component';
+import { FormsModule } from '@angular/forms';
+import { MatSlideToggleModule } from '@angular/material/tabs'; // TODO: split material imports
+import { CommunityGroupService } from 'src/app/openmrs-api/community-group-resource.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AppSettingsService } from 'src/app/app-settings/app-settings.service';
+import { LocalStorageService } from 'src/app/utils/local-storage.service';
+import { SessionStorageService } from 'src/app/utils/session-storage.service';
+
+describe('GroupSearchInputComponent', () => {
+  let component: GroupSearchInputComponent;
+  let fixture: ComponentFixture<GroupSearchInputComponent>;
+
+  class FakeCommunityGroupService {
+    constructor(a, b, c, d) {}
+  }
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [GroupSearchInputComponent],
+      imports: [FormsModule, MatSlideToggleModule, HttpClientTestingModule],
+      providers: [
+        {
+          provide: CommunityGroupService,
+          useFactory: () => {
+            return new FakeCommunityGroupService(null, null, null, null);
+          }
+        },
+        AppSettingsService,
+        LocalStorageService,
+        SessionStorageService
+      ]
+    }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(GroupSearchInputComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

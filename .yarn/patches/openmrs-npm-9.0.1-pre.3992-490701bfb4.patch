@@ -1,0 +1,71 @@
+diff --git a/dist/utils/importmap.js b/dist/utils/importmap.js
+index ab7963aad383b7d6ec8c2b42df15454e983e5110..e5ea56a42577c6ae45f540a0b7aa00f15651f1bd 100644
+--- a/dist/utils/importmap.js
++++ b/dist/utils/importmap.js
+@@ -61,16 +61,16 @@ async function fetchRemoteImportmap(fetchUrl) {
+         .then((res) => res.data)
+         .then((m) => (typeof m === 'string' ? JSON.parse(m) : m))
+         .then((m) => {
+-        if (typeof m === 'object' && 'imports' in m) {
+-            Object.keys(m.imports).forEach((key) => {
+-                const url = m.imports[key];
+-                if (typeof url === 'string') {
+-                    m.imports[key] = new node_url_1.URL(url, fetchUrl).href;
+-                }
+-            });
+-        }
+-        return m;
+-    })
++            if (typeof m === 'object' && 'imports' in m) {
++                Object.keys(m.imports).forEach((key) => {
++                    const url = m.imports[key];
++                    if (typeof url === 'string') {
++                        m.imports[key] = new node_url_1.URL(url, fetchUrl).href;
++                    }
++                });
++            }
++            return m;
++        })
+         .then((m) => JSON.stringify(m));
+ }
+ async function fetchRemoteRoutes(fetchUrl) {
+@@ -162,6 +162,7 @@ async function runProject(basePort, sourceDirectoryPatterns, useRspack) {
+             cp.stderr?.pipe(process.stderr);
+             // connect to either startup.url or a computed value based on startup.host
+             importMap[project.name] = startup.url || `${startup.host}/${(0, node_path_1.basename)(project.browser)}`;
++            routes[project.name] = (0, dependencies_1.getAppRoutes)(sourceDirectory, project);
+         }
+         else if (!hasConfig && !hasRspackConfig) {
+             // try to locate and run via default webpack
+@@ -198,11 +199,11 @@ async function runProject(basePort, sourceDirectoryPatterns, useRspack) {
+ async function mergeImportmapAndRoutes(importAndRoutes, additionalImportsAndRoutes, backend, spaPath) {
+     const { importMap: importDecl, routes: routesDecl } = importAndRoutes;
+     const { importMap: additionalImports, routes: additionalRoutes, watchedRoutesPaths = {}, } = additionalImportsAndRoutes || {};
++    if (importDecl.type === 'url') {
++        importDecl.type = 'inline';
++        importDecl.value = await readImportmap(importDecl.value, backend, spaPath);
++    }
+     if (additionalImports && Object.keys(additionalImports).length > 0) {
+-        if (importDecl.type === 'url') {
+-            importDecl.type = 'inline';
+-            importDecl.value = await readImportmap(importDecl.value, backend, spaPath);
+-        }
+         const map = JSON.parse(importDecl.value);
+         importDecl.value = JSON.stringify({
+             imports: {
+@@ -211,11 +212,11 @@ async function mergeImportmapAndRoutes(importAndRoutes, additionalImportsAndRout
+             },
+         });
+     }
++    if (routesDecl.type === 'url') {
++        routesDecl.type = 'inline';
++        routesDecl.value = await readRoutes(routesDecl.value, backend, spaPath);
++    }
+     if (additionalRoutes && Object.keys(additionalRoutes).length > 0) {
+-        if (routesDecl.type === 'url') {
+-            routesDecl.type = 'inline';
+-            routesDecl.value = await readRoutes(routesDecl.value, backend, spaPath);
+-        }
+         const routes = JSON.parse(routesDecl.value);
+         routesDecl.value = JSON.stringify({
+             ...routes,

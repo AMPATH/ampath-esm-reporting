@@ -1,0 +1,50 @@
+<h4 class="component-title" style="color: green">
+  <span class="fa fa-bar-chart"></span> Patient Gains and Loses
+</h4>
+<div *ngIf="isDraftReport" class="alert alert-warning">
+  <strong>Viewing a draft Version of the Gains and Losses Report. </strong>
+  This report is not officially released, and is likely to change without
+  warning.
+</div>
+<div class="alert alert-danger fade in" *ngIf="encounteredError">
+  <a class="close" data-dismiss="alert">&times;</a>
+  <h4>
+    <strong><span class="glyphicon glyphicon-warning-sign"></span> </strong>
+    An error occurred while trying to load the report. Please try again.
+  </h4>
+  <p>
+    <small>{{ errorMessage }}</small>
+  </p>
+</div>
+<div class="row">
+  <app-gains-and-losses-report-filters
+    [startDate]="startMonth"
+    (filterSet)="filterSet($event)"
+    (filteReset)="filteReset($event)"
+    (locationsSet)="locationsSet($event)"
+    (isAggregateSet)="isAggregateSet($event)"
+    [dashboardType]="dashboardType"
+  >
+  </app-gains-and-losses-report-filters>
+</div>
+<div class="row" *ngIf="locationUuids">
+  <div class="col-sm-12">
+    <div class="loader" *ngIf="isLoadingReport">
+      <span><i class="fa fa-spinner fa-spin"> </i>Loading...</span>
+    </div>
+  </div>
+</div>
+<app-patient-gains-and-losses-dashboard-view
+  [patientGainAndLoseData]="patientGainAndLoseSummaryData"
+  *ngIf="dashboardType === 'clinic-dashboard'"
+  (indicatorSelected)="onIndicatorSelected($event)"
+></app-patient-gains-and-losses-dashboard-view>
+
+<app-patient-gains-and-losses-tabular-view
+  [patientGainAndLoseData]="patientGainAndLosesData"
+  [sections]="gainsAndLossesSections"
+  [params]="params"
+  [totalsRow]="totalsRow"
+  (indicatorSelected)="onIndicatorSelected($event)"
+  *ngIf="dashboardType === 'data-analytics'"
+></app-patient-gains-and-losses-tabular-view>

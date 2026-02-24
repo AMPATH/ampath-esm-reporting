@@ -1,0 +1,44 @@
+<div>
+  <ag-grid-angular
+    #agGrid
+    style="width: 100%; height: 500px"
+    class="ag-blue"
+    [rowData]="patientData"
+    [gridOptions]="gridOptions"
+  >
+    ></ag-grid-angular
+  >
+</div>
+
+<hr />
+<div *ngIf="!hasLoadedAll">
+  <div class="button">
+    <button
+      class="btn btn-primary"
+      data-size="xs"
+      data-color="blue"
+      (click)="loadMore.emit()"
+    >
+      <span class=""></span>Load More...
+    </button>
+  </div>
+</div>
+<div *ngIf="hasLoadedAll" style="display: flex; justify-content: space-between">
+  <p class="bg-info" style="padding: 4px">
+    <b>
+      <span style="color: green" class="glyphicon glyphicon-ok"
+        >All records loaded {{ '[ ' + patientData.length + ' ]' }}</span
+      ></b
+    >
+  </p>
+  <span style="float: right">
+    <button class="btn btn-info" (click)="exportAllData()" style="color: #fff">
+      <i class="inline fa fa-file-excel-o"></i>
+      <span>Export as CSV</span>
+    </button>
+  </span>
+</div>
+
+<div *ngIf="hasError">
+  <p class="alert-error alert">Error loading patient list.</p>
+</div>

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json.openmrs.org/routes.schema.json",
+  "backendDependencies": {
+    "webservices.rest": ">=2.2.0",
+    "o3forms": "*"
+  },
+  "pages": [
+    {
+      "component": "root",
+      "route": "clinic-dashboard",
+      "online": true,
+      "offline": true
+    },
+    {
+      "component": "root",
+      "route": "data-analytics",
+      "online": true,
+      "offline": true
+    }
+  ],
+  "extensions": [
+    {
+      "name": "clinic-dashboard-widget",
+      "component": "clinicDashboardWidget",
+      "slot": "clinic-dashboard-widget-slot",
+      "online": true,
+      "offline": true
+    }
+  ]
+}

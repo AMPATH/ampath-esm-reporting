@@ -1,0 +1,90 @@
+import { CommunityGroupService } from 'src/app/openmrs-api/community-group-resource.service';
+import { ComponentFixture, async, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
+import { ButtonsModule } from 'ngx-bootstrap';
+import { NgamrsSharedModule } from 'src/app/shared/ngamrs-shared.module';
+import { MatCardModule, MatRadioModule } from '@angular/material/tabs'; // TODO: split material imports
+import { PatientSearchComponent } from 'src/app/patient-search/patient-search.component';
+import { Observable } from 'rxjs';
+import 'rxjs/add/observable/of';
+import { ActivatedRoute } from '@angular/router';
+import { DatePipe, CommonModule } from '@angular/common';
+import { RouterTestingModule } from '@angular/router/testing';
+import { GroupEditorComponent } from './group-editor-component';
+
+import { CacheStorageService } from 'ionic-cache/dist/cache-storage';
+import { DepartmentProgramsConfigService } from 'src/app/etl-api/department-programs-config.service';
+
+class MockActivatedRoute {
+  public params = Observable.of([{ id: 1 }]);
+  public snapshot = {
+    queryParams: { filter: '' }
+  };
+}
+class FakeCommunityGroupService {
+  constructor(a, b, c, d) {}
+}
+class MockCacheStorageService {
+  constructor(a, b) {}
+
+  public ready() {
+    return true;
+  }
+}
+
+describe('Group Editor Component Tests', () => {
+  let component: GroupEditorComponent;
+  let fixture: ComponentFixture<GroupEditorComponent>;
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        FormsModule,
+        AgGridModule,
+        ButtonsModule,
+        NgamrsSharedModule,
+        MatCardModule,
+        MatRadioModule,
+        CommonModule,
+        RouterTestingModule
+      ],
+      declarations: [
+        GroupEditorComponent,
+        GroupEditorComponent,
+        PatientSearchComponent
+      ],
+      providers: [
+        DatePipe,
+        CacheService,
+        DepartmentProgramsConfigService,
+        {
+          provide: CacheStorageService,
+          useFactory: () => {
+            return new MockCacheStorageService(null, null);
+          }
+        },
+        {
+          provide: ActivatedRoute,
+          useClass: MockActivatedRoute
+        },
+        {
+          provide: CommunityGroupService,
+          useFactory: () => {
+            return new FakeCommunityGroupService(null, null, null, null);
+          }
+        }
+      ]
+    })
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(GroupEditorComponent);
+        component = fixture.componentInstance;
+      });
+  }));
+
+  it('should be defined', () => {
+    expect(component).toBeDefined();
+  });
+});

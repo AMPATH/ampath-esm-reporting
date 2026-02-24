@@ -1,0 +1,933 @@
+{
+  "id": "patientDashboard",
+  "name": "Patient Dashboard",
+  "baseRoute": "patient-dashboard",
+  "programs": [
+    {
+      "programName": "General Info",
+      "programUuid": "general-uuid",
+      "baseRoute": "general",
+      "alias": "general",
+      "published": true,
+      "requiresPatientEnrollment": false,
+      "routes": [
+        {
+          "url": "patient-info",
+          "label": "Patient Info",
+          "icon": "fa fa-clipboard"
+        },
+        {
+          "url": "patient-vitals",
+          "label": "Vitals",
+          "icon": "fa fa-heartbeat"
+        },
+        {
+          "url": "patient-encounters",
+          "label": "Encounters",
+          "icon": "icon-i-immunizations"
+        },
+        {
+          "url": "forms",
+          "label": "Forms",
+          "icon": "fa fa-file"
+        },
+        {
+          "url": "lab-data-summary",
+          "label": "Lab Data Summary",
+          "icon": "icon-i-laboratory"
+        },
+        {
+          "url": "lab-orders",
+          "label": "Lab Orders",
+          "icon": "icon-i-pathology"
+        },
+        {
+          "url": "program-manager",
+          "label": "Program Manager",
+          "icon": "icon-i-administration"
+        },
+        {
+          "url": "patient-imaging",
+          "label": "Imaging",
+          "icon": "icon-i-radiology"
+        },
+        {
+          "url": "group-enrollment",
+          "label": "Group Enrollment",
+          "icon": "fa fa-users"
+        },
+        {
+          "url": "patient-gene-xpert-images",
+          "label": "Gene Xpert Images",
+          "icon": "icon-i-laboratory"
+        },
+        {
+          "url": "patient-ovc-enrollment",
+          "label": "OVC",
+          "icon": "fa fa-child"
+        },
+        {
+          "url": "patient-otz-enrollment",
+          "label": "OTZ",
+          "icon": "fa fa-child"
+        }
+      ]
+    },
+    {
+      "programName": "Standard HIV Treatment",
+      "programUuid": "781d85b0-1359-11df-a1f1-0026b9348838",
+      "baseRoute": "781d85b0-1359-11df-a1f1-0026b9348838",
+      "alias": "hiv",
+      "published": true,
+      "requiresPatientEnrollment": true,
+      "shared-routes-class": "hiv",
+      "routes": []
+    },
+    {
+      "programName": "Pharmacy",
+      "programUuid": "8c1a3a68-d91d-488d-8663-ad572673232b",
+      "baseRoute": "8c1a3a68-d91d-488d-8663-ad572673232b",
+      "alias": "hiv",
+      "published": true,
+      "requiresPatientEnrollment": true,
+      "shared-routes-class": "hiv",
+      "routes": []
+    },
+    {
+      "programName": "HIV Transit",
+      "programUuid": "96ba279b-b23b-4e78-aba9-dcbd46a96b7b",
+      "baseRoute": "96ba279b-b23b-4e78-aba9-dcbd46a96b7b",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "HIV PEP",
+      "programUuid": "96047aaf-7ab3-45e9-be6a-b61810fe617d",
+      "baseRoute": "96047aaf-7ab3-45e9-be6a-b61810fe617d",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "HIV PrEP",
+      "programUuid": "c19aec66-1a40-4588-9b03-b6be55a8dd1d",
+      "baseRoute": "c19aec66-1a40-4588-9b03-b6be55a8dd1d",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Differentiated Service Delivery",
+      "programUuid": "334c9e98-173f-4454-a8ce-f80b20b7fdf0",
+      "baseRoute": "334c9e98-173f-4454-a8ce-f80b20b7fdf0",
+      "alias": "hiv",
+      "published": true,
+      "requiresPatientEnrollment": true,
+      "shared-routes-class": "hiv",
+      "routes": []
+    },
+    {
+      "programName": "HIV Express Care",
+      "programUuid": "781d8880-1359-11df-a1f1-0026b9348838",
+      "baseRoute": "781d8880-1359-11df-a1f1-0026b9348838",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "HIV Retention",
+      "programUuid": "c6bf3625-de80-4a88-a913-38273e300a55",
+      "baseRoute": "c6bf3625-de80-4a88-a913-38273e300a55",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "HIV ACTG",
+      "programUuid": "4480c782-ef05-4d88-b2f8-c892c99438f6",
+      "baseRoute": "4480c782-ef05-4d88-b2f8-c892c99438f6",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "PMTCT",
+      "programUuid": "781d897a-1359-11df-a1f1-0026b9348838",
+      "baseRoute": "781d897a-1359-11df-a1f1-0026b9348838",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "HIV Resistance Clinic",
+      "programUuid": "f7793d42-11ac-4cfd-9b35-e0a21a7a7c31",
+      "baseRoute": "f7793d42-11ac-4cfd-9b35-e0a21a7a7c31",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "HIV Social Work",
+      "programUuid": "a685c057-d475-42ef-bb33-8b0c1d73b122",
+      "baseRoute": "a685c057-d475-42ef-bb33-8b0c1d73b122",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "HIV Nutrition",
+      "programUuid": "03552f68-8233-4793-8353-3db1847bb617",
+      "baseRoute": "03552f68-8233-4793-8353-3db1847bb617",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "DTG Pharmaco-Vigilance",
+      "programUuid": "6ff0a6dc-ef8f-467a-86fc-9d9b263d8761",
+      "baseRoute": "6ff0a6dc-ef8f-467a-86fc-9d9b263d8761",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "HIV Exposed Infant",
+      "programUuid": "a8e7c30d-6d2f-401c-bb52-d4433689a36b",
+      "baseRoute": "a8e7c30d-6d2f-401c-bb52-d4433689a36b",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Cervical Cancer Screening",
+      "programUuid": "cad71628-692c-4d8f-8dac-b2e20bece27f",
+      "baseRoute": "cad71628-692c-4d8f-8dac-b2e20bece27f",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Gyn-Oncology Treatment",
+      "programUuid": "43b42170-b3ce-4e03-9390-6bd78384ac06",
+      "baseRoute": "43b42170-b3ce-4e03-9390-6bd78384ac06",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Breast Cancer Screening",
+      "programUuid": "142939b0-28a9-4649-baf9-a9d012bf3b3d",
+      "baseRoute": "142939b0-28a9-4649-baf9-a9d012bf3b3d",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Breast Cancer Treatment",
+      "programUuid": "88566621-828f-4569-9af5-c54f8237750a",
+      "baseRoute": "88566621-828f-4569-9af5-c54f8237750a",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Lung Cancer Treatment Program",
+      "programUuid": "e8bc5036-1462-44fa-bcfe-ced21eae2790",
+      "baseRoute": "e8bc5036-1462-44fa-bcfe-ced21eae2790",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Sickle Cell",
+      "programUuid": "e48b266e-4d80-41f8-a56a-a8ce5449ebc6",
+      "baseRoute": "e48b266e-4d80-41f8-a56a-a8ce5449ebc6",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Multiple Myeloma",
+      "programUuid": "698b7153-bff3-4931-9638-d279ca47b32e",
+      "baseRoute": "698b7153-bff3-4931-9638-d279ca47b32e",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Anticoagulation Treatment Program",
+      "programUuid": "418fe011-a903-4862-93d4-5e7c84d9c253",
+      "baseRoute": "418fe011-a903-4862-93d4-5e7c84d9c253",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Lymphoma Treatment Program",
+      "programUuid": "40677054-c402-4c56-a0e4-5dd7d799b52f",
+      "baseRoute": "40677054-c402-4c56-a0e4-5dd7d799b52f",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Hemophilia",
+      "programUuid": "a3610ba4-9811-46b3-9628-83ec9310be13",
+      "baseRoute": "a3610ba4-9811-46b3-9628-83ec9310be13",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "General Oncology",
+      "programUuid": "725b5193-3452-43fc-aca3-6a80432d9bfa",
+      "baseRoute": "725b5193-3452-43fc-aca3-6a80432d9bfa",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "OVC",
+      "programUuid": "781d8768-1359-11df-a1f1-0026b9348838",
+      "baseRoute": "781d8768-1359-11df-a1f1-0026b9348838",
+      "alias": "hiv",
+      "published": true,
+      "requiresPatientEnrollment": true,
+      "routes": [
+        {
+          "url": "visit",
+          "label": "Visit",
+          "icon": "icon-i-outpatient"
+        },
+        {
+          "url": "patient-encounters",
+          "label": "Encounters",
+          "icon": "icon-i-immunizations"
+        },
+        {
+          "url": "patient-vitals",
+          "label": "Vitals",
+          "icon": "fa fa-heartbeat"
+        },
+        {
+          "url": "lab-data-summary",
+          "label": "Lab Data Summary",
+          "icon": "icon-i-laboratory"
+        }
+      ]
+    },
+    {
+      "programName": "OTZ",
+      "programUuid": "203571d6-a4f2-4953-9e8b-e1105e2340f5",
+      "baseRoute": "203571d6-a4f2-4953-9e8b-e1105e2340f5",
+      "alias": "hiv",
+      "published": true,
+      "requiresPatientEnrollment": true,
+      "routes": [
+        {
+          "url": "visit",
+          "label": "Visit",
+          "icon": "icon-i-outpatient"
+        },
+        {
+          "url": "patient-encounters",
+          "label": "Encounters",
+          "icon": "icon-i-immunizations"
+        },
+        {
+          "url": "patient-vitals",
+          "label": "Vitals",
+          "icon": "fa fa-heartbeat"
+        },
+        {
+          "url": "lab-data-summary",
+          "label": "Lab Data Summary",
+          "icon": "icon-i-laboratory"
+        }
+      ]
+    },
+    {
+      "programName": "BSG",
+      "programUuid": "781d8a88-1359-11df-a1f1-0026b9348838",
+      "baseRoute": "781d8a88-1359-11df-a1f1-0026b9348838",
+      "alias": "bsg",
+      "published": false,
+      "requiresPatientEnrollment": true,
+      "routes": [
+        {
+          "url": "visit",
+          "label": "Visit",
+          "icon": "icon-i-outpatient"
+        },
+        {
+          "url": "patient-encounters",
+          "label": "Encounters",
+          "icon": "icon-i-immunizations"
+        },
+        {
+          "url": "patient-vitals",
+          "label": "Vitals",
+          "icon": "fa fa-heartbeat"
+        },
+        {
+          "url": "lab-data-summary",
+          "label": "Lab Data Summary",
+          "icon": "icon-i-laboratory"
+        }
+      ]
+    },
+    {
+      "programName": "Dermatology",
+      "programUuid": "b3575274-1850-429b-bb8f-2ff83faedbaf",
+      "baseRoute": "b3575274-1850-429b-bb8f-2ff83faedbaf",
+      "alias": "dermatology",
+      "published": true,
+      "requiresPatientEnrollment": true,
+      "routes": [
+        {
+          "url": "visit",
+          "label": "Visit",
+          "icon": "icon-i-outpatient"
+        },
+        {
+          "url": "patient-encounters",
+          "label": "Encounters",
+          "icon": "icon-i-immunizations"
+        },
+        {
+          "url": "patient-vitals",
+          "label": "Vitals",
+          "icon": "fa fa-heartbeat"
+        },
+        {
+          "url": "lab-data-summary",
+          "label": "Lab Data Summary",
+          "icon": "icon-i-laboratory"
+        },
+        {
+          "url": "patient-imaging",
+          "label": "Imaging",
+          "icon": "icon-i-radiology"
+        }
+      ]
+    },
+    {
+      "programName": "HTN/DM Primary Care",
+      "programUuid": "876a154d-310d-4caf-8b58-be9dbcc7e753",
+      "baseRoute": "876a154d-310d-4caf-8b58-be9dbcc7e753",
+      "alias": "cdm",
+      "published": true,
+      "requiresPatientEnrollment": true,
+      "shared-routes-class": "cdm",
+      "routes": []
+    },
+    {
+      "programName": "HTN/DM Secondary Care",
+      "programUuid": "b731ba72-cf99-4176-9fcd-37cd186400c7",
+      "baseRoute": "b731ba72-cf99-4176-9fcd-37cd186400c7",
+      "alias": "cdm",
+      "published": true,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "HTN/DM Tertiary Care",
+      "programUuid": "bd9a8b06-73c7-44a8-928c-5e72247f4c1d",
+      "baseRoute": "bd9a8b06-73c7-44a8-928c-5e72247f4c1d",
+      "alias": "cdm",
+      "published": true,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Integrated Screening",
+      "programUuid": "da0c184e-751c-4b7e-a761-a60dc2d3f798",
+      "baseRoute": "da0c184e-751c-4b7e-a761-a60dc2d3f798",
+      "alias": "cdm",
+      "published": true,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Viremia",
+      "programUuid": "c4246ff0-b081-460c-bcc5-b0678012659e",
+      "baseRoute": "c4246ff0-b081-460c-bcc5-b0678012659e",
+      "alias": "hiv",
+      "published": true,
+      "shared-routes-class": "hiv",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Hypertension Referral",
+      "programUuid": "2114265d-dcc4-4440-9059-fe194a5f23a6",
+      "baseRoute": "2114265d-dcc4-4440-9059-fe194a5f23a6",
+      "alias": "referral",
+      "published": false,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "BIGPIC",
+      "programUuid": "f5cbf61f-eadc-4fe6-999c-2dfe9556df95",
+      "baseRoute": "f5cbf61f-eadc-4fe6-999c-2dfe9556df95",
+      "alias": "cdm",
+      "published": true,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "BI KUZA AFYA",
+      "programUuid": "62741bb8-949e-4acc-9e38-50d9d874c1fb",
+      "baseRoute": "62741bb8-949e-4acc-9e38-50d9d874c1fb",
+      "alias": "cdm",
+      "published": true,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "NCD",
+      "programUuid": "4b738a10-b952-4e62-b215-30520fd9e113",
+      "baseRoute": "4b738a10-b952-4e62-b215-30520fd9e113",
+      "alias": "cdm",
+      "published": true,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Refferal Peer Navigator",
+      "programUuid": "a15a58a4-0daa-4195-bf29-b4bccd5df01e",
+      "baseRoute": "a15a58a4-0daa-4195-bf29-b4bccd5df01e",
+      "alias": "cdm",
+      "published": true,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Oncology Screening and Diagnosis",
+      "programUuid": "37ff4124-91fd-49e6-8261-057ccfb4fcd0",
+      "baseRoute": "37ff4124-91fd-49e6-8261-057ccfb4fcd0",
+      "alias": "oncology",
+      "published": true,
+      "shared-routes-class": "oncology",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "CDM Defaulter Tracing",
+      "programUuid": "ff446cb9-0cf4-4b39-8288-16a43ffcca25",
+      "baseRoute": "ff446cb9-0cf4-4b39-8288-16a43ffcca25",
+      "alias": "cdm",
+      "published": true,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Home Glucose Monitoring Program",
+      "programUuid": "d2090d0b-990a-4b82-98a8-32f987329f63",
+      "baseRoute": "d2090d0b-990a-4b82-98a8-32f987329f63",
+      "alias": "cdm",
+      "published": true,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "HIV Testing Services",
+      "programUuid": "a0f8382f-df8a-4f1d-8959-9fb6eef90353",
+      "baseRoute": "a0f8382f-df8a-4f1d-8959-9fb6eef90353",
+      "alias": "hts",
+      "published": true,
+      "requiresPatientEnrollment": true,
+      "shared-routes-class": "hts",
+      "routes": [
+        {
+          "url": "visit",
+          "label": "Visit",
+          "icon": "icon-i-outpatient"
+        },
+        {
+          "url": "patient-encounters",
+          "label": "Encounters",
+          "icon": "icon-i-immunizations"
+        },
+        {
+          "url": "patient-vitals",
+          "label": "Vitals",
+          "icon": "fa fa-heartbeat"
+        },
+        {
+          "url": "lab-data-summary",
+          "label": "Lab Data Summary",
+          "icon": "icon-i-laboratory"
+        }
+      ]
+    },
+    {
+      "programName": "Mental Health",
+      "programUuid": "6976b7eb-6d66-4aba-bcc0-cd8be80041cd",
+      "baseRoute": "6976b7eb-6d66-4aba-bcc0-cd8be80041cd",
+      "alias": "cdm",
+      "published": true,
+      "shared-routes-class": "cdm",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Antenatal Care",
+      "programUuid": "52aeb285-fb18-455b-893e-3e53ccc77ceb",
+      "baseRoute": "52aeb285-fb18-455b-893e-3e53ccc77ceb",
+      "alias": "mnch",
+      "published": true,
+      "shared-routes-class": "mnch",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Postnatal Program",
+      "programUuid": "d2552058-d7bd-47c6-aed1-480a4308027a",
+      "baseRoute": "d2552058-d7bd-47c6-aed1-480a4308027a",
+      "alias": "mnch",
+      "published": true,
+      "shared-routes-class": "mnch",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "Maternity Program",
+      "programUuid": "01948855-8491-4164-b54f-9b16d174d93e",
+      "baseRoute": "01948855-8491-4164-b54f-9b16d174d93e",
+      "alias": "mnch",
+      "published": true,
+      "shared-routes-class": "mnch",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    },
+    {
+      "programName": "KP Program",
+      "programUuid": "317f07b1-23f5-43f2-82bc-57a3c3790698",
+      "baseRoute": "317f07b1-23f5-43f2-82bc-57a3c3790698",
+      "alias": "kvp",
+      "published": true,
+      "shared-routes-class": "kvp",
+      "requiresPatientEnrollment": true,
+      "routes": []
+    }
+  ],
+
+  "sharedRoutes": {
+    "hiv": [
+      {
+        "url": "visit",
+        "label": "Visit",
+        "icon": "icon-i-outpatient"
+      },
+      {
+        "url": "patient-encounters",
+        "label": "Encounters",
+        "icon": "icon-i-immunizations"
+      },
+      {
+        "url": "patient-vitals",
+        "label": "Vitals",
+        "icon": "fa fa-heartbeat"
+      },
+      {
+        "url": "hiv-summary",
+        "label": "HIV Summary",
+        "icon": "fa fa-medkit"
+      },
+      {
+        "url": "patient-monthly-status-history",
+        "label": "Monthly Status History",
+        "icon": "fa fa-medkit"
+      },
+      {
+        "url": "clinical-notes",
+        "label": "Clinical Notes",
+        "icon": "fa fa-book"
+      },
+      {
+        "url": "lab-data-summary",
+        "label": "Lab Data Summary",
+        "icon": "icon-i-laboratory"
+      },
+      {
+        "url": "lab-orders",
+        "label": "Lab Orders",
+        "icon": "icon-i-pathology"
+      },
+      {
+        "url": "patient-imaging",
+        "label": "Imaging",
+        "icon": "icon-i-radiology"
+      }
+    ],
+    "oncology": [
+      {
+        "url": "visit",
+        "label": "Visit",
+        "icon": "icon-i-outpatient"
+      },
+      {
+        "url": "patient-encounters",
+        "label": "Encounters",
+        "icon": "icon-i-immunizations"
+      },
+      {
+        "url": "patient-vitals",
+        "label": "Vitals",
+        "icon": "fa fa-heartbeat"
+      },
+      {
+        "url": "oncology-summary",
+        "label": "Oncology Summary",
+        "icon": "fa fa-medkit"
+      },
+      {
+        "url": "lab-data-summary",
+        "label": "Lab Data Summary",
+        "icon": "icon-i-laboratory"
+      },
+      {
+        "url": "lab-orders",
+        "label": "Lab Orders",
+        "icon": "icon-i-pathology"
+      },
+      {
+        "url": "patient-imaging",
+        "label": "Imaging",
+        "icon": "icon-i-radiology"
+      }
+    ],
+    "cdm": [
+      {
+        "url": "visit",
+        "label": "Visit",
+        "icon": "icon-i-outpatient"
+      },
+      {
+        "url": "patient-encounters",
+        "label": "Encounters",
+        "icon": "icon-i-immunizations"
+      },
+      {
+        "url": "patient-vitals",
+        "label": "Vitals",
+        "icon": "fa fa-heartbeat"
+      },
+      {
+        "url": "cdm-summary",
+        "label": "CDM Summary",
+        "icon": "fa fa-medkit"
+      },
+      {
+        "url": "lab-data-summary",
+        "label": "Lab Data Summary",
+        "icon": "icon-i-laboratory"
+      },
+      {
+        "url": "patient-imaging",
+        "label": "Imaging",
+        "icon": "icon-i-radiology"
+      }
+    ],
+    "mnch": [
+      {
+        "url": "visit",
+        "label": "Visit",
+        "icon": "icon-i-outpatient"
+      },
+      {
+        "url": "patient-encounters",
+        "label": "Encounters",
+        "icon": "icon-i-immunizations"
+      },
+      {
+        "url": "patient-vitals",
+        "label": "Vitals",
+        "icon": "fa fa-heartbeat"
+      },
+      {
+        "url": "hiv-summary",
+        "label": "HIV Summary",
+        "icon": "fa fa-medkit"
+      },
+      {
+        "url": "patient-monthly-status-history",
+        "label": "Monthly Status History",
+        "icon": "fa fa-medkit"
+      },
+      {
+        "url": "clinical-notes",
+        "label": "Clinical Notes",
+        "icon": "fa fa-book"
+      },
+      {
+        "url": "lab-data-summary",
+        "label": "Lab Data Summary",
+        "icon": "icon-i-laboratory"
+      },
+      {
+        "url": "lab-orders",
+        "label": "Lab Orders",
+        "icon": "icon-i-pathology"
+      },
+      {
+        "url": "patient-imaging",
+        "label": "Imaging",
+        "icon": "icon-i-radiology"
+      }
+    ],
+    "hts": [
+      {
+        "url": "visit",
+        "label": "Visit",
+        "icon": "icon-i-outpatient"
+      },
+      {
+        "url": "patient-encounters",
+        "label": "Encounters",
+        "icon": "icon-i-immunizations"
+      },
+      {
+        "url": "patient-vitals",
+        "label": "Vitals",
+        "icon": "fa fa-heartbeat"
+      },
+      {
+        "url": "hiv-summary",
+        "label": "HIV Summary",
+        "icon": "fa fa-medkit"
+      },
+      {
+        "url": "patient-monthly-status-history",
+        "label": "Monthly Status History",
+        "icon": "fa fa-medkit"
+      },
+      {
+        "url": "clinical-notes",
+        "label": "Clinical Notes",
+        "icon": "fa fa-book"
+      },
+      {
+        "url": "lab-data-summary",
+        "label": "Lab Data Summary",
+        "icon": "icon-i-laboratory"
+      },
+      {
+        "url": "lab-orders",
+        "label": "Lab Orders",
+        "icon": "icon-i-pathology"
+      },
+      {
+        "url": "patient-imaging",
+        "label": "Imaging",
+        "icon": "icon-i-radiology"
+      }
+    ],
+    "kvp": [
+      {
+        "url": "visit",
+        "label": "Visit",
+        "icon": "icon-i-outpatient"
+      },
+      {
+        "url": "patient-encounters",
+        "label": "Encounters",
+        "icon": "icon-i-immunizations"
+      },
+      {
+        "url": "patient-vitals",
+        "label": "Vitals",
+        "icon": "fa fa-heartbeat"
+      },
+      {
+        "url": "hiv-summary",
+        "label": "HIV Summary",
+        "icon": "fa fa-medkit"
+      },
+      {
+        "url": "patient-monthly-status-history",
+        "label": "Monthly Status History",
+        "icon": "fa fa-medkit"
+      },
+      {
+        "url": "clinical-notes",
+        "label": "Clinical Notes",
+        "icon": "fa fa-book"
+      },
+      {
+        "url": "lab-data-summary",
+        "label": "Lab Data Summary",
+        "icon": "icon-i-laboratory"
+      },
+      {
+        "url": "lab-orders",
+        "label": "Lab Orders",
+        "icon": "icon-i-pathology"
+      },
+      {
+        "url": "patient-imaging",
+        "label": "Imaging",
+        "icon": "icon-i-radiology"
+      }
+    ]
+  }
+}
