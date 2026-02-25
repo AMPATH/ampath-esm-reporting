@@ -19,6 +19,7 @@ import { ProgramResourceService } from './openmrs-api/program-resource.service';
 import { DataAnalyticsWrapperComponent } from './data-analytics-wrapper/data-analytics-wrapper.component';
 import { DataAnalyticsModule } from './data-analytics-dashboard/data-analytics.module';
 import { AppRoutingModule } from './app-routing.module';
+import { LeftNavComponent } from './left-nav/left-nav.component';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import { AppRoutingModule } from './app-routing.module';
     OpenmrsApiModule,
     DataAnalyticsModule,
     AppRoutingModule,
+    LeftNavComponent,
   ],
   providers: [
     LocalStorageService,

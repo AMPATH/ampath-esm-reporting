@@ -128,7 +128,10 @@
     "ngx-build-plus": "^19.0.0",
     "openmrs": "patch:openmrs@npm%3A9.0.1-pre.3992#~/.yarn/patches/openmrs-npm-9.0.1-pre.3992-490701bfb4.patch",
     "rxjs": "^7.5.0",
-    "style-loader": "^3.3.1",
+    "sass": "^1.97.3",
+    "sass-loader": "^16.0.7",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.4",
     "typescript": "~5.8.0",
     "webpack": "~5.94.0"
   },

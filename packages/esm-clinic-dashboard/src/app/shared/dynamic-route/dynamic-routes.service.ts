@@ -4,7 +4,7 @@ import { DynamicRouteModel } from './dynamic-route.model';
 import { ProgramEnrollment } from '../../models/program-enrollment.model';
 import { DashboardModel } from './dashboard.model';
 import { RouteModel } from './route.model';
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DynamicRoutesService {
   public routes = new ReplaySubject(1);
   public patientRoutes = new ReplaySubject<Array<RouteModel>>(1);

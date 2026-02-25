@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../utils/local-storage.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AppSettingsService {
   public static readonly DEFAULT_OPENMRS_SERVER_URL =
     'https://ngx.ampath.or.ke/amrs';

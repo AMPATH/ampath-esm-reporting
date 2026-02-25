@@ -1,5 +1,10 @@
 <ng-container *ngIf="isDataAnalytics">
-    <data-analytics-dashboard></data-analytics-dashboard>
+    <div class="data-analytics-layout">
+        <app-left-nav></app-left-nav>
+        <main class="data-analytics-content">
+            <data-analytics-dashboard></data-analytics-dashboard>
+        </main>
+    </div>
 </ng-container>
 
 <ng-container *ngIf="isClinicDashboard">

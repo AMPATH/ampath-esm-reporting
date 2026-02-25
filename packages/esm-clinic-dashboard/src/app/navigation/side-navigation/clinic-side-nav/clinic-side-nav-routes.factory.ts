@@ -4,24 +4,31 @@ import { RoutesProviderService } from '../../../shared/dynamic-route/route-confi
 import { RouteModel } from '../../../shared/dynamic-route/route.model';
 import { Patient } from '../../../models/patient.model';
 import { LocalStorageService } from '../../../utils/local-storage.service';
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ClinicRoutesFactory {
   public selectedDepartment: any;
 
   constructor(
     public routesProvider: RoutesProviderService,
     private _localStorageService: LocalStorageService
-  ) {}
+  ) { }
 
   public createClinicDashboardRoutes(locationUuid): RouteModel[] {
     if (locationUuid === null || locationUuid === undefined) {
       throw new Error('Location is required');
     }
-    let selectedDepartment: any;
-    const setDepartment: any = JSON.parse(
-      this._localStorageService.getItem('userDefaultDepartment')
-    );
-    selectedDepartment = setDepartment[0].itemName;
+    let selectedDepartment: any = 'HIV';
+    try {
+      const raw = this._localStorageService.getItem('userDefaultDepartment');
+      if (raw) {
+        const setDepartment: any = JSON.parse(raw);
+        if (Array.isArray(setDepartment) && setDepartment.length > 0 && setDepartment[0].itemName) {
+          selectedDepartment = setDepartment[0].itemName;
+        }
+      }
+    } catch (e) {
+      // default to HIV
+    }
     this.selectedDepartment = selectedDepartment;
 
     let clinicRoutesConfig: any = this.routesProvider.clinicDashboardConfig;
@@ -41,11 +48,18 @@ export class ClinicRoutesFactory {
   }
 
   public createAnalyticsDashboardRoutes(): RouteModel[] {
-    let selectedDepartment: any;
-    const setDepartment: any = JSON.parse(
-      this._localStorageService.getItem('userDefaultDepartment')
-    );
-    selectedDepartment = setDepartment[0].itemName;
+    let selectedDepartment: any = 'HIV';
+    try {
+      const raw = this._localStorageService.getItem('userDefaultDepartment');
+      if (raw) {
+        const setDepartment: any = JSON.parse(raw);
+        if (Array.isArray(setDepartment) && setDepartment.length > 0 && setDepartment[0].itemName) {
+          selectedDepartment = setDepartment[0].itemName;
+        }
+      }
+    } catch (e) {
+      // default to HIV
+    }
     this.selectedDepartment = selectedDepartment;
 
     let analyticsRoutesConfig: any = this.routesProvider

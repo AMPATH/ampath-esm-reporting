@@ -7,3 +7,23 @@
   margin-bottom: 0.5rem;
   color: #161616;
 }
+
+/* Data Analytics layout with left panel */
+.data-analytics-layout {
+  display: flex;
+  height: calc(100vh - 48px);
+}
+
+#data-analytics-left-panel {
+  flex: 0 0 256px;
+  overflow-y: auto;
+  border-right: 1px solid #e0e0e0;
+  background-color: #ffffff;
+}
+
+.data-analytics-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0;
+  background-color: #f4f4f4;
+}

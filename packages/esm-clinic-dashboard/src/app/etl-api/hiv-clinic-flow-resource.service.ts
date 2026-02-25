@@ -5,7 +5,7 @@ import { ClinicFlowResource } from './clinic-flow-resource-interface';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class HivClinicFlowResourceService implements ClinicFlowResource {
   public cache;
   public result = new BehaviorSubject(null);

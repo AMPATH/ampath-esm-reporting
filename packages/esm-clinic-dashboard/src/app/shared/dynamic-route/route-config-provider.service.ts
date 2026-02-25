@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class RoutesProviderService {
   public analyticsDashboardConfig: object = require('./schema/analytics.dashboard.conf.json');
   public clinicDashboardConfig: object = require('./schema/clinic.dashboard.conf.json');
