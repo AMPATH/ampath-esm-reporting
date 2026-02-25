@@ -22,9 +22,8 @@ import { NgBusyModule } from 'ng-busy';
 import { CacheModule } from 'ionic-cache/dist/cache.module';
 import { DataCacheService } from '../../shared/services/data-cache.service';
 import { NgamrsSharedModule } from '../../shared/ngamrs-shared.module';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { ProgramVisitEncounterSearchComponent } from './../../program-visit-encounter-search/program-visit-encounter-search.component';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { DepartmentProgramsConfigService } from './../../etl-api/department-programs-config.service';
 
 describe('Component: DailyScheduleAppointmentsComponent', () => {
@@ -76,7 +75,6 @@ describe('Component: DailyScheduleAppointmentsComponent', () => {
         DataListsModule,
         CacheModule.forRoot(),
         HttpClientTestingModule,
-        DateTimePickerModule,
         AngularMultiSelectModule,
         NgamrsSharedModule
       ]

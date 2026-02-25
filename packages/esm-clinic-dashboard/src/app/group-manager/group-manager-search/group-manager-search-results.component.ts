@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import * as _ from 'lodash';
 import { CommunityGroupService } from '../../openmrs-api/community-group-resource.service';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import dayjs from 'dayjs';
 import { Subscription } from 'rxjs';
 import { DatePickerModalComponent } from '../modals/date-picker-modal.component';

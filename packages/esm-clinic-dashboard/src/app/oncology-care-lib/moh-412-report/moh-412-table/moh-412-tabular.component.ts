@@ -3,7 +3,8 @@ import {
   OnInit,
   OnChanges,
   Input,
-  SimpleChanges
+  SimpleChanges,
+  ViewChild
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -14,6 +15,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./moh-412-tabular.component.css']
 })
 export class MOH412TabularComponent implements OnInit, OnChanges {
+  @ViewChild('agGrid') agGrid: any;
+  public exportCountsListToCsv() { if (this.agGrid && this.agGrid.api) this.agGrid.api.exportDataAsCsv(); }
   public startDate: any;
   public endDate: any;
   public locationUuids: any;
@@ -21,12 +24,9 @@ export class MOH412TabularComponent implements OnInit, OnChanges {
   @Input() public reportDef = [];
 
   public gridOptions: any = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
-    onGridSizeChanged: () => {},
-    onGridReady: () => {}
+    // enableColResize: true,
+    onGridSizeChanged: () => { },
+    onGridReady: () => { }
   };
 
   public moh412SummaryColdef = [];
@@ -36,9 +36,9 @@ export class MOH412TabularComponent implements OnInit, OnChanges {
   @Input() public params: any;
   public pinnedBottomRowData = [];
 
-  constructor(private router: Router, public route: ActivatedRoute) {}
+  constructor(private router: Router, public route: ActivatedRoute) { }
 
-  public ngOnInit() {}
+  public ngOnInit() { }
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.reportDef) {
       if (changes.reportDef.currentValue.length > 0) {
@@ -122,7 +122,7 @@ export class MOH412TabularComponent implements OnInit, OnChanges {
     this.moh412SummaryColdef = cols;
   }
 
-  public generateRowData() {}
+  public generateRowData() { }
   public onCellClick($event: any) {
     const indicator = $event.colDef.field;
     this.locationUuids = $event.data.location_uuid;

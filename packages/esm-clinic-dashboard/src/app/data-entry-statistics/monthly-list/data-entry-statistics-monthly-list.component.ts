@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import * as _ from 'lodash';
 import dayjs from 'dayjs';
-import { GridOptions } from 'ag-grid-angular';
+import { GridOptions } from 'ag-grid-community';
 
 @Component({
   standalone: false,
@@ -26,11 +26,8 @@ export class DataEntryStatisticsMonthlyListComponent
   public rowData = [];
   @Input() public params: any;
 
-  public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+  public gridOptions: any = {
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300
   };
@@ -42,9 +39,9 @@ export class DataEntryStatisticsMonthlyListComponent
   public dataEntryEncounterColdef: any = [];
   public totalMonthlyEncounters = 0;
 
-  constructor(private _cd: ChangeDetectorRef) {}
+  constructor(private _cd: ChangeDetectorRef) { }
 
-  public ngOnInit() {}
+  public ngOnInit() { }
   public ngAfterViewInit(): void {
     this._cd.detectChanges();
   }

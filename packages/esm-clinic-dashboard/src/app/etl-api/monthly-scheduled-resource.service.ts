@@ -9,9 +9,8 @@ export class MonthlyScheduleResourceService {
   constructor(
     protected http: HttpClient,
     protected appSettingsService: AppSettingsService,
-    protected dataCache: DataCacheService,
-    protected cacheService: CacheService
-  ) {}
+    protected dataCache: DataCacheService
+  ) { }
 
   public getMonthlySchedule(params) {
     const url = this.getUrl();

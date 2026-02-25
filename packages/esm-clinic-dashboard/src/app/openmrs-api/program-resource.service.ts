@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { WindowRef } from '../window-ref';
-import { Form } from '@openmrs/ngx-formentry';
 import { MetaData } from '../types';
 import { restBaseUrl, showSnackbar } from '@openmrs/esm-framework';
 import { SingleSpaPropsService } from '../single-spa-props/single-spa-props.service';
@@ -18,13 +17,23 @@ export class ProgramResourceService {
     protected windowRef: WindowRef,
     private singleSpaService: SingleSpaPropsService,
     private encounterResourceService: EncounterResourceService,
-  ) {}
+  ) { }
 
   private programEnrollmentUrl(): string {
     return `${this.windowRef.nativeWindow.openmrsBase}${restBaseUrl}/programenrollment`;
   }
 
-  public handlePatientCareProgram(form: Form, encounterUuid: string): void {
+  public getPrograms() {
+    const url = `${this.windowRef.nativeWindow.openmrsBase}${restBaseUrl}/program`;
+    const v = 'custom:(uuid,display,allWorkflows,concept:(uuid,display))';
+    return this.httpClient.get<any>(url, { params: { v } }).pipe(
+      // simplified mapping for POC
+      require('rxjs/operators').map((response: any) => response.results)
+    );
+  }
+
+  /*
+  public handlePatientCareProgram(form: any, encounterUuid: string): void {
     const careProgramMeta: MetaData | undefined = form.schema.meta?.programs;
     if (!careProgramMeta) {
       return;
@@ -40,6 +49,7 @@ export class ProgramResourceService {
       ? this.enrollPatientToCareProgram(enrollmentDate, uuid, locationUuid, encounterUuid, utcOffset)
       : this.discontinuePatientFromCareProgram(discontinuationDate, encounterUuid, utcOffset);
   }
+  */
 
   public enrollPatientToCareProgram(
     enrollmentDate: string,
@@ -125,15 +135,17 @@ export class ProgramResourceService {
     );
   }
 
-  private getProgramDate(form: Form, condition: boolean, questionId?: string): string | undefined {
+  /*
+  private getProgramDate(form: any, condition: boolean, questionId?: string): string | undefined {
     return condition && questionId ? this.getNodeValueById(form, questionId) : undefined;
   }
 
-  private getNodeValueById(form: Form, questionId: string): string | undefined {
+  private getNodeValueById(form: any, questionId: string): string | undefined {
     return form.searchNodeByQuestionId(questionId)?.[0]?.control.value;
   }
 
-  private getUserLocationUuid(form: Form): string {
+  private getUserLocationUuid(form: any): string {
     return form.dataSourcesContainer.dataSources['userLocation'].uuid;
   }
+  */
 }

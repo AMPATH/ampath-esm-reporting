@@ -111,7 +111,7 @@ export class ClinicalSummaryVisualizationService {
   }
 
   public getMonthDateRange(year: number, month: number): any {
-    const startDate = dayjs([year, month]);
+    const startDate = dayjs(new Date(year, month));
     const endDate = dayjs(startDate).endOf('month');
     return {
       startDate: startDate,

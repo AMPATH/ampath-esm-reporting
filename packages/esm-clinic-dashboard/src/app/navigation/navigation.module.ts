@@ -7,10 +7,7 @@ import { StaticNavBarComponent } from './static-navbar/static-navbar.component';
 import { NavigationService } from './navigation.service';
 import { PatientSideNavComponent } from './side-navigation/patient-side-nav/patient-side-nav.component';
 import { ClinicSideNavComponent } from './side-navigation/clinic-side-nav/clinic-side-nav.component';
-import { FormUpdaterService } from '../patient-dashboard/common/formentry/form-updater.service';
 import { FormOrderMetaDataService } from '../patient-dashboard/common/forms/form-order-metadata.service';
-import { FormSchemaService } from '../patient-dashboard/common/formentry/form-schema.service';
-import { FormSchemaCompiler } from '@openmrs/ngx-formentry';
 import { FormsResourceService } from '../openmrs-api/forms-resource.service';
 import { FormListService } from '../patient-dashboard/common/forms/form-list.service';
 
@@ -30,10 +27,7 @@ import { FormListService } from '../patient-dashboard/common/forms/form-list.ser
   ],
   providers: [
     NavigationService,
-    FormUpdaterService,
     FormOrderMetaDataService,
-    FormSchemaService,
-    FormSchemaCompiler,
     FormListService
   ]
 })

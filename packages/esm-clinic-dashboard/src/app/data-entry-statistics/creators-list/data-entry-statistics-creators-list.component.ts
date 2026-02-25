@@ -24,10 +24,7 @@ export class DataEntryStatisticsCreatorsListComponent
   public totalEncounters = 0;
 
   public gridOptions: any = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300
   };

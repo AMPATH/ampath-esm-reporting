@@ -1,25 +1,9 @@
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {
-  AccordionModule,
-  DataTableModule,
-  SharedModule,
-  TabViewModule,
-  GrowlModule,
-  PanelModule,
-  ConfirmDialogModule,
-  DialogModule,
-  InputTextModule,
-  MessagesModule,
-  InputTextareaModule,
-  MultiSelectModule,
-  DropdownModule,
-  ButtonModule,
-  CalendarModule
-} from 'primeng/primeng';
 
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { EtlApi } from '../etl-api/etl-api.module';
 import { DataListsModule } from '../shared/data-lists/data-lists.module';
 import { NgamrsSharedModule } from '../shared/ngamrs-shared.module';
@@ -30,27 +14,13 @@ import { MOH412PatientListComponent } from './moh-412-report/moh-412-patient-lis
 import { MOH412ReportViewComponent } from './moh-412-report/moh-412-report-view/moh-412-report-view.component';
 @NgModule({
   imports: [
-    DateTimePickerModule,
+    PdfViewerModule,
+    TabsModule,
     EtlApi,
     DataListsModule,
     CommonModule,
     FormsModule,
-    NgamrsSharedModule,
-    AccordionModule,
-    DataTableModule,
-    SharedModule,
-    TabViewModule,
-    GrowlModule,
-    PanelModule,
-    ConfirmDialogModule,
-    DialogModule,
-    InputTextModule,
-    MessagesModule,
-    InputTextareaModule,
-    MultiSelectModule,
-    DropdownModule,
-    ButtonModule,
-    CalendarModule
+    NgamrsSharedModule
   ],
   exports: [
     MOH412ReportComponent,
@@ -68,4 +38,4 @@ import { MOH412ReportViewComponent } from './moh-412-report/moh-412-report-view/
   ],
   providers: []
 })
-export class OncologyProgramModule {}
+export class OncologyProgramModule { }

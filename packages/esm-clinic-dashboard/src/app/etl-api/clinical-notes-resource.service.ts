@@ -1,6 +1,5 @@
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { URLSearchParams } from '@angular/http';
 
 import { AppSettingsService } from '../app-settings/app-settings.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -10,7 +9,7 @@ export class ClinicalNotesResourceService {
   constructor(
     private http: HttpClient,
     private appSettingsService: AppSettingsService
-  ) {}
+  ) { }
 
   public getClinicalNotes(
     patientUuid: string,

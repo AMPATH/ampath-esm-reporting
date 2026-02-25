@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 
 import * as _ from 'lodash';
 import { Subscription } from 'rxjs';
-import { GridOptions } from 'ag-grid';
+import { GridOptions } from 'ag-grid-community';
 
 import { HeiReportService } from './../../etl-api/hei-report.service';
 
@@ -30,20 +30,17 @@ export class HeiIndicatorsPatientListComponent implements OnInit {
   public busy: Subscription;
   public gridColumnApi;
   public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300,
     onGridSizeChanged: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     },
     onGridReady: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     }
   };
@@ -214,6 +211,6 @@ export class HeiIndicatorsPatientListComponent implements OnInit {
   }
 
   public exportPatientListToCsv() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
 }

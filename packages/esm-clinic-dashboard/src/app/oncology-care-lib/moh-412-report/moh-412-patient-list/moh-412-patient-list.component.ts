@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MOH412ResourceService } from './../../../etl-api/moh-412-resource.service';
 import { Location } from '@angular/common';
-import { GridOptions } from 'ag-grid';
+import { GridOptions } from 'ag-grid-community';
 
 @Component({
   standalone: false,
@@ -104,16 +104,13 @@ export class MOH412PatientListComponent implements OnInit {
     { headerName: 'Treatment Method', field: 'treatment_method', width: 200 }
   ];
   public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300,
     rowSelection: 'multiple',
     onGridSizeChanged: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     }
   };
@@ -129,7 +126,7 @@ export class MOH412PatientListComponent implements OnInit {
     private route: ActivatedRoute,
     private _location: Location,
     private moh412Service: MOH412ResourceService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(
@@ -180,9 +177,9 @@ export class MOH412PatientListComponent implements OnInit {
       return;
     }
     this.router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' +
+      patientUuid +
+      '/chart'
     ]);
   }
 
@@ -191,7 +188,7 @@ export class MOH412PatientListComponent implements OnInit {
     this.redirectTopatientInfo(patientUuid);
   }
   public exportPatientListToCsv() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
   public getRowNNumber(column: any): number {
     return parseInt(column.node.rowIndex, 10) + 1;

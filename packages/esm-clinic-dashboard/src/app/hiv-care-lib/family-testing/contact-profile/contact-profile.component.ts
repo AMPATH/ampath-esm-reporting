@@ -17,7 +17,7 @@ export class ContactProfileComponent implements OnInit {
   public gridOptions = { columnDefs: [] };
   public frameComponents: any;
   public contactTraceHistory = [];
-  private frameworkComponents: any;
+  public frameworkComponents: any;
   public statusError = false;
   public errorMessage = '';
   public showInfoMessage = false;

@@ -91,8 +91,8 @@ export class VisualizationPatientListComponent implements OnInit, OnDestroy {
   public setDateRange(monthYear) {
     const startDate = monthYear[0].split('/');
     const endDate = monthYear[1].split('/');
-    this.startDate = dayjs([startDate[2], startDate[1] - 1, startDate[0]]);
-    this.endDate = dayjs([endDate[2], endDate[1] - 1, endDate[0]]);
+    this.startDate = dayjs(new Date(startDate[2], startDate[1] - 1, startDate[0]));
+    this.endDate = dayjs(new Date(endDate[2], endDate[1] - 1, endDate[0]));
   }
 
   public loadPatientData(reportName: string) {
@@ -127,9 +127,9 @@ export class VisualizationPatientListComponent implements OnInit, OnDestroy {
       return;
     }
     this.router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' +
+      patientUuid +
+      '/chart'
     ]);
   }
   private getSelectedLocations(locationUuids: Array<string>): string {

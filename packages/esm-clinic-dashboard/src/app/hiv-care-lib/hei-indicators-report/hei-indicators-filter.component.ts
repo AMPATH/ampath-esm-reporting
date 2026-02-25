@@ -11,6 +11,9 @@ import dayjs from 'dayjs';
   styleUrls: ['./hei-indicators-filter.component.css']
 })
 export class HeiIndicatorsFilterComponent implements OnInit {
+  public isAggregated: boolean = false;
+  public onLocationsSelected(e) {}
+
   public showLocationsControl = false;
   public isMonthMode = true;
   public showIsAggregateControl = false;

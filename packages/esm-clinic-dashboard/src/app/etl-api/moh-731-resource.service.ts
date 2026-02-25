@@ -2,8 +2,6 @@ import { of as observableOf, Observable } from 'rxjs';
 
 import { catchError, map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-// tslint:disable-next-line:import-blacklist
-import { Subject } from 'rxjs/Rx';
 import { AppSettingsService } from '../app-settings/app-settings.service';
 import { DataCacheService } from '../shared/services/data-cache.service';
 import { HttpParams, HttpClient } from '@angular/common/http';
@@ -19,7 +17,7 @@ export class Moh731ResourceService {
     public http: HttpClient,
     public appSettingsService: AppSettingsService,
     public cacheService: DataCacheService
-  ) {}
+  ) { }
 
   public getMoh731Report(
     locationUuids: string,
@@ -70,10 +68,10 @@ export class Moh731ResourceService {
     return cacheTtl === 0
       ? request
       : this.cacheService.cacheSingleRequest(
-          this.url,
-          urlParams,
-          request,
-          cacheTtl
-        );
+        this.url,
+        urlParams,
+        request,
+        cacheTtl
+      );
   }
 }

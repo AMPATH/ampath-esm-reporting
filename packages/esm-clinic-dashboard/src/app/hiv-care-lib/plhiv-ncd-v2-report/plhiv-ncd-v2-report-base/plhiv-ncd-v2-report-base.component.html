@@ -6,9 +6,9 @@
   <span><i class="fa fa-spinner fa-spin"></i>Loading...</span>
 </div>
 
-<p-tabView (onChange)="handleChange($event)">
+<tabset (onChange)="handleChange($event)">
   <div>
-    <p-tabPanel header="Monthly" leftIcon="fa-calendar-o">
+    <tab heading="Monthly" leftIcon="fa-calendar-o">
       <report-filters
         [enabledControls]="enabledControls"
         [monthString]="_month"
@@ -18,8 +18,8 @@
         [showAggregateControl]="true"
       >
       </report-filters>
-    </p-tabPanel>
-    <p-tabPanel header="Range" leftIcon="fa-calendar-o">
+    </tab>
+    <tab heading="Range" leftIcon="fa-calendar-o">
       <report-filters
         [enabledControls]="enabledControls2"
         [(startDate)]="startDate"
@@ -27,9 +27,9 @@
         (generateReport)="generateReport()"
       >
       </report-filters>
-    </p-tabPanel>
+    </tab>
   </div>
-</p-tabView>
+</tabset>
 
 <div class="alert alert-danger fade in" *ngIf="showInfoMessage">
   <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -46,11 +46,10 @@
   This report is likely to change without warning.
 </div>
 <div>
-  <p-tabView>
-    <p-tabPanel
-      header="Report View"
+  <tabset>
+    <tab heading="Report View"
       leftIcon="fa-file-pdf-o"
-      [selected]="currentViewBelow === 'pdf'"
+      [active]="currentViewBelow === 'pdf'"
     >
       <app-plhiv-ncd-v2-report-view
         [SummaryData]="plhivNcdV2ReportSummaryData"
@@ -59,6 +58,6 @@
         [reportDetails]="params"
         [reportHeader]="reportName"
       ></app-plhiv-ncd-v2-report-view>
-    </p-tabPanel>
-  </p-tabView>
+    </tab>
+  </tabset>
 </div>

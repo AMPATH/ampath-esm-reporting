@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Subscription } from 'rxjs';
-import { GridOptions } from 'ag-grid';
+import { GridOptions } from 'ag-grid-community';
 
 import { CaseManagementResourceService } from './../../etl-api/case-management-resource.service';
 
@@ -43,16 +43,13 @@ export class CaseManagementPatientListComponent implements OnInit {
   public unAssignFlag = false;
   public attributeUuid: any;
   public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300,
     rowSelection: 'multiple',
     onGridSizeChanged: () => {
       if (this.gridOptions.api) {
-        // this.gridOptions.api.sizeColumnsToFit();
+        // (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     }
   };
@@ -333,10 +330,10 @@ export class CaseManagementPatientListComponent implements OnInit {
       }
     );
   }
-  public massAssignCaseManagers(isSubmiting) {
+  public massAssignCaseManagers(isSubmiting?) {
     this.getCaseManagers();
     this.displayMassAssign = true;
-    this.patientList = this.gridOptions.api.getSelectedRows();
+    this.patientList = (this.gridOptions.api as any)?.getSelectedRows();
     const massAssignPayload = {
       patients: this.patientList,
       caseManagers: this.caseForManager
@@ -427,7 +424,7 @@ export class CaseManagementPatientListComponent implements OnInit {
     ]);
   }
   public exportPatientListToCsv() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
   public getPatientList(params) {
     const finalParams = {

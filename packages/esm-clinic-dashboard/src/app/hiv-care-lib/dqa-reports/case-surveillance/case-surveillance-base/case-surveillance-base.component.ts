@@ -14,6 +14,9 @@ import { CaseSurveillanceService } from 'src/app/etl-api/case-surveillance.servi
   styleUrls: ['./case-surveillance-base.component.css']
 })
 export class CaseSurveillanceBaseComponent implements OnInit {
+  public statusError: boolean = false;
+  public errorMessage: string = "";
+
   public enabledControls = 'locationControl,datesControl,';
   public _locationUuids: any = [];
   public params: any = [];
@@ -24,7 +27,6 @@ export class CaseSurveillanceBaseComponent implements OnInit {
   private _startDate: Date = dayjs().subtract(1, 'month').toDate();
   isLoading: boolean;
   columnDefs: any;
-  errorMessage: string;
   pinnedBottomRowData: any[];
   private _sDate: any;
   private _eDate: any;

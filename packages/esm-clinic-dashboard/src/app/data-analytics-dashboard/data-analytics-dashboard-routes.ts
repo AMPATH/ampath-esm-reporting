@@ -5,7 +5,7 @@ import { DataAnalyticsHivModule } from './hiv/data-analytics-hiv.module';
 import { DataAnalyticsDashboardComponent } from './data-analytics.component';
 export const routes: Routes = [
   {
-    path: '',
+    path: 'data-analytics',
     component: DataAnalyticsDashboardComponent,
     canActivate: [DataAnalyticsDashboardGuard],
     children: [

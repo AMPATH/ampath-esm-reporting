@@ -33,7 +33,7 @@ export class HivMonthlySummaryIndicatorsPatientListComponent implements OnInit {
     public router: Router,
     public resourceService: HivMonthlySummaryIndicatorsResourceService,
     private _location: Location
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.routeParamsSubscription = this.route.params.subscribe((params) => {
@@ -68,8 +68,8 @@ export class HivMonthlySummaryIndicatorsPatientListComponent implements OnInit {
   public getDateRange(period) {
     const startDate = period[0].split('/');
     const endDate = period[1].split('/');
-    this.startDate = dayjs([startDate[2], startDate[1] - 1, startDate[0]]);
-    this.endDate = dayjs([endDate[2], endDate[1] - 1, endDate[0]]);
+    this.startDate = dayjs(new Date(startDate[2], startDate[1] - 1, startDate[0]));
+    this.endDate = dayjs(new Date(endDate[2], endDate[1] - 1, endDate[0]));
   }
 
   public getAgeRange(age) {
@@ -122,7 +122,9 @@ export class HivMonthlySummaryIndicatorsPatientListComponent implements OnInit {
       return;
     }
     this.router.navigate([
-      '/patient-dashboard/patient/' + patientUuid + '/general/landing-page'
+      '/openmrs/spa/patient/' +
+      patientUuid +
+      '/chart'
     ]);
   }
 

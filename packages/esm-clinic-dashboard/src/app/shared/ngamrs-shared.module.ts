@@ -28,9 +28,8 @@ import { DisplayErrorComponent } from './display-error/display-error.component';
 import { DateSelectorComponent } from './components/date-selector.component';
 import { StringToDatePipe } from './pipes/string-to-date.pipe';
 import { Ng2FilterPipe } from './pipes/ng2-filter.pipe';
-import { OpenmrsApi } from '../openmrs-api/openmrs-api.module';
-import { OnlineTrackerComponent } from '../online-tracker';
-import { BuildVersionComponent } from '../build-version';
+import { OpenmrsApiModule } from '../openmrs-api/openmrs-api.module';
+
 import { RoutesProviderService } from './dynamic-route/route-config-provider.service';
 import { AuthenticationService } from '../openmrs-api/authentication.service';
 import { SessionService } from '../openmrs-api/session.service';
@@ -54,7 +53,7 @@ import { SnakeCaseToTitlePipe } from './pipes/snake-case-to-title.pipe';
   imports: [
     CommonModule,
     HttpClientModule,
-    OpenmrsApi,
+    OpenmrsApiModule,
     EtlApi,
     Angulartics2Module,
     FormsModule,
@@ -80,6 +79,7 @@ import { SnakeCaseToTitlePipe } from './pipes/snake-case-to-title.pipe';
     MatTooltipModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    ModalModule.forRoot(),
   ],
   exports: [
     NgSelectModule,
@@ -89,12 +89,10 @@ import { SnakeCaseToTitlePipe } from './pipes/snake-case-to-title.pipe';
     MatCardModule,
     StringToDatePipe,
     Ng2FilterPipe,
-    OnlineTrackerComponent,
-    BuildVersionComponent,
     ReportFiltersComponent,
     ZeroVlPipe,
     DateSelectorComponent,
-    OpenmrsApi,
+    OpenmrsApiModule,
     EtlApi,
     ModalModule,
     BsDropdownModule,
@@ -116,8 +114,8 @@ import { SnakeCaseToTitlePipe } from './pipes/snake-case-to-title.pipe';
     MatExpansionModule,
     MatTooltipModule,
     SnakeCaseToTitlePipe,
-    KibanaVizComponent,
     KibanaVizHostComponent,
+    KibanaVizComponent,
   ],
   declarations: [
     DisplayErrorComponent,
@@ -125,15 +123,14 @@ import { SnakeCaseToTitlePipe } from './pipes/snake-case-to-title.pipe';
     ZeroVlPipe,
     Ng2FilterPipe,
     ReportFiltersComponent,
-    OnlineTrackerComponent,
-    AppModalComponent,
-    KibanaVizHostComponent,
     KibanaVizComponent,
-    BuildVersionComponent,
     DateSelectorComponent,
     SnakeCaseToTitlePipe,
     LocationFilterComponent,
+    ReportFiltersComponent,
+    AppModalComponent,
     BusyComponent,
+    KibanaVizHostComponent,
   ],
   providers: [
     Ng2FilterPipe,

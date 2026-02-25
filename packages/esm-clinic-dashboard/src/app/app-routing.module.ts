@@ -8,6 +8,16 @@ const routes: Routes = [{ path: '**', component: EmptyRouteComponent }];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+  providers: [
+    {
+      provide: APP_BASE_HREF,
+      useFactory: () => {
+        // Extract the base path up to and including /spa/
+        // so the Angular router sees paths like "data-analytics/hiv/..."
+        const match = window.location.pathname.match(/^(.*\/spa\/)/);
+        return match ? match[1] : '/openmrs/spa/';
+      },
+    },
+  ],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

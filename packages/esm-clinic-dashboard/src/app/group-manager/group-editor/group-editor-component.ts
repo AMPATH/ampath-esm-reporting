@@ -189,7 +189,7 @@ export class GroupEditorComponent implements OnInit {
   }
 
   public allFacilities() {
-    this._locationSservice.getLocations().subscribe((result: any) => {
+    this._locationSservice.getAllLocations().subscribe((result: any) => {
       this.facilities = result.map((location: any) => {
         return {
           label: location.display,

@@ -28,8 +28,6 @@ import { AddCohortMemberContainerComponent } from './add-cohort-member-container
     UtilsModule,
     NgamrsSharedModule,
     CohortMemberModule,
-    ConfirmDialogModule,
-    DialogModule,
     NgxPaginationModule,
     EtlApi
   ],
@@ -53,4 +51,4 @@ import { AddCohortMemberContainerComponent } from './add-cohort-member-container
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class PatientListCohortModule {}
+export class PatientListCohortModule { }

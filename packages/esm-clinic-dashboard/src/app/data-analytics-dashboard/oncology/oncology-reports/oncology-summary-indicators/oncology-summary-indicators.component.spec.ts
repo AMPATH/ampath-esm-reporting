@@ -1,3 +1,4 @@
+import { AgGridAngular } from 'ag-grid-angular';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';

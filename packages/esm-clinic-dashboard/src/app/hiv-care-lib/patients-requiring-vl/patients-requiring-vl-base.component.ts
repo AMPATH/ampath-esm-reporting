@@ -58,7 +58,7 @@ export class PatientsRequiringVLBaseComponent implements OnInit {
     public route: ActivatedRoute,
     public router: Router,
     public patientsRequiringVLResourceService: PatientsRequiringVLResourceService
-  ) {}
+  ) { }
 
   public extraColumns() {
     return [
@@ -100,7 +100,7 @@ export class PatientsRequiringVLBaseComponent implements OnInit {
     ];
   }
 
-  public ngOnInit() {}
+  public ngOnInit() { }
 
   public transformVl(vl) {
     if (vl === 0 || vl === '0') {
@@ -158,7 +158,9 @@ export class PatientsRequiringVLBaseComponent implements OnInit {
       return;
     }
     this.router.navigate([
-      '/patient-dashboard/patient/' + patientUuid + '/general/landing-page'
+      '/openmrs/spa/patient/' +
+      patientUuid +
+      '/chart'
     ]);
   }
 

@@ -120,9 +120,9 @@
   >
     <strong>{{ errorTitle }}</strong> {{ errorAlert }}
   </div>
-  <p-dialog
+  <div class="dialog-mock"
     header="Delete Patient List"
-    [(visible)]="displayConfirmDialog"
+    *ngIf="displayConfirmDialog"
     modal="modal"
     width="300"
     responsive="true"
@@ -131,7 +131,7 @@
       This will remove <b>{{ selectedCohortListName }}</b> patient list. Are you
       sure you want to remove this patient list?
     </p>
-    <p-footer>
+    <div class="footer-mock">
       <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
         <button
           type="button"
@@ -148,7 +148,7 @@
           label="Yes"
         ></button>
       </div>
-    </p-footer>
-  </p-dialog>
+    </div>
+  </div>
   <router-outlet></router-outlet>
 </div>

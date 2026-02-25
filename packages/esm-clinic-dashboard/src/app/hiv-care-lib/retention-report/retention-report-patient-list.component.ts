@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
-import { GridOptions } from 'ag-grid';
+import { GridOptions } from 'ag-grid-community';
 import { RetentionReportResourceService } from '../../etl-api/retention-report-resource.service';
 import * as _ from 'lodash';
 
@@ -19,20 +19,17 @@ export class RetentionReportPatientListComponent implements OnInit {
   public params: any;
   public busy: Subscription;
   public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300,
     onGridSizeChanged: () => {
       if (this.gridOptions.api) {
-        // this.gridOptions.api.sizeColumnsToFit();
+        // (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     },
     onGridReady: () => {
       if (this.gridOptions.api) {
-        // this.gridOptions.api.sizeColumnsToFit();
+        // (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     }
   };
@@ -171,7 +168,7 @@ export class RetentionReportPatientListComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private retentionReportService: RetentionReportResourceService
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.route.queryParams.subscribe(
@@ -236,9 +233,9 @@ export class RetentionReportPatientListComponent implements OnInit {
       return;
     }
     this.router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' +
+      patientUuid +
+      '/chart'
     ]);
   }
   public loading() {
@@ -263,6 +260,6 @@ export class RetentionReportPatientListComponent implements OnInit {
   }
 
   public exportPatientListToCsv() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
 }

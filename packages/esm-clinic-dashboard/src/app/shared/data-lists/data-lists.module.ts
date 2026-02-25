@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { AgGridModule } from 'ag-grid-angular';
 import { GenericListComponent } from './generic-list/generic-list.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
@@ -6,7 +7,7 @@ import { PreAppointmentPatientListComponent } from './pre-appointment-patient-li
 import { PreAppointmentExtendedListComponent } from './pre-appointment-extended-list/pre-appointment-extended-list.component';
 
 @NgModule({
-  imports: [AgGridModule.withComponents([])],
+  imports: [CommonModule, AgGridModule],
   declarations: [
     GenericListComponent,
     PatientListComponent,
@@ -20,4 +21,4 @@ import { PreAppointmentExtendedListComponent } from './pre-appointment-extended-
     PreAppointmentExtendedListComponent
   ]
 })
-export class DataListsModule {}
+export class DataListsModule { }

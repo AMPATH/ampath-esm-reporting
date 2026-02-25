@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import * as _ from 'lodash';
 import { DataEntryStatisticsService } from './../etl-api/data-entry-statistics-resource.service';
-import { GridOptions } from 'ag-grid-angular';
+import { GridOptions } from 'ag-grid-community';
 @Component({
   standalone: false,
   selector: 'data-entry-statistics-patient-list',
@@ -25,21 +25,17 @@ export class DataEntryStatisticsPatientListComponent
     message: 'Please wait...' // default message
   };
 
-  public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+  public gridOptions: any = {
     pagination: true,
     paginationPageSize: 300,
     onGridSizeChanged: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any).sizeColumnsToFit();
       }
     },
     onGridReady: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any).sizeColumnsToFit();
       }
     }
   };
@@ -153,7 +149,7 @@ export class DataEntryStatisticsPatientListComponent
     private _route: ActivatedRoute,
     private _location: Location,
     public _dataEntryStatisticsService: DataEntryStatisticsService
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this._route.queryParams.subscribe(
@@ -209,9 +205,9 @@ export class DataEntryStatisticsPatientListComponent
       return;
     }
     this._router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' +
+      patientUuid +
+      '/chart'
     ]);
   }
 

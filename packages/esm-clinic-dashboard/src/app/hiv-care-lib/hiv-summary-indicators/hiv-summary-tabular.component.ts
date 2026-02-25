@@ -6,7 +6,7 @@ import {
   ViewChild
 } from '@angular/core';
 import * as _ from 'lodash';
-import { AgGridNg2 } from 'ag-grid-angular';
+import { AgGridAngular } from 'ag-grid-angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import dayjs from 'dayjs';
 import { Subscription } from 'rxjs';
@@ -28,7 +28,7 @@ export class HivSummaryTabularComponent implements OnInit {
   public data: Array<any> = [];
 
   @ViewChild('agGrid')
-  public agGrid: AgGridNg2;
+  public agGrid: AgGridAngular;
   private routeParamsSubscription: Subscription;
   private _sectionDefs: Array<any>;
   public get sectionDefs(): Array<any> {
@@ -90,7 +90,7 @@ export class HivSummaryTabularComponent implements OnInit {
     }
     this.gridOptions.columnDefs = defs;
     if (this.agGrid && this.agGrid.api) {
-      this.agGrid.api.setColumnDefs(defs);
+      (this.agGrid.api as any)?.setGridOption("columnDefs", defs);
     }
   }
   public titleCase(str) {

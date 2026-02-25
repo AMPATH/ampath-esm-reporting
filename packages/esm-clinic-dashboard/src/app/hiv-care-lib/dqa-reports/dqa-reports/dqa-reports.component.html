@@ -8,7 +8,7 @@
   >
     <div class="list-group">
       <a (click)="navigateToReport(dqaReport)" class="list-group-item">
-        <h3>{{ dqaReport.name || titlecase }}</h3>
+        <h3>{{ dqaReport.name | titlecase }}</h3>
         <i
           class="glyphicon glyphicon-question-sign question-tooltip pull-right"
         ></i>

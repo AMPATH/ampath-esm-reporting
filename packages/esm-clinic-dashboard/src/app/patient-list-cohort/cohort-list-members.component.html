@@ -129,9 +129,9 @@
       </div>
     </div>
   </div>
-  <p-dialog
+  <div class="dialog-mock"
     header="Delete Member"
-    [(visible)]="displayConfirmDialog"
+    *ngIf="displayConfirmDialog"
     modal="modal"
     width="300"
     responsive="true"
@@ -140,7 +140,7 @@
       This will remove <strong>{{ selectedMember }}</strong> from this patient
       list. Are you sure you want to remove this member?
     </p>
-    <p-footer>
+    <div class="footer-mock">
       <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
         <button
           type="button"
@@ -157,12 +157,12 @@
           label="Yes"
         ></button>
       </div>
-    </p-footer>
-  </p-dialog>
+    </div>
+  </div>
 
-  <p-dialog
+  <div class="dialog-mock"
     header="Delete Patient List"
-    [(visible)]="displayConfirmDeleteCohortDialog"
+    *ngIf="displayConfirmDeleteCohortDialog"
     modal="modal"
     width="300"
     responsive="true"
@@ -171,7 +171,7 @@
       This will remove <strong>{{ selectedCohortName }}</strong> patient list.
       Are you sure you want to remove this patient list?
     </p>
-    <p-footer>
+    <div class="footer-mock">
       <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
         <button
           type="button"
@@ -188,6 +188,6 @@
           label="Yes"
         ></button>
       </div>
-    </p-footer>
-  </p-dialog>
+    </div>
+  </div>
 </div>

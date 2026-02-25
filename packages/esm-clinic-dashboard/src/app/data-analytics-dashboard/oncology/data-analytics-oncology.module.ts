@@ -1,3 +1,6 @@
+import { AgGridAngular } from 'ag-grid-angular';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -16,7 +19,6 @@ import { OncologySummaryFiltersComponent } from './oncology-reports/oncology-sum
 import { OncologySummaryIndicatorsResourceService } from '../../etl-api/oncology-summary-indicators-resource.service';
 import { OncologySummaryIndicatorsTableComponent } from './oncology-reports/oncology-summary-indicators-table/oncology-summary-indicators-table.component';
 import { OncologySummaryIndicatorsPatientListComponent } from './oncology-reports/oncology-indicators-patient-list/oncology-indicators-patient-list.component';
-import { NgBusyModule } from 'ng-busy';
 import { ChangeDepartmentModule } from '../change-department/change-department.module';
 import { DataAnalyticsHivModule } from '../hiv/data-analytics-hiv.module';
 
@@ -27,6 +29,7 @@ import { MOH412OncologyDataAnalyticsPatientListComponent } from './oncology-repo
 import { OncologyProgramModule } from './../../oncology-care-lib/oncology-care-lib.module';
 @NgModule({
   imports: [
+    TabsModule.forRoot(),
     DataAnalyticsDashboardOncologyRouting,
     NgamrsSharedModule,
     CommonModule,
@@ -34,12 +37,10 @@ import { OncologyProgramModule } from './../../oncology-care-lib/oncology-care-l
     FormsModule,
     DataListsModule,
     AgGridModule,
-    Ng
-    
     ChangeDepartmentModule,
     DataAnalyticsHivModule,
     OncologyProgramModule
-  ],
+  , PdfViewerModule],
   exports: [
     OncologyReportsComponent,
     OncologySummaryIndicatorsComponent,
@@ -66,4 +67,4 @@ import { OncologyProgramModule } from './../../oncology-care-lib/oncology-care-l
     OncologySummaryIndicatorsResourceService
   ]
 })
-export class DataAnalyticsOncologyModule {}
+export class DataAnalyticsOncologyModule { }

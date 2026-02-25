@@ -88,7 +88,7 @@ export class ProgramEnrollmentResourceService {
       return this.http.post(url, JSON.stringify(payload), { headers }).pipe(
         flatMap((program) => {
           this.broadcastUnenrolledProgram(program);
-          return Observable.of(program);
+          return of(program);
         }),
         catchError(this.handleError)
       );

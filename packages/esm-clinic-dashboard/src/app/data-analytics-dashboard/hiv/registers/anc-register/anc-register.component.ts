@@ -239,7 +239,7 @@ export class AncRegisterComponent implements OnInit {
   }
   filterData(summaryData: any, condition: string, value) {
     if (!summaryData) {
-      return '';
+      return 0;
     }
     return (
       summaryData.filter((data) => {
@@ -258,7 +258,7 @@ export class AncRegisterComponent implements OnInit {
     summaryData: any[],
     property: string,
     propertyValue: string
-  ) {
+  ): any {
     return (
       summaryData.filter((data) => data[property] === propertyValue).length ||
       ''

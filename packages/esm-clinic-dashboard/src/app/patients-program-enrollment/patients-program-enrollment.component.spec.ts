@@ -9,9 +9,8 @@ import { LocationResourceService } from './../openmrs-api/location-resource.serv
 import { Router, ActivatedRoute } from '@angular/router';
 import { DepartmentProgramFilterComponent } from './../department-program-filter/department-program-filter.component';
 import { of } from 'rxjs';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { AgGridModule } from 'ag-grid-angular';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { ProgramEnrollmentSummaryComponent } from './program-enrollment-summary.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ClinicDashboardCacheService } from 'src/app/clinic-dashboard-services/clinic-dashboard-cache.service';
@@ -230,7 +229,6 @@ describe('Component: Patient Program Enrollment', () => {
         FormsModule,
         HttpClientTestingModule,
         AngularMultiSelectModule,
-        DateTimePickerModule,
         AgGridModule.withComponents([])
       ],
       declarations: [

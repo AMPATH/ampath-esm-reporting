@@ -8,7 +8,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 
-import * as jspdf from 'jspdf';
+import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import * as pdfMake from 'pdfmake/build/pdfmake.js';
 import { Observable, Subject } from 'rxjs';
@@ -53,9 +53,9 @@ export class ReportViewComponent implements OnInit, OnChanges {
   @Output()
   public CellSelection = new EventEmitter();
 
-  constructor(private domSanitizer: DomSanitizer) {}
+  constructor(private domSanitizer: DomSanitizer) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   public ngOnChanges(changes: SimpleChanges) {
     if (changes.SummaryData) {
       this.sectionIndicatorsValues = this.SummaryData;
@@ -272,7 +272,7 @@ export class ReportViewComponent implements OnInit, OnChanges {
       const p = JSON.stringify(pdfStructure);
       const x = JSON.parse(p);
       const pdfProxy = pdfMake.createPdf(x);
-      pdfProxy.getBase64((output) => {
+      pdfProxy.getBase64().then((output: any) => {
         const int8Array: Uint8Array = this._base64ToUint8Array(output);
         const blob = new Blob([int8Array], {
           type: 'application/pdf'

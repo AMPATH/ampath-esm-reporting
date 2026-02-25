@@ -9,9 +9,8 @@ import {
   EventEmitter,
   OnChanges
 } from '@angular/core';
-import { GridOptions } from 'ag-grid-angular';
 import { BehaviorSubject } from 'rxjs';
-import { AgGridNg2 } from 'ag-grid-angular';
+import { GridOptions } from 'ag-grid-community';
 
 @Component({
   standalone: false,
@@ -31,7 +30,7 @@ export class PreAppointmentPatientListComponent
   public refresh = false;
 
   @ViewChild('agGrid')
-  public agGrid: AgGridNg2;
+  public agGrid: any;
 
   @Input()
   set options(value) {
@@ -53,7 +52,7 @@ export class PreAppointmentPatientListComponent
 
   private _data = new BehaviorSubject<any>([]);
   private _dataSource = new BehaviorSubject<any>({});
-  constructor() {}
+  constructor() { }
 
   public ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
     for (const propName in changes) {
@@ -94,17 +93,13 @@ export class PreAppointmentPatientListComponent
   public generateGrid() {
     this.gridOptions = {} as GridOptions;
     this.gridOptions.columnDefs = this.columns;
-    this.gridOptions.enableColResize = true;
-    this.gridOptions.enableSorting = true;
-    this.gridOptions.enableFilter = true;
-    this.gridOptions.showToolPanel = false;
     // ensure that even after sorting the rows maintain order
     this.gridOptions.onSortChanged = () => {
-      this.gridOptions.api.forEachNode((node) => {
+      (this.gridOptions.api as any).forEachNode((node) => {
         node.setDataValue('#', node.rowIndex + 1);
       });
 
-      this.gridOptions.api.refreshCells();
+      (this.gridOptions.api as any).refreshCells();
     };
 
     // this.gridOptions.suppressCellSelection = true;
@@ -112,23 +107,24 @@ export class PreAppointmentPatientListComponent
     // this.gridOptions.suppressMenuMainPanel = true; // ag-enterprise only
     this.gridOptions.rowSelection = 'single';
     if (this.dataSource) {
-      this.gridOptions.rowModelType = 'pagination';
+      this.gridOptions.rowModelType = 'clientSide';
       this.gridOptions.paginationPageSize = this.dataSource.paginationPageSize;
     }
     this.gridOptions.onRowSelected = (event) => {
       this.rowSelectedFunc(event);
     };
+
     this.gridOptions.onGridReady = (event) => {
       if (window.innerWidth > 768) {
-        // this.gridOptions.api.sizeColumnsToFit();
+        // (this.gridOptions.api as any)?.sizeColumnsToFit();
         // do not resize if columns are more than 10
         if (this.columns.length <= 10) {
-          setTimeout(() => this.gridOptions.api.sizeColumnsToFit(), 300, true);
+          setTimeout(() => (this.gridOptions.api as any).sizeColumnsToFit(), 300, true);
         }
       }
       // setDatasource() is a grid ready function
       if (this.dataSource) {
-        this.gridOptions.api.setDatasource(this.dataSource);
+        (this.gridOptions.api as any).setDatasource(this.dataSource);
       }
 
       const commonRowStyles = {
@@ -143,7 +139,7 @@ export class PreAppointmentPatientListComponent
   }
 
   public exportAllData() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any).exportDataAsCsv();
   }
 
   public ngOnDestroy() {

@@ -20,7 +20,7 @@ export class OncologySummaryIndicatorsPatientListComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private oncologyIndicatorService: OncologySummaryIndicatorsResourceService
-  ) {}
+  ) { }
 
   public title = '';
   public patients: any = [];
@@ -29,20 +29,17 @@ export class OncologySummaryIndicatorsPatientListComponent implements OnInit {
   public busy: Subscription;
   public gridColumnApi;
   public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300,
     onGridSizeChanged: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     },
     onGridReady: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     }
   };
@@ -133,9 +130,9 @@ export class OncologySummaryIndicatorsPatientListComponent implements OnInit {
       return;
     }
     this.router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' +
+      patientUuid +
+      '/chart'
     ]);
   }
 
@@ -188,6 +185,6 @@ export class OncologySummaryIndicatorsPatientListComponent implements OnInit {
   }
 
   public exportPatientListToCsv() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
 }

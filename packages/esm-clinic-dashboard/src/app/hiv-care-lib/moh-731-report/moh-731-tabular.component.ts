@@ -7,7 +7,7 @@ import {
   ViewChild,
   EventEmitter
 } from '@angular/core';
-import { AgGridNg2 } from 'ag-grid-angular';
+import { AgGridAngular } from 'ag-grid-angular';
 @Component({
   standalone: false,
   selector: 'moh-731-tabular',
@@ -26,7 +26,7 @@ export class Moh731TabularComponent implements OnInit {
   public data: Array<any> = [];
 
   @ViewChild('agGrid')
-  public agGrid: AgGridNg2;
+  public agGrid: AgGridAngular;
 
   private _sectionDefs: Array<any>;
   public get sectionDefs(): Array<any> {
@@ -73,7 +73,7 @@ export class Moh731TabularComponent implements OnInit {
 
     this.gridOptions.columnDefs = defs;
     if (this.agGrid && this.agGrid.api) {
-      this.agGrid.api.setColumnDefs(defs);
+      (this.agGrid.api as any)?.setGridOption("columnDefs", defs);
     }
   }
 

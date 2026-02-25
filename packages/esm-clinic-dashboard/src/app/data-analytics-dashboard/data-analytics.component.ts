@@ -14,7 +14,7 @@ export class DataAnalyticsDashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private localStorageService: LocalStorageService
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.selectedDepartment = this.getUserDepartment();
@@ -55,7 +55,8 @@ export class DataAnalyticsDashboardComponent implements OnInit {
       department = undefined;
     }
     if (!department) {
-      this.router.navigate(['/user-default-properties']);
+      // Default to HIV if no department is set
+      return [{ itemName: 'HIV' }];
     }
     return JSON.parse(department);
   }

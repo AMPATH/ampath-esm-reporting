@@ -4,9 +4,8 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 import { WindowRef } from '../window-ref';
-import { Form, PatientIdentifierAdapter } from '@openmrs/ngx-formentry';
 import { SingleSpaPropsService } from '../single-spa-props/single-spa-props.service';
-import { FormDataSourceService } from '../form-data-source/form-data-source.service';
+import { AppSettingsService } from '../app-settings/app-settings.service';
 import { OpenmrsResource } from '@openmrs/esm-framework';
 import { IdentifierPayload } from '../types';
 
@@ -25,10 +24,8 @@ export class PatientResourceService {
   constructor(
     protected http: HttpClient,
     private windowRef: WindowRef,
-    private readonly patientIdentifierAdapter: PatientIdentifierAdapter,
     private readonly singleSpaPropsService: SingleSpaPropsService,
-    private readonly formDataSourceService: FormDataSourceService,
-  ) {}
+  ) { }
 
   public getUrl(): string {
     return this.windowRef.openmrsRestBase + 'patient';
@@ -77,7 +74,8 @@ export class PatientResourceService {
     return this.http.post(url, JSON.stringify(payload), { headers });
   }
 
-  public buildIdentifiersToUpdatePayload(form: Form): Array<any> {
+  /*
+  public buildIdentifiersToUpdatePayload(form: any): Array<any> {
     const location: OpenmrsResource = form.dataSourcesContainer.dataSources['userLocation'];
     const patientIdentifiers = this.patientIdentifierAdapter.generateFormPayload(form, location?.uuid);
 
@@ -106,11 +104,10 @@ export class PatientResourceService {
 
   public retrieveCurrentPatientIdentifiers() {
     const patient = this.singleSpaPropsService.getPropOrThrow('patient');
-    const patientObj = this.formDataSourceService.getPatientObject(patient);
-    return patientObj?.identifiers;
+    return patient?.identifiers;
   }
 
-  public buildIdentifiersToCreatePayload(form: Form) {
+  public buildIdentifiersToCreatePayload(form: any) {
     const location: OpenmrsResource = form.dataSourcesContainer.dataSources['userLocation'];
     const currentIdentifiers = this.retrieveCurrentPatientIdentifiers();
     const updatedIdentifiers = this.patientIdentifierAdapter.generateFormPayload(form, location.uuid);
@@ -125,13 +122,13 @@ export class PatientResourceService {
     return newIdentifiers;
   }
 
-  public buildIdentifierPayload(form): IdentifierPayload {
+  public buildIdentifierPayload(form: any): IdentifierPayload {
     const currentIdentifiers = this.buildIdentifiersToUpdatePayload(form);
     const newIdentifiers = this.buildIdentifiersToCreatePayload(form);
     return { newIdentifiers, currentIdentifiers };
   }
 
-  public validateIdentifiers(form: Form) {
+  public validateIdentifiers(form: any) {
     const { newIdentifiers } = this.buildIdentifierPayload(form);
     const patientIdentifierNodes = this.patientIdentifierAdapter.getPatientIdentifierNodes(form.rootNode);
     const nodeValue = patientIdentifierNodes?.[0];
@@ -146,4 +143,5 @@ export class PatientResourceService {
 
     return of([]);
   }
+  */
 }

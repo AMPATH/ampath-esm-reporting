@@ -115,7 +115,7 @@ export class DepartmentProgramFilterComponent
     private localStorageService: LocalStorageService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.showHideDepartment().then((success) => {
@@ -148,7 +148,7 @@ export class DepartmentProgramFilterComponent
       }
       if (isClinicDashboard === -1) {
         this.showDepartmentFilter = true;
-        this.getDepartmentConfig().then((success) => {});
+        this.getDepartmentConfig().then((success) => { });
       } else {
         this.showDepartmentFilter = false;
         this.getDepartmentConfig();
@@ -355,7 +355,7 @@ export class DepartmentProgramFilterComponent
   public getAllLocations() {
     return new Promise((resolve, reject) => {
       this._locationResourceService
-        .getLocations()
+        .getAllLocations()
         .pipe(take(1))
         .subscribe((location) => {
           if (location) {
@@ -692,7 +692,13 @@ export class DepartmentProgramFilterComponent
     });
   }
 
-  public onSelectAllPrograms($event) {}
+  public onSelectAllPrograms($event) { }
 
-  public ngAfterViewInit() {}
+  public onDeSelectAllPrograms($event) { }
+
+  public onSelectAllCounties($event) { }
+
+  public onDeSelectAllCounties($event) { }
+
+  public ngAfterViewInit() { }
 }

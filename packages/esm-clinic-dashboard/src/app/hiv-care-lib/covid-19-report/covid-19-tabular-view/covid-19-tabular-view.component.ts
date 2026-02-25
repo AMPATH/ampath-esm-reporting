@@ -33,10 +33,7 @@ export class Covid19TabularViewComponent implements OnInit, OnChanges {
   public covidSummaryColdef: GridCol[];
   public data = [];
   public gridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     groupDefaultExpanded: -1,
     onGridSizeChanged: () => {},
     onGridReady: () => {}

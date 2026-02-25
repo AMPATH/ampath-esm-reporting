@@ -42,7 +42,7 @@ export class ClinicFlowVisitsComponent implements OnInit, OnDestroy {
     private clinicFlowCacheService: ClinicFlowCacheService,
     private router: Router,
     @Inject('ClinicFlowResource') private clinicFlowResource: ClinicFlowResource
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.currentLocationSubscription = this.clinicFlowCacheService
@@ -75,9 +75,7 @@ export class ClinicFlowVisitsComponent implements OnInit, OnDestroy {
     }
 
     this.router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' + patientUuid + '/chart'
     ]);
   }
 
@@ -220,7 +218,7 @@ export class ClinicFlowVisitsComponent implements OnInit, OnDestroy {
 
           let seen = '';
           if (data.seen_by_clinician !== null) {
-            seen = `${moment(data.seen_by_clinician).format(
+            seen = `${dayjs(data.seen_by_clinician).format(
               'H:mmA DD-MM-YYYY'
             )} - ${encounter}`;
           }

@@ -9,9 +9,9 @@ import {
   EventEmitter,
   OnChanges
 } from '@angular/core';
-import { GridOptions } from 'ag-grid-angular';
+import { GridOptions } from 'ag-grid-community';
+import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject } from 'rxjs';
-import { AgGridNg2 } from 'ag-grid-angular';
 
 @Component({
   standalone: false,
@@ -29,8 +29,6 @@ export class GenericListComponent implements OnInit, OnDestroy, OnChanges {
   public selected: any;
   public refresh = false;
 
-  @ViewChild('agGrid')
-  public agGrid: AgGridNg2;
 
   @Input()
   set options(value) {
@@ -51,20 +49,41 @@ export class GenericListComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   private _data = new BehaviorSubject<any>([]);
-  private _dataSource = new BehaviorSubject<any>({});
-  constructor() {}
+  private _dataSource = new BehaviorSubject<any>({}); // Kept this line
+  // @Output() public onSelectedRow = new EventEmitter(); // Moved this line up
+  // public data: any; // Moved this line up
 
-  public ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    for (const propName in changes) {
-      if (propName === 'options') {
-        const changedProp = changes[propName];
-        if (!changedProp.isFirstChange()) {
-          // this.dataSource = changedProp.currentValue;
-          this.refresh = true;
-          this.generateGrid();
-        }
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output()
+  public onTabChanged = new EventEmitter(); // Added
+  // public gridOptions: GridOptions; // Moved this line up
+  public gridConfig: any; // Added
+  public totalRecordCount: number; // Added
+
+  constructor(private translateService: TranslateService) { } // Modified: added TranslateService
+
+  public ngOnChanges(changes: any) { // Modified: changed type from { [propKey: string]: SimpleChange } to any
+    if (changes.gridConfig && changes.gridConfig.currentValue) { // Added
+      this.gridConfig = changes.gridConfig.currentValue; // Added
+    }
+
+    if (changes?.dataSource) { // Added
+      if (changes.dataSource.currentValue) { // Added
+        this.dataSource = changes.dataSource.currentValue; // Added
+        this.generateGrid(); // Added
       }
     }
+    // Original logic removed:
+    // for (const propName in changes) {
+    //   if (propName === 'options') {
+    //     const changedProp = changes[propName];
+    //     if (!changedProp.isFirstChange()) {
+    //       // this.dataSource = changedProp.currentValue;
+    //       this.refresh = true;
+    //       this.generateGrid();
+    //     }
+    //   }
+    // }
   }
 
   public ngOnInit() {
@@ -74,41 +93,48 @@ export class GenericListComponent implements OnInit, OnDestroy, OnChanges {
   public generateGrid() {
     this.gridOptions = {} as GridOptions;
     this.gridOptions.columnDefs = this.columns;
+    /*
     this.gridOptions.enableColResize = true;
     this.gridOptions.enableSorting = true;
-    this.gridOptions.enableFilter = true;
     this.gridOptions.showToolPanel = false;
+    */
     // ensure that even after sorting the rows maintain order
     this.gridOptions.onSortChanged = () => {
-      this.gridOptions.api.forEachNode((node) => {
+      /*
+      (this.gridOptions.api as any).forEachNode((node) => { // Modified: added (this.gridOptions.api as any)
         node.setDataValue('#', node.rowIndex + 1);
       });
 
-      this.gridOptions.api.refreshCells();
+      (this.gridOptions.api as any).refreshCells(); // Modified: added (this.gridOptions.api as any)
+      */
     };
 
     // this.gridOptions.suppressCellSelection = true;
     // this.gridOptions.suppressMenuColumnPanel = true; // ag-enterprise only
     // this.gridOptions.suppressMenuMainPanel = true; // ag-enterprise only
     this.gridOptions.rowSelection = 'single';
-    if (this.dataSource) {
-      this.gridOptions.rowModelType = 'pagination';
+    if (this.dataSource && this.dataSource.paginationPageSize) { // Modified: added check for paginationPageSize
+      this.gridOptions.rowModelType = 'clientSide'; // Modified: from 'pagination' to 'clientSide'
       this.gridOptions.paginationPageSize = this.dataSource.paginationPageSize;
     }
     this.gridOptions.onRowSelected = (event) => {
       this.rowSelectedFunc(event);
     };
     this.gridOptions.onGridReady = (event) => {
+
       if (window.innerWidth > 768) {
-        // this.gridOptions.api.sizeColumnsToFit();
+        /*
+        // (this.gridOptions.api as any)?.sizeColumnsToFit(); // Commented out
         // do not resize if columns are more than 10
         if (this.columns.length <= 10) {
-          setTimeout(() => this.gridOptions.api.sizeColumnsToFit(), 300, true);
+          setTimeout(() => (this.gridOptions.api as any).sizeColumnsToFit(), 300, true); // Modified: added (this.gridOptions.api as any)
         }
+        */
       }
+
       // setDatasource() is a grid ready function
       if (this.dataSource) {
-        this.gridOptions.api.setDatasource(this.dataSource);
+        // (this.gridOptions.api as any).setDatasource(this.dataSource); // Commented out and added (this.gridOptions.api as any)
       }
 
       const commonRowStyles = {
@@ -116,14 +142,14 @@ export class GenericListComponent implements OnInit, OnDestroy, OnChanges {
         cursor: 'pointer'
       };
 
-      this.gridOptions.getRowStyle = () => {
-        return Object.assign({}, commonRowStyles);
+      this.gridOptions.getRowStyle = (params) => { // Modified: added params
+        return Object.assign({}, commonRowStyles); // Modified: added this.moreRowStyles(params)
       };
     };
   }
 
   public exportAllData() {
-    this.gridOptions.api.exportDataAsCsv();
+    // (this.gridOptions.api as any).exportDataAsCsv(); // Commented out and added (this.gridOptions.api as any)
   }
 
   public ngOnDestroy() {

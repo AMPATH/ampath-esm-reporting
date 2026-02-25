@@ -27,7 +27,7 @@ interface Covid19QueryPrams {
 export class Covid19ReportComponent implements OnInit {
   public title = 'Covid-19 Vaccination Report';
   @Output() public params: Covid19QueryPrams;
-  @Input() public locationUuids: '';
+  @Input() public locationUuids: any;
   @Input() public dashboardType: string;
   @Input() public analyticlocations = '';
 

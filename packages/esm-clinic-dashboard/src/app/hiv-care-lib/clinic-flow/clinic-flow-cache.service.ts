@@ -8,11 +8,11 @@ export class ClinicFlowCacheService {
   public dataIsLoading = true;
   public initialUuid;
   public data: any;
-  public selectedLocations = new BehaviorSubject(this.initialUuid);
+  public selectedLocations = new BehaviorSubject(null);
   public formatedDate = dayjs(new Date()).format('YYYY-MM-DD');
   public selectedDate = new BehaviorSubject(this.formatedDate);
   public isLoading = new BehaviorSubject(this.dataIsLoading);
-  public clinicFlowData = new BehaviorSubject(this.data);
+  public clinicFlowData = new BehaviorSubject(null);
 
   constructor() {}
 

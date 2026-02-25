@@ -6,7 +6,6 @@ import { UserDefaultPropertiesService } from '../../user-default-properties/user
 import { AuthenticationService } from '../../openmrs-api/authentication.service';
 import { User } from '../../models/user.model';
 import { LocalStorageService } from '../../utils/local-storage.service';
-import { FormUpdaterService } from '../../patient-dashboard/common/formentry/form-updater.service';
 @Component({
   standalone: false,
   selector: 'static-navbar',
@@ -24,7 +23,6 @@ export class StaticNavBarComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userDefaultSettingsService: UserDefaultPropertiesService,
     private userService: UserService,
-    private formUpdaterService: FormUpdaterService
   ) {}
 
   public ngOnInit() {

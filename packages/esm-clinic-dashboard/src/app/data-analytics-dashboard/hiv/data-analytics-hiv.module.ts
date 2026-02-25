@@ -1,3 +1,5 @@
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -5,7 +7,6 @@ import { RouterModule } from '@angular/router';
 // import { MatProgressSpinnerModule, MatProgressBarModule, MatTabsModule , MatSlideToggleModule
 // } from '@angular/material/tabs'; // TODO: split material imports
 
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { DataListsModule } from '../../shared/data-lists/data-lists.module';
 import { AdminDashboardClinicFlowComponent } from './clinic-flow/admin-dashboard-clinic-flow';
 import { HivCareLibModule } from '../../hiv-care-lib/hiv-care-lib.module';
@@ -63,9 +64,9 @@ import { HeiRegisterFiltersComponent } from './registers/hei-register/hei-regist
 
 @NgModule({
   imports: [
+    TabsModule.forRoot(),
     dataAnalyticsDashboardHivRouting,
     HivCareLibModule,
-    DateTimePickerModule,
     NgamrsSharedModule,
     DataListsModule,
     CommonModule,
@@ -76,11 +77,9 @@ import { HeiRegisterFiltersComponent } from './registers/hei-register/hei-regist
     ChangeDepartmentModule,
     KibanaLibModule,
     ReportingUtilitiesModule,
-    OncologyProgramModule,
-    DialogModule
+    OncologyProgramModule
   ],
   exports: [
-    RouterModule,
     AdminDashboardClinicFlowComponent,
     HivSummaryIndicatorsComponent,
     HivCareComparativeAnalyticsComponent,
@@ -137,4 +136,4 @@ import { HeiRegisterFiltersComponent } from './registers/hei-register/hei-regist
     ClinicFlowCacheService
   ]
 })
-export class DataAnalyticsHivModule {}
+export class DataAnalyticsHivModule { }

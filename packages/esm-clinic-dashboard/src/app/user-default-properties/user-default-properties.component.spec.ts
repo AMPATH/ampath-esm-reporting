@@ -30,7 +30,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { FakeRetrospectiveDataEntryService } from '../retrospective-data-entry/services/retrospective-data-entry-mock.service';
 import { RetrospectiveDataEntryService } from '../retrospective-data-entry/services/retrospective-data-entry.service';
 import { ProviderResourceService } from '../openmrs-api/provider-resource.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ReplaySubject } from 'rxjs';
 import 'rxjs/add/observable/of';
 
@@ -99,7 +99,7 @@ class MockProviderResourceService {
     cached: boolean = false,
     v: string = null
   ): Observable<any> {
-    return Observable.of({});
+    return of({});
   }
 
   public getProviderByUuid(
@@ -107,7 +107,7 @@ class MockProviderResourceService {
     cached: boolean = false,
     v: string = null
   ): Observable<any> {
-    return Observable.of({});
+    return of({});
   }
   public getProviderByPersonUuid(uuid) {
     const providerResults = new ReplaySubject(1);

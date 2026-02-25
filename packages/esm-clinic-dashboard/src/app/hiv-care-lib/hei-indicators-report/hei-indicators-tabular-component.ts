@@ -26,10 +26,7 @@ export class HeiIndicatorsTabularComponent implements OnInit, OnChanges {
   public heiSummaryColdef = [];
   public data = [];
   public heisummaryGridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     groupDefaultExpanded: -1,
     onGridSizeChanged: () => {},
     onGridReady: () => {}

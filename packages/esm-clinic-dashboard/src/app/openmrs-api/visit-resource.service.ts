@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { WindowRef } from '../window-ref';
 import { Visit } from '../types';
 
@@ -12,7 +12,7 @@ export class VisitResourceService {
   constructor(
     protected http: HttpClient,
     private windowRef: WindowRef,
-  ) {}
+  ) { }
 
   public getUrl(): string {
     return this.windowRef.openmrsRestBase + 'visit';
@@ -24,6 +24,11 @@ export class VisitResourceService {
 
     const params: HttpParams = new HttpParams().set('v', v && v.length > 0 ? v : this.v);
     return this.http.get<Visit>(url, { params });
+  }
+
+  public getVisitTypes(searchParams: any): Observable<any> {
+    const url = this.windowRef.openmrsRestBase + 'visittype';
+    return this.http.get<any>(url);
   }
 
   public updateVisit(uuid: string, payload: any): Observable<any> {

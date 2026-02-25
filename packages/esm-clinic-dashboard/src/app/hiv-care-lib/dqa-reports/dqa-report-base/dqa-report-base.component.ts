@@ -13,6 +13,9 @@ import { DataAnalyticsDashboardService } from 'src/app/data-analytics-dashboard/
   styleUrls: ['./dqa-report-base.component.css']
 })
 export class DqaReportBaseComponent implements OnInit {
+  public statusError: boolean = false;
+  public errorMessage: string = "";
+
   public enabledControls =
     'locationControl,datesControl,patientTypeControl,sampleSizeControl';
   public _locationUuids: any = [];

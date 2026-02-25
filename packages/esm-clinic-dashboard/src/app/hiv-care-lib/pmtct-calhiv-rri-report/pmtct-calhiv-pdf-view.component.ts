@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import dayjs from 'dayjs';
-import * as jspdf from 'jspdf';
+import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 
 @Component({
@@ -27,10 +27,7 @@ export class PmtctCalhivPdfViewComponent implements OnInit, OnChanges {
   public data = [];
   public reportData: any;
   public rrisummaryGridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     groupDefaultExpanded: -1,
     onGridSizeChanged: () => {},
     onGridReady: () => {}
@@ -105,10 +102,10 @@ export class PmtctCalhivPdfViewComponent implements OnInit, OnChanges {
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
       let heightLeft = imgHeight;
       const contentDataURL = canvas.toDataURL('image/png');
-      const pdf = new jspdf('P', 'mm', 'a4'); // A4 size page of PDF
+      const pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
       let position = 15;
       pdf.setFontSize(20);
-      pdf.text(10, 10, 'RRI Indicators Report');
+      pdf.text('RRI Indicators Report', 10, 10);
       pdf.addImage(contentDataURL, 'PNG', 10, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
       while (heightLeft >= 0) {

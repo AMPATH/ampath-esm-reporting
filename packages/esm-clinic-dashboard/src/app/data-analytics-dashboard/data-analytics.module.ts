@@ -64,6 +64,6 @@ import { DataAnalyticsHtsModule } from './hts/data-analytics-hts.module';
     },
     ClinicRoutesFactory,
   ],
-  exports: [],
+  exports: [DataAnalyticsDashboardComponent],
 })
 export class DataAnalyticsModule { }

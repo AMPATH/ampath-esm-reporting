@@ -6,11 +6,10 @@
   <span><i class="fa fa-spinner fa-spin"></i>Loading...</span>
 </div>
 
-<p-tabView (onChange)="onTabChanged($event)">
-  <p-tabPanel
-    header=" Daily"
+<tabset (onChange)="onTabChanged($event)">
+  <tab heading=" Daily"
     leftIcon="fa-calendar-o "
-    [selected]="currentView === 'daily'"
+    [active]="currentView === 'daily'"
   >
     <div *ngIf="isWeekDateLoaded">
       <report-filters
@@ -24,12 +23,11 @@
       >
       </report-filters>
     </div>
-  </p-tabPanel>
+  </tab>
 
-  <p-tabPanel
-    header=" Weekly"
+  <tab heading=" Weekly"
     leftIcon="fa-calendar"
-    [selected]="currentView != 'daily'"
+    [active]="currentView != 'daily'"
   >
     <div *ngIf="isWeekDateLoaded">
       <report-filters
@@ -44,8 +42,8 @@
       >
       </report-filters>
     </div>
-  </p-tabPanel>
-</p-tabView>
+  </tab>
+</tabset>
 
 <div class="alert alert-danger fade in" *ngIf="showInfoMessage">
   <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -59,11 +57,10 @@
 </div>
 
 <div>
-  <p-tabView>
-    <p-tabPanel
-      header="Report View"
+  <tabset>
+    <tab heading="Report View"
       leftIcon="fa-file-pdf-o"
-      [selected]="currentViewBelow === 'pdf'"
+      [active]="currentViewBelow === 'pdf'"
     >
       <app-report-view
         [SummaryData]="surgeReportSummaryData"
@@ -71,11 +68,10 @@
         (CellSelection)="onIndicatorSelected($event)"
         [reportDetails]="params"
       ></app-report-view>
-    </p-tabPanel>
-    <p-tabPanel
-      header="Tabular View"
+    </tab>
+    <tab heading="Tabular View"
       leftIcon="fa-table"
-      [selected]="currentViewBelow === 'tabular'"
+      [active]="currentViewBelow === 'tabular'"
     >
       <surge-report-tabular
         [surgeReportSummaryData]="surgeReportSummaryData"
@@ -85,6 +81,6 @@
         [displayTabularFilters]="displayTabularFilters"
       >
       </surge-report-tabular>
-    </p-tabPanel>
-  </p-tabView>
+    </tab>
+  </tabset>
 </div>

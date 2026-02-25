@@ -1,6 +1,5 @@
 import { FormsModule } from '@angular/forms';
 import { NgamrsSharedModule } from 'src/app/shared/ngamrs-shared.module';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { CaseManagementFiltersComponent } from './case-management-filters.component';
@@ -74,7 +73,6 @@ describe('Component: Case Management Filter', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [FormsModule, NgamrsSharedModule, DateTimePickerModule],
       declarations: [CaseManagementFiltersComponent],
       providers: [
         { provide: Router, useClass: MockRouter },

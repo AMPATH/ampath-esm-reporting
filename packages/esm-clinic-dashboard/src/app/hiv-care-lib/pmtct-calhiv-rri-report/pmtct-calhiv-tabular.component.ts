@@ -26,10 +26,7 @@ export class PmtctCalhivRriTabularComponent implements OnInit, OnChanges {
   public rriSummaryColdef = [];
   public data = [];
   public rrisummaryGridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     groupDefaultExpanded: -1,
     onGridSizeChanged: () => {},
     onGridReady: () => {}

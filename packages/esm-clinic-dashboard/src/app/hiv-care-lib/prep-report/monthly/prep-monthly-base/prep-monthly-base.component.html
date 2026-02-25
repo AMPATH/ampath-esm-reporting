@@ -6,9 +6,9 @@
   <span><i class="fa fa-spinner fa-spin"></i>Loading...</span>
 </div>
 
-<p-tabView>
+<tabset>
   <div>
-    <p-tabPanel header="Monthly" leftIcon="fa-calendar-o">
+    <tab heading="Monthly" leftIcon="fa-calendar-o">
       <report-filters
         [enabledControls]="enabledControls"
         [monthString]="_month"
@@ -18,9 +18,9 @@
         [showAggregateControl]="true"
       >
       </report-filters>
-    </p-tabPanel>
+    </tab>
   </div>
-</p-tabView>
+</tabset>
 
 <div class="alert alert-danger fade in" *ngIf="showInfoMessage">
   <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -37,11 +37,10 @@
   This report is likely to change without warning.
 </div>
 <div>
-  <p-tabView>
-    <p-tabPanel
-      header="Report View"
+  <tabset>
+    <tab heading="Report View"
       leftIcon="fa-file-pdf-o"
-      [selected]="currentViewBelow === 'pdf'"
+      [active]="currentViewBelow === 'pdf'"
     >
       <app-prep-monthly-report-view
         [SummaryData]="prepReportSummaryData"
@@ -49,6 +48,6 @@
         (indicatorSelected)="indicatorSelected($event)"
         [reportDetails]="params"
       ></app-prep-monthly-report-view>
-    </p-tabPanel>
-  </p-tabView>
+    </tab>
+  </tabset>
 </div>

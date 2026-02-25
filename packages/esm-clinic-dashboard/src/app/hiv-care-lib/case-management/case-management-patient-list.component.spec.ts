@@ -143,7 +143,7 @@ describe('CaseManagementPatientListComponent', () => {
   });
   it('load case managers and patient info correctly', () => {
     spyOn(caseManagementResourceService, 'getCaseManagers').and.returnValue(
-      Observable.of(mockCaseManager)
+      of(mockCaseManager)
     );
     component.params.locationUuid = 'test_location';
     component.ngOnInit();

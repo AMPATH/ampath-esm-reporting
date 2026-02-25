@@ -38,7 +38,7 @@ export class MOHReportService {
         const x = JSON.parse(p);
 
         const pdfProxy = pdfMake.createPdf(x);
-        pdfProxy.getBase64((output) => {
+        pdfProxy.getBase64().then((output) => {
           const int8Array: Uint8Array = this._base64ToUint8Array(output);
           const blob = new Blob([int8Array], {
             type: 'application/pdf'
@@ -74,7 +74,7 @@ export class MOHReportService {
         const x = JSON.parse(p);
 
         const pdfProxy = pdfMake.createPdf(x);
-        pdfProxy.getBase64((output) => {
+        pdfProxy.getBase64().then((output) => {
           const int8Array: Uint8Array = this._base64ToUint8Array(output);
           const blob = new Blob([int8Array], {
             type: 'application/pdf'

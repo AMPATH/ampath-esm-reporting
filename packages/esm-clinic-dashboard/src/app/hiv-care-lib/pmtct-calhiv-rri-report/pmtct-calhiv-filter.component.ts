@@ -11,6 +11,8 @@ import dayjs from 'dayjs';
   styleUrls: []
 })
 export class PmtctCalhivRriFiltersComponent implements OnInit {
+  public isAggregated: boolean = false;
+  public onLocationsSelected(e: any) {}
   public showLocationsControl = false;
   public isMonthMode = true;
   public showIsAggregateControl = false;

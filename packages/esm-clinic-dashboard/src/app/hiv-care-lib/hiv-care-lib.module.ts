@@ -1,3 +1,6 @@
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -6,30 +9,12 @@ import { RouterModule } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
 
 import { DataListsModule } from '../shared/data-lists/data-lists.module';
-import {
-  AccordionModule,
-  DataTableModule,
-  SharedModule,
-  TabViewModule,
-  GrowlModule,
-  PanelModule,
-  ConfirmDialogModule,
-  ConfirmationService,
-  DialogModule,
-  InputTextModule,
-  MessagesModule,
-  InputTextareaModule,
-  MultiSelectModule,
-  DropdownModule,
-  ButtonModule,
-  CalendarModule
-} from 'primeng/primeng';
+
 import { Moh731TabularComponent } from './moh-731-report/moh-731-tabular.component';
 import { Moh731ReportFiltersComponent } from './moh-731-report/moh-731-report-filters.component';
 import { Moh731ReportBaseComponent } from './moh-731-report/moh-731-report-base.component';
 import { EtlApi } from '../etl-api/etl-api.module';
 import { Moh731PatientListComponent } from './moh-731-report/moh-731-patientlist.component';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { NgamrsSharedModule } from '../shared/ngamrs-shared.module';
 import { MOHReportComponent } from './moh-731-report/moh-731-report-pdf-view.component';
 import { MOHReportService } from './moh-731-report/moh-731-report-pdf-view.service';
@@ -72,14 +57,7 @@ import { PmtctCalhivRriPatientListComponent } from './pmtct-calhiv-rri-report/pm
 import { SurgeReportTabularComponent } from './surge-report/surge-report-tabular.component';
 import { SurgeReportBaseComponent } from './surge-report/surge-report-base.component';
 import { SurgeReportPatientListComponent } from './surge-report/surge-report-patient-list.component';
-export function highchartsFactory() {
-  const hc = require('highcharts');
-  const hcm = require('highcharts/highcharts-more');
-  const hce = require('highcharts/modules/exporting');
-  hcm(hc);
-  hce(hc);
-  return hc;
-}
+
 import { RetentionReportPatientListComponent } from './retention-report/retention-report-patient-list.component';
 import { RetentionReportFiltersComponent } from './retention-report/retention-report-filters.component';
 import { RetentionReportComponent } from './retention-report/retention-report.component';
@@ -108,14 +86,11 @@ import { FamilyTestingPatientlistComponent } from './family-testing/family-testi
 import { FamilyTestingTreeComponent } from './family-testing/family-testing-tree.component';
 import { FamilyTestingContactComponent } from './family-testing/family-testing-contact-list.component';
 import { FamilyTestingButtonRendererComponent } from './family-testing/button-render/button-renderer.component';
-import { PrettyEncounterViewerComponent } from '../patient-dashboard/common/formentry/pretty-encounter-viewer.component';
-import { FormDataSourceService } from '../patient-dashboard/common/formentry/form-data-source.service';
-import { ZscoreService } from '../shared/services/zscore.service';
 import { ContactProfileComponent } from './family-testing/contact-profile/contact-profile.component';
 import { AddContactTraceComponent } from './family-testing/contact-trace/add-contact-trace.component';
 import { EditContactTraceComponent } from './family-testing/contact-trace/edit-contact-trace.component';
 import { ContactListComponent } from './family-testing/contact-list/contact-list.component';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown'; // import { ProgramVisitEncounterSearchModule } from '../program-visit-encounter-search/program-visit-encounter-search.module';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown'; // import { ProgramVisitEncounterSearchModule } from '../program-visit-encounter-search/program-visit-encounter-search.module';
 import { IptReportPatientListComponent } from 'src/app/hiv-care-lib/ipt-report/ipt-report-patient-list.component';
 import { IptBaseReportComponent } from 'src/app/hiv-care-lib/ipt-report/ipt-report-base.component';
 
@@ -154,44 +129,24 @@ import { FacilityDashboardComponent } from './dqa-reports/case-surveillance/faci
 
 @NgModule({
   imports: [
+    PdfViewerModule,
+    TabsModule,
     RouterModule,
-    AgGridModule.withComponents([]),
+    AgGridModule,
     FormsModule,
     AngularMultiSelectModule,
     DataListsModule,
     NgamrsSharedModule,
-    DateTimePickerModule,
     CommonModule,
-    AccordionModule,
-    DataTableModule,
-    SharedModule,
-    GrowlModule,
-    MultiSelectModule,
-    PanelModule,
-    ConfirmDialogModule,
-    DialogModule,
-    TabViewModule,
-    AccordionModule,
-    InputTextModule,
-    MessagesModule,
-    InputTextareaModule,
-    DropdownModule,
-    ButtonModule,
-    CalendarModule,
-    ChartModule,
     ReportingUtilitiesModule,
-    DataListsModule,
-    NgxMyDatePickerModule.forRoot(),
-    AgGridModule.withComponents([FamilyTestingButtonRendererComponent])
+    AccordionModule.forRoot()
   ],
   exports: [
     Moh731TabularComponent,
     Moh731PatientListComponent,
     Moh731ReportFiltersComponent,
-    DateTimePickerModule,
     EtlApi,
     CommonModule,
-    TabViewModule,
     NgamrsSharedModule,
     MOHReportComponent,
     HivSummaryTabularComponent,
@@ -363,13 +318,7 @@ import { FacilityDashboardComponent } from './dqa-reports/case-surveillance/faci
     ClinicalSummaryVisualizationService,
     RetentionReportResourceService,
     CaseManagementResourceService,
-    ProgramWorkFlowResourceService,
-    {
-      provide: HighchartsStatic,
-      useFactory: highchartsFactory
-    },
-    FormDataSourceService,
-    ZscoreService
+    ProgramWorkFlowResourceService
   ]
 })
-export class HivCareLibModule {}
+export class HivCareLibModule { }

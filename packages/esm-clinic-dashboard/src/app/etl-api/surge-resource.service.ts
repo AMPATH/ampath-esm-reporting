@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AppSettingsService } from '../app-settings/app-settings.service';
 import { catchError, map } from 'rxjs/operators';
@@ -16,7 +16,7 @@ export class SurgeResourceService {
   constructor(
     public http: HttpClient,
     public appSettingsService: AppSettingsService
-  ) {}
+  ) { }
 
   public getSurgeWeeklyReport(params: any): Observable<any> {
     // tslint:disable-next-line: max-line-length
@@ -34,7 +34,7 @@ export class SurgeResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;
@@ -47,9 +47,8 @@ export class SurgeResourceService {
       this.http
         // tslint:disable-next-line: max-line-length
         .get(
-          `${this.url}surge-report-patient-list?indicators=${
-            params.indicators
-          }&year_week=${moment(params.year_week).format(
+          `${this.url}surge-report-patient-list?indicators=${params.indicators
+          }&year_week=${dayjs(params.year_week).format(
             'GGGGWW'
           )}&locationUuids=${params.locationUuids}`
         )
@@ -63,7 +62,7 @@ export class SurgeResourceService {
               error: error.status,
               message: error.statusText
             };
-            return Observable.of(errorObj);
+            return of(errorObj);
           })
         )
     );
@@ -84,7 +83,7 @@ export class SurgeResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         })
       );
   }
@@ -106,7 +105,7 @@ export class SurgeResourceService {
               error: error.status,
               message: error.statusText
             };
-            return Observable.of(errorObj);
+            return of(errorObj);
           })
         )
     );
@@ -123,7 +122,7 @@ export class SurgeResourceService {
           error: error.status,
           message: error.statusText
         };
-        return Observable.of(errorObj);
+        return of(errorObj);
       })
     );
   }

@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 import dayjs from 'dayjs';
 
 import { OncologySummaryIndicatorsResourceService } from '../../../../etl-api/oncology-summary-indicators-resource.service';
-import * as OncologyReportConfig from '../oncology-pdf-reports.json';
+import OncologyReportConfig from '../oncology-pdf-reports.json';
 import { EventEmitter } from 'events';
 @Component({
   standalone: false,

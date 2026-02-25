@@ -6,9 +6,9 @@
   <span><i class="fa fa-spinner fa-spin"></i>Loading...</span>
 </div>
 
-<p-tabView>
+<tabset>
   <div>
-    <p-tabPanel header="Monthly" leftIcon="fa-calendar-o">
+    <tab heading="Monthly" leftIcon="fa-calendar-o">
       <app-hei-register-filters
         [(startDate)]="startDate"
         [(endDate)]="endDate"
@@ -18,9 +18,9 @@
         (generateReport)="generateReport()"
       >
       </app-hei-register-filters>
-    </p-tabPanel>
+    </tab>
   </div>
-</p-tabView>
+</tabset>
 
 <div class="alert alert-danger fade in" *ngIf="showInfoMessage">
   <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -195,7 +195,7 @@
               {{ data.pcr_one ? data.pcr_one_age_weeks : '' }}
             </td>
             <td colspan="2" rowspan="2">
-              {{ date_enrolled }}
+              {{ data.date_enrolled }}
             </td>
             <td colspan="2">
               {{ transformDate(data.pcr_one ? data.pcr_one_date : '') }}

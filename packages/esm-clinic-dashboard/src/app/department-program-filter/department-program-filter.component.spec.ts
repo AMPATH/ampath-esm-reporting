@@ -13,10 +13,9 @@ import { UserDefaultPropertiesService } from './../user-default-properties/user-
 import { AppSettingsService } from './../app-settings/app-settings.service';
 import { LocationResourceService } from './../openmrs-api/location-resource.service';
 import { DepartmentProgramFilterComponent } from './department-program-filter.component';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { AppFeatureAnalytics } from './../shared/app-analytics/app-feature-analytics.service';
 import { FakeAppFeatureAnalytics } from './../shared/app-analytics/app-feature-analytcis.mock';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { UserService } from './../openmrs-api/user.service';
 import { DataCacheService } from '../shared/services/data-cache.service';
 
@@ -124,7 +123,6 @@ describe('Component : DepartmentProgramFilter', () => {
         HttpClientTestingModule,
         AngularMultiSelectModule,
         FormsModule,
-        DateTimePickerModule,
         IonicStorageModule.forRoot()
       ],
       declarations: [DepartmentProgramFilterComponent],

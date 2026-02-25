@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Covid19ResourceService } from './../../../etl-api/covid-19-resource-service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { GridOptions } from 'ag-grid';
+import { GridOptions } from 'ag-grid-community';
 
 interface CovidSummaryPatientListResponse {
   schemas: any;
@@ -41,16 +41,13 @@ export class Covid19ReportPatientListComponent implements OnInit {
   public patientListCols = [];
   public patientListColdefs: any[] = [];
   public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300,
     rowSelection: 'multiple',
     onGridSizeChanged: () => {
       if (this.gridOptions.api) {
-        // this.gridOptions.api.sizeColumnsToFit();
+        // (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     }
   };
@@ -158,6 +155,6 @@ export class Covid19ReportPatientListComponent implements OnInit {
     ]);
   }
   public exportPatientListToCsv(): void {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
 }

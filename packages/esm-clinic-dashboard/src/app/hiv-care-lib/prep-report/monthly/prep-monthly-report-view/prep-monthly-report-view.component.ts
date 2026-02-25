@@ -17,6 +17,13 @@ import * as _ from 'lodash';
   styleUrls: ['./prep-monthly-report-view.component.css']
 })
 export class PrepMonthlyReportViewComponent implements OnInit, OnChanges {
+  public searchIndicator() {}
+  public headers: any;
+  public selectedIndicatorsList: any;
+  public selectedIndicators(event?: any) {}
+  public downloadPdf() {}
+  public gridOptions: any;
+  public selectedResult: any;
   @Input() SummaryData = [];
   @Input() sectionDefs: any;
   @Input() reportDetails: any;

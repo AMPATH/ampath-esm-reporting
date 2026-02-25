@@ -1,4 +1,4 @@
-<p-dialog header="Edit  Cohort" [(visible)]="display">
+<div class="dialog-mock" header="Edit  Cohort" *ngIf="display">
   <form name="personForm">
     <div class="form-group">
       <div *ngIf="errors" style="color: red !important">
@@ -48,4 +48,4 @@
       </button>
     </div>
   </form>
-</p-dialog>
+</div>

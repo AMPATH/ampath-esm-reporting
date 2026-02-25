@@ -1,8 +1,8 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { AgGridModule } from 'ag-grid-angular';
 
 import { DataEntryStatisticsComponent } from './data-entry-statistics.component';
@@ -17,11 +17,10 @@ import { DataEntryStatisticsCreatorsListComponent } from './creators-list/data-e
 
 @NgModule({
   imports: [
-    DateTimePickerModule,
     CommonModule,
     FormsModule,
-    AngularMultiSelectModule,
-    AgGridModule
+    AgGridModule,
+    AngularMultiSelectModule
   ],
   exports: [
     DataEntryStatisticsComponent,
@@ -45,4 +44,4 @@ import { DataEntryStatisticsCreatorsListComponent } from './creators-list/data-e
   ],
   providers: [DataEntryStatisticsService]
 })
-export class DataEntryStatisticsModule {}
+export class DataEntryStatisticsModule { }

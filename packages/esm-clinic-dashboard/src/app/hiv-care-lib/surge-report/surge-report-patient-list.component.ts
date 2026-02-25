@@ -4,7 +4,7 @@ import { Location } from '@angular/common';
 
 import * as _ from 'lodash';
 import { SurgeResourceService } from 'src/app/etl-api/surge-resource.service';
-import { Column, GridOptions } from 'ag-grid';
+import { Column, GridOptions } from 'ag-grid-community';
 
 @Component({
   standalone: false,
@@ -23,10 +23,7 @@ export class SurgeReportPatientListComponent implements OnInit {
   public hasError = false;
   public extraColumnsLoaded: Array<any> = [];
   public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300,
     rowSelection: 'multiple'
@@ -71,7 +68,7 @@ export class SurgeReportPatientListComponent implements OnInit {
     private route: ActivatedRoute,
     private _location: Location,
     public surgeResource: SurgeResourceService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(
@@ -133,9 +130,9 @@ export class SurgeReportPatientListComponent implements OnInit {
       return;
     }
     this.router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' +
+      patientUuid +
+      '/chart'
     ]);
   }
 
@@ -145,6 +142,6 @@ export class SurgeReportPatientListComponent implements OnInit {
   }
 
   public exportPatientListToCsv() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
 }

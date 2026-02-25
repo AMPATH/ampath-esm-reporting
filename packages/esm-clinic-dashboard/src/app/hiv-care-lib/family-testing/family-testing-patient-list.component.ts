@@ -9,9 +9,9 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { AgGridNg2 } from 'ag-grid-angular';
+import { AgGridAngular } from 'ag-grid-angular';
 import dayjs from 'dayjs';
-import { GridOptions } from 'ag-grid';
+import { GridOptions } from 'ag-grid-community';
 @Component({
   standalone: false,
   selector: 'family-testing-patient-list',
@@ -23,7 +23,7 @@ export class FamilyTestingPatientlistComponent implements OnInit {
   public showList = false;
   public gridOptions: GridOptions = {};
   @ViewChild('agGrid')
-  public agGrid: AgGridNg2;
+  public agGrid: AgGridAngular;
   public _patientData = [];
   @Input() public hasLoadedAll = false;
   @Output() loadMore = new EventEmitter();
@@ -42,7 +42,7 @@ export class FamilyTestingPatientlistComponent implements OnInit {
       field: 'identifiers',
       headerName: 'Identifiers',
       rowGroup: true,
-      pinned: 'left',
+      pinned: 'left' as const,
       width: 200,
       cellRenderer: (column) => {
         if (column.value === undefined || column.value === null) {
@@ -174,7 +174,7 @@ export class FamilyTestingPatientlistComponent implements OnInit {
     {
       field: 'identifiers',
       headerName: 'Identifiers',
-      pinned: 'left',
+      pinned: 'left' as const,
       width: 250,
       cellRenderer: (column) => {
         if (column.value === undefined || column.value === null) {
@@ -239,9 +239,7 @@ export class FamilyTestingPatientlistComponent implements OnInit {
       this.gridOptions.columnDefs = this.columnDefs;
       this.gridOptions.groupDefaultExpanded = -1;
     }
-    this.gridOptions.enableFilter = true;
     this.gridOptions.groupRemoveSingleChildren = false;
-    this.gridOptions.groupUseEntireRow = true;
     this.setCellSelection();
   }
 
@@ -258,7 +256,7 @@ export class FamilyTestingPatientlistComponent implements OnInit {
     };
   }
   public exportAllData() {
-    this.agGrid.api.exportDataAsCsv();
+    (this.agGrid.api as any)?.sizeColumnsToFit();
   }
 
   public onContactIdentifierClicked(uuid) {

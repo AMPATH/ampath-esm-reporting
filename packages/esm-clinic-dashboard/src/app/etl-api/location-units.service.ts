@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { AppSettingsService } from 'src/app/app-settings/app-settings.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

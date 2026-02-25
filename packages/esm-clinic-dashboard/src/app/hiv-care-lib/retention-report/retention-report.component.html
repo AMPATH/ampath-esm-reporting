@@ -23,11 +23,10 @@
       </retention-report-filters>
     </div>
     <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-      <p-tabView (onChange)="onTabChanged($event)">
-        <p-tabPanel
-          header="  Weekly "
+      <tabset (onChange)="onTabChanged($event)">
+        <tab heading="  Weekly "
           leftIcon="fa-calendar-o "
-          [selected]="currentView"
+          [active]="currentView"
         >
           <retention-report-tabular
             [retentionSummary]="retentionSummary"
@@ -35,8 +34,8 @@
             [sectionDefs]="sectionDefs"
           >
           </retention-report-tabular>
-        </p-tabPanel>
-      </p-tabView>
+        </tab>
+      </tabset>
       <button class="btn btn-success" (click)="showModal(indicatorModal)">
         Show Indicator Definitions
       </button>

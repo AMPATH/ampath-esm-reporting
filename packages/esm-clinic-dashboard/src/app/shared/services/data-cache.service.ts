@@ -1,33 +1,32 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { shareReplay } from 'rxjs/operators';
 
-
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DataCacheService {
-  constructor(protected cache: CacheService) {}
+  private cache = new Map<string, Observable<any>>();
 
-  // set default cache time in seconds
-  public setDefaulTime(time) {
-    this.cache.setDefaultTTL(time);
-  }
+  constructor() { }
 
-  public clearExpired() {
-    return this.cache.clearExpired();
-  }
+  public setDefaulTime(time) { }
+
+  public clearExpired() { }
 
   public cacheRequest(url, params, request) {
-    const cacheKey = url + params.toString();
-    return this.cache.loadFromObservable(cacheKey, request);
-  }
-  public clearAll() {
-    return this.cache.clearAll();
+    return this.cacheSingleRequest(url, params, request, 0);
   }
 
-  public disableCache(value) {
-    this.cache.enableCache(false);
+  public clearAll() {
+    this.cache.clear();
   }
-  public cacheSingleRequest(url, params, request, time) {
-    const ttl = time;
-    const cacheKey = url + params.toString();
-    return this.cache.loadFromObservable(cacheKey, request, ttl);
+
+  public disableCache(value) { }
+
+  public cacheSingleRequest(url, params, request: Observable<any>, time) {
+    const cacheKey = url + (params ? params.toString() : '');
+    if (!this.cache.has(cacheKey)) {
+      this.cache.set(cacheKey, request.pipe(shareReplay(1)));
+    }
+    return this.cache.get(cacheKey);
   }
 }

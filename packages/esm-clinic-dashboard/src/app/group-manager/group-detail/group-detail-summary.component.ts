@@ -11,7 +11,7 @@ import {
 import { Group } from '../group-model';
 import * as _ from 'lodash';
 import { CommunityGroupService } from '../../openmrs-api/community-group-resource.service';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import dayjs from 'dayjs';
 import { ProviderResourceService } from '../../openmrs-api/provider-resource.service';
 import { Subscription, combineLatest, Subject } from 'rxjs';

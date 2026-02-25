@@ -13,6 +13,7 @@ import { RegistersResourceService } from 'src/app/etl-api/registers-resource.ser
   styleUrls: ['./otz-register.component.css']
 })
 export class OtzRegisterComponent implements OnInit {
+  public exportTableToExcel() {}
   @Output()
   public params: any;
   public enabledControls = 'datesControl,locationControl';

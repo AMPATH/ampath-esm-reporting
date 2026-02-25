@@ -259,7 +259,7 @@ export class PncRegisterComponent implements OnInit {
     summaryData: any[],
     property: string,
     propertyValue: string
-  ) {
+  ): any {
     return (
       summaryData.filter((data) => data[property] === propertyValue).length ||
       ''

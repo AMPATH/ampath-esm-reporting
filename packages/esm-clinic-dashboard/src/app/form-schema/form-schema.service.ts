@@ -7,7 +7,6 @@ import { FormSchema, FormSchemaAndTranslations, Questions } from '../types';
 import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
-export class FormSchemaService {
   constructor(
     private formsResourceService: FormResourceService,
     private translateService: TranslateService,

@@ -5,11 +5,7 @@
         <span class="fa fa-file-pdf-o"> </span>
         {{ reportDetails.reportName }}
         <div class="btn-group pull-right">
-          <button
-            class="btn btn-primary"
-            (click)="downloadPdf()"
-            [disabled]="grid.length < 0"
-          >
+          <button class="btn btn-primary" (click)="downloadPdf()" [disabled]="grid.length < 0">
             <i class="fa fa-download"> </i> Download Pdf
           </button>
         </div>
@@ -21,37 +17,26 @@
           <label for="">Search :</label>
           <div class="input-group">
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
-            <input
-              #searchBoxL
-              id="search-box-loc"
-              [(ngModel)]="selectedResult"
-              (ngModelChange)="searchIndicator()"
-              placeholder="search indicator"
-              class="form-control"
-            />
+            <input #searchBoxL id="search-box-loc" [(ngModel)]="selectedResult" (ngModelChange)="searchIndicator()"
+              placeholder="search indicator" class="form-control" />
           </div>
         </div>
         <div class="col-md-6 col-sm-12 padding pull-right">
           <div class="ui-grid-row ui-fluid">
             <div class="ui-grid-col-12 pull-right">
               <label for="">Filters :</label>
-              <p-multiSelect
-                [options]="headers"
-                [(ngModel)]="selectedIndicatorsList"
-                (onChange)="selectedIndicators()"
-              >
-              </p-multiSelect>
+              <angular2-multiselect [data]="headers" [(ngModel)]="selectedIndicatorsList"
+                [settings]="{singleSelection: false, text: 'Select Filters', enableSearchFilter: true, primaryKey: 'value', labelKey: 'label'}"
+                (onSelect)="selectedIndicators()" (onDeSelect)="selectedIndicators()"
+                (onSelectAll)="selectedIndicators()" (onDeSelectAll)="selectedIndicators()">
+              </angular2-multiselect>
             </div>
           </div>
         </div>
       </div>
 
-      <div
-        id="contentToConvert"
-        class="panel-body table-content-class"
-        style="background-color: #ffffff"
-        *ngIf="grid.length > 0"
-      >
+      <div id="contentToConvert" class="panel-body table-content-class" style="background-color: #ffffff"
+        *ngIf="grid.length > 0">
         <ng-container *ngFor="let grand of grid">
           <table>
             <colgroup>
@@ -74,26 +59,17 @@
                         <b>{{ parent.value }}</b>
                       </td>
                     </ng-container>
-                    <ng-container
-                      *ngFor="let children of parent.children; index as j"
-                    >
+                    <ng-container *ngFor="let children of parent.children; index as j">
                       <ng-container *ngFor="let child of children; index as k">
-                        <td
-                          [attr.colspan]="child.colspan"
-                          [attr.title]="getTitleText(child)"
-                          (click)="handleClick(child)"
-                          [ngClass]="getNgClass(child)"
-                        >
+                        <td [attr.colspan]="child.colspan" [attr.title]="getTitleText(child)"
+                          (click)="handleClick(child)" [ngClass]="getNgClass(child)">
                           {{ getChildValue(child) }}
                         </td>
                       </ng-container>
                     </ng-container>
                   </tr>
                   <tr *ngIf="parent.indicator === 'location'">
-                    <td
-                      [attr.colspan]="grand.colspan * maxGridSpan"
-                      class="header"
-                    ></td>
+                    <td [attr.colspan]="grand.colspan * maxGridSpan" class="header"></td>
                   </tr>
                 </ng-container>
               </ng-container>

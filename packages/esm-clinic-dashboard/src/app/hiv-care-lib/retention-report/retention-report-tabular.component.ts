@@ -7,7 +7,7 @@ import {
   SimpleChanges
 } from '@angular/core';
 import * as _ from 'lodash';
-import { AgGridNg2 } from 'ag-grid-angular';
+import { AgGridAngular } from 'ag-grid-angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import dayjs from 'dayjs';
 
@@ -22,11 +22,8 @@ export class RetentionReportTabularComponent implements OnInit, OnChanges {
   public endDate: any;
   public locationUuids: any;
   public gridOptions: any = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
+    // enableColResize: true,
     groupDefaultExpanded: -1,
-    showToolPanel: false,
     onGridSizeChanged: () => {},
     onGridReady: () => {}
   };
@@ -45,7 +42,7 @@ export class RetentionReportTabularComponent implements OnInit, OnChanges {
   public rowDefs: any;
 
   @ViewChild('agGrid')
-  public agGrid: AgGridNg2;
+  public agGrid: AgGridAngular;
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   public ngOnInit() {
@@ -219,7 +216,7 @@ export class RetentionReportTabularComponent implements OnInit, OnChanges {
   }
 
   public exportCountsListToCsv() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
 
   public setPinnedRow() {

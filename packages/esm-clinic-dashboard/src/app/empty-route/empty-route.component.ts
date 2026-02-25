@@ -4,6 +4,5 @@ import { Component } from '@angular/core';
   standalone: false,
   selector: 'my-app-empty-route',
   template: `<div>empty route</div>`,
-  standalone: false,
 })
 export class EmptyRouteComponent {}

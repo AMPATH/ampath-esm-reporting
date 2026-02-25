@@ -6,9 +6,9 @@
   <span><i class="fa fa-spinner fa-spin"></i>Loading...</span>
 </div>
 
-<p-tabView>
+<tabset>
   <div>
-    <p-tabPanel header="Monthly" leftIcon="fa-calendar-o">
+    <tab heading="Monthly" leftIcon="fa-calendar-o">
       <report-filters
         [enabledControls]="enabledControls"
         [(startDate)]="startDate"
@@ -18,9 +18,9 @@
         (generateReport)="generateReport()"
       >
       </report-filters>
-    </p-tabPanel>
+    </tab>
   </div>
-</p-tabView>
+</tabset>
 
 <div class="alert alert-danger fade in" *ngIf="showInfoMessage">
   <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -509,16 +509,16 @@
             <td class="text-center" rowspan="2">{{ data.given_vitamin_k }}</td>
             <td class="text-center">{{ data.duo_test_result }}</td>
             <td class="text-center" rowspan="2">
-              {{ data.hiv_test_1_kit_name }}/ {{ datahiv_test_1_lot_no }} /
-              {{ hiv_test_1_expiry_date }}
+              {{ data.hiv_test_1_kit_name }}/ {{ data.hiv_test_1_lot_no }} /
+              {{ data.hiv_test_1_expiry_date }}
             </td>
             <td class="text-center" rowspan="2">
-              {{ data.hiv_test_2_kit_name }}/ {{ datahiv_test_2_lot_no }} /
-              {{ hiv_test_2_expiry_date }}
+              {{ data.hiv_test_2_kit_name }}/ {{ data.hiv_test_2_lot_no }} /
+              {{ data.hiv_test_2_expiry_date }}
             </td>
             <td class="text-center" rowspan="2">
-              {{ data.hiv_test_3_kit_name }}/ {{ datahiv_test_3_lot_no }} /
-              {{ hiv_test_3_expiry_date }}
+              {{ data.hiv_test_3_kit_name }}/ {{ data.hiv_test_3_lot_no }} /
+              {{ data.hiv_test_3_expiry_date }}
             </td>
             <td class="text-center">{{ data.hiv_test_results_maternity }}</td>
             <td class="text-center" rowspan="2">{{ data.maternal_haart }}</td>

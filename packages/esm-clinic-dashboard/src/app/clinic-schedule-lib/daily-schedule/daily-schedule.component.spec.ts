@@ -28,9 +28,8 @@ import { NgamrsSharedModule } from '../../shared/ngamrs-shared.module';
 
 import { CommonModule } from '@angular/common';
 import { Angulartics2Module } from 'angulartics2';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { ProgramVisitEncounterSearchComponent } from './../../program-visit-encounter-search/program-visit-encounter-search.component';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { DepartmentProgramsConfigService } from './../../etl-api/department-programs-config.service';
 import { SelectDepartmentService } from './../../shared/services/select-department.service';
 import dayjs from 'dayjs';
@@ -94,7 +93,6 @@ describe('Component: DailySchedule', () => {
         Angulartics2Module,
         RouterTestingModule,
         HttpClientTestingModule,
-        DateTimePickerModule,
         AngularMultiSelectModule,
         MatTabsModule
       ]

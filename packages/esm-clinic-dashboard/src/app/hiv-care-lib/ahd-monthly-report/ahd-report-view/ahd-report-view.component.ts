@@ -13,7 +13,7 @@ import { first, take } from 'rxjs/operators';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { PDFDocumentProxy } from 'pdfjs-dist';
 import * as _ from 'lodash';
-import { CollapseDirective } from 'ngx-bootstrap';
+import { CollapseDirective } from 'ngx-bootstrap/collapse';
 @Component({
   standalone: false,
   selector: 'app-ahd-report-view',
@@ -419,7 +419,7 @@ export class AhdReportViewComponent implements OnInit {
       const p = JSON.stringify(pdfStructure);
       const x = JSON.parse(p);
       const pdfProxy = pdfMake.createPdf(x);
-      pdfProxy.getBase64((output) => {
+      pdfProxy.getBase64().then((output) => {
         const int8Array: Uint8Array = this._base64ToUint8Array(output);
         const blob = new Blob([int8Array], {
           type: 'application/pdf'

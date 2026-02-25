@@ -19,6 +19,5 @@ import { Component } from '@angular/core';
       color: #161616;
     }
   `],
-  standalone: false,
 })
 export class DataAnalyticsWrapperComponent { }

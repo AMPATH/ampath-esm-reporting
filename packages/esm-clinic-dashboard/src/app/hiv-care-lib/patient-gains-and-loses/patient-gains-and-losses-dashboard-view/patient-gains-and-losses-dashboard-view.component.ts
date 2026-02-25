@@ -14,8 +14,8 @@ import {
   templateUrl: './patient-gains-and-losses-dashboard-view.component.html',
   styleUrls: ['./patient-gains-and-losses-dashboard-view.component.css']
 })
-export class PatientGainsAndLossesDashboardViewComponent
-  implements OnInit, OnChanges {
+export class PatientGainsAndLossesDashboardViewComponent implements OnInit, OnChanges {
+	public netGainLoss: number = 0;
   @Input() public patientGainAndLoseData: any;
   @Output() public indicatorSelected = new EventEmitter();
   public patientGainAndLoseSummaryData: any;

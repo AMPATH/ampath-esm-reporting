@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 // } from '@angular/material/tabs'; // TODO: split material imports
 import { CalendarModule } from 'angular-calendar';
 import { ClinicDashboardCacheService } from '../clinic-dashboard-services/clinic-dashboard-cache.service';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { NgamrsSharedModule } from '../shared/ngamrs-shared.module';
@@ -21,7 +20,6 @@ import { DailyScheduleNotReturnedComponent } from './daily-schedule/daily-schedu
 import { ProgramVisitEncounterSearchModule } from '../program-visit-encounter-search/program-visit-encounter-search.module';
 @NgModule({
   imports: [
-    DateTimePickerModule,
     EtlApi,
     DataListsModule,
     CommonModule,

@@ -34,7 +34,7 @@ export class ClinicFlowLocationStatsComponent implements OnInit, OnDestroy {
     private clinicFlowCacheService: ClinicFlowCacheService,
     private router: Router,
     @Inject('ClinicFlowResource') private clinicFlowResource: ClinicFlowResource
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.currentLocationSubscription = this.clinicFlowCacheService
@@ -67,9 +67,7 @@ export class ClinicFlowLocationStatsComponent implements OnInit, OnDestroy {
     }
 
     this.router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' + patientUuid + '/chart'
     ]);
   }
 

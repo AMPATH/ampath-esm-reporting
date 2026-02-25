@@ -153,9 +153,9 @@
         >
           <strong>{{ errorTitle }}</strong> {{ errorAlert }}
         </div>
-        <p-dialog
+        <div class="dialog-mock"
           header="Delete Cohort User"
-          [(visible)]="displayConfirmDialog"
+          *ngIf="displayConfirmDialog"
           modal="modal"
           width="300"
           responsive="true"
@@ -164,7 +164,7 @@
             This will remove <strong> {{ selectedCohortUserName }}</strong> from
             seeing this patient list. Are you sure you want to remove access?
           </p>
-          <p-footer>
+          <div class="footer-mock">
             <div
               class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix"
             >
@@ -183,8 +183,8 @@
                 label="Yes"
               ></button>
             </div>
-          </p-footer>
-        </p-dialog>
+          </div>
+        </div>
       </div>
     </div>
   </div>

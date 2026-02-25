@@ -12,7 +12,7 @@ import { ClinicDashboardCacheService } from './../../clinic-dashboard-services/c
 })
 export class PatientGainsAndLosesComponent implements OnInit {
   @Output() public params: any;
-  @Input() public locationUuids: '';
+  @Input() public locationUuids: any;
   @Input() public dashboardType: string;
   @Input() public analyticlocations = '';
   public indicators: string;

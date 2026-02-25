@@ -1,8 +1,8 @@
-<p-dialog
+<div class="dialog-mock"
   #addCohortDialog
   header="Add Patient to Patient List"
   width="80%"
-  [(visible)]="display"
+  *ngIf="display"
   modal="true"
   appendTo="body"
   styleClass="add-cohort-dialog"
@@ -18,4 +18,4 @@
     (cancelled)="onSavedCohortMember()"
   >
   </add-cohort-member>
-</p-dialog>
+</div>

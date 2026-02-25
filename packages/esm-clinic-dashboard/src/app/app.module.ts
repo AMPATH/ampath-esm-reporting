@@ -7,26 +7,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { EmptyRouteComponent } from './empty-route/empty-route.component';
-import { FeWrapperComponent } from './fe-wrapper/fe-wrapper.component';
-import { FormEntryModule } from '@openmrs/ngx-formentry';
 
 import { OpenmrsApiModule } from './openmrs-api/openmrs-api.module';
-import { FormSchemaService } from './form-schema/form-schema.service';
 import { LocalStorageService } from './local-storage/local-storage.service';
-import { FormDataSourceService } from './form-data-source/form-data-source.service';
-import { FormSubmissionService } from './form-submission/form-submission.service';
 import { MonthlyScheduleResourceService } from './services/monthly-scheduled-resource.service';
 import { ConfigResourceService } from './services/config-resource.service';
 import { LoaderComponent } from './loader/loader.component';
 import { SingleSpaPropsService } from './single-spa-props/single-spa-props.service';
-import { FormCreationService } from './form-creation/form-creation.service';
 import { JsonLoader } from './loaders/json-loader';
 import { ProgramResourceService } from './openmrs-api/program-resource.service';
 import { DataAnalyticsWrapperComponent } from './data-analytics-wrapper/data-analytics-wrapper.component';
 import { DataAnalyticsModule } from './data-analytics-dashboard/data-analytics.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [AppComponent, EmptyRouteComponent, FeWrapperComponent, LoaderComponent, DataAnalyticsWrapperComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -38,18 +32,14 @@ import { DataAnalyticsModule } from './data-analytics-dashboard/data-analytics.m
         deps: [HttpClient],
       },
     }),
-    FormEntryModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     OpenmrsApiModule,
     DataAnalyticsModule,
+    AppRoutingModule,
   ],
   providers: [
-    FormSchemaService,
     LocalStorageService,
-    FormDataSourceService,
-    FormSubmissionService,
-    FormCreationService,
     MonthlyScheduleResourceService,
     ConfigResourceService,
     SingleSpaPropsService,
@@ -60,6 +50,12 @@ import { DataAnalyticsModule } from './data-analytics-dashboard/data-analytics.m
       useValue: (window as any).i18next.language.toLowerCase() ? (window as any).i18next.language.toLowerCase() : 'en',
     },
     ProgramResourceService,
+  ],
+  declarations: [
+    AppComponent,
+    EmptyRouteComponent,
+    LoaderComponent,
+    DataAnalyticsWrapperComponent,
   ],
   bootstrap: [AppComponent],
 })

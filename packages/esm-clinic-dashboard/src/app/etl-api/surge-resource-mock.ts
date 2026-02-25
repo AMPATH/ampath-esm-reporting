@@ -19,11 +19,11 @@ export class SurgeResourceServiceMock extends SurgeResourceService {
   }
 
   public getSurgeWeeklyPatientList(params: any) {
-    return Observable.of('data');
+    return of('data');
   }
 
   public getSurgeWeeks() {
-    return Observable.of('weeks');
+    return of('weeks');
   }
 
   public testWeeklySurgeData() {

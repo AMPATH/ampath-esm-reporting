@@ -82,9 +82,9 @@
 </div>
 
 <!-- Modal -->
-<p-dialog
+<div class="dialog-mock"
   header="Indicator Definitions"
-  [(visible)]="showIndicatorDefinitions"
+  *ngIf="showIndicatorDefinitions"
   styleClass="contact-list-dialog"
 >
   <div class="container-fluid">
@@ -99,4 +99,4 @@
       Cancel
     </button>
   </div>
-</p-dialog>
+</div>

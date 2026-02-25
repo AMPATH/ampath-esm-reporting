@@ -19,9 +19,9 @@ import {
   Event
 } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Group } from '../../models/group.model';
-import { GridOptions, RowNode } from 'ag-grid';
+import { GridOptions, RowNode } from 'ag-grid-community';
 import { ProgramResourceService } from 'src/app/openmrs-api/program-resource.service';
 import { IndividualConfig, ToastrService } from 'ngx-toastr';
 import { CohortOtzModuleResourceService } from 'src/app/etl-api/cohort-otz-module-resource.service';
@@ -433,10 +433,7 @@ export class GroupManagerSearchComponent implements OnInit, OnDestroy {
 
   public getGridOptions() {
     return {
-      enableColResize: true,
-      enableSorting: true,
-      enableFilter: true,
-      showToolPanel: false,
+      // enableColResize: true,
       pagination: true,
       paginationPageSize: 11,
       animateRows: true,
@@ -447,17 +444,17 @@ export class GroupManagerSearchComponent implements OnInit, OnDestroy {
       rowHeight: 40,
       onGridSizeChanged: () => {
         if (this.gridOptions.api) {
-          this.gridOptions.api.sizeColumnsToFit();
+          (this.gridOptions.api as any)?.sizeColumnsToFit();
         }
       },
       onGridReady: () => {
         if (this.gridOptions.api) {
-          this.gridOptions.api.sizeColumnsToFit();
+          (this.gridOptions.api as any)?.sizeColumnsToFit();
         }
       },
       onRowDataChanged: () => {
         if (this.gridOptions.api) {
-          this.gridOptions.api.sizeColumnsToFit();
+          (this.gridOptions.api as any)?.sizeColumnsToFit();
         }
       }
     };

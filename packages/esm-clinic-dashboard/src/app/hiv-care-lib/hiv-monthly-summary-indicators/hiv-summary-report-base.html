@@ -32,11 +32,10 @@
   </p>
 </div>
 <div *ngIf="!isLoadingReport && !encounteredError">
-  <p-tabView (onChange)="onTabChanged($event)">
-    <p-tabPanel
-      header="Tabular View"
+  <tabset (onChange)="onTabChanged($event)">
+    <tab heading="Tabular View"
       leftIcon="fa-table"
-      [selected]="currentView === 'tabular'"
+      [active]="currentView === 'tabular'"
     >
       <hiv-summary-monthly-tabular
         [sectionDefs]="sectionsDef"
@@ -45,6 +44,6 @@
         [gender]="gender"
         [age]="age"
       ></hiv-summary-monthly-tabular>
-    </p-tabPanel>
-  </p-tabView>
+    </tab>
+  </tabset>
 </div>

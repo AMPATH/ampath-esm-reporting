@@ -46,13 +46,13 @@ import { ClinicFlowResource } from '../../etl-api/clinic-flow-resource-interface
 
 import { AgGridModule } from 'ag-grid-angular';
 import { HivClinicFlowResourceService } from '../../etl-api/hiv-clinic-flow-resource.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MockHivClinicFlowResourceService } from '../../etl-api/hiv-clinic-flow-resource.service.mock';
 import { ClinicFlowProviderStatsComponent } from './clinic-flow-provider-stats.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 class MockActivatedRoute {
-  public params = Observable.of([{ id: 1 }]);
+  public params = of([{ id: 1 }]);
 }
 
 describe('Component: ClinicFlowProviderStatsComponent', () => {

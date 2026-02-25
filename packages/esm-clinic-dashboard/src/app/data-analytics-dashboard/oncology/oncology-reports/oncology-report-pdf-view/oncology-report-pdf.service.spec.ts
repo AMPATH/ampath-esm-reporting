@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { OncologyReportPdfService } from './oncology-report-pdf.service';
 

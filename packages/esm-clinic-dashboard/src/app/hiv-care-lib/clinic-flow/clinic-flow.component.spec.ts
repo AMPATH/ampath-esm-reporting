@@ -56,12 +56,12 @@ import { ClinicFlowLocationStatsComponent } from './clinic-flow-location-stats.c
 import { ClinicFlowProviderStatsComponent } from './clinic-flow-provider-stats.component';
 import { ClinicFlowHourlyStatsVizComponent } from './clinic-flow-hourly-stats-viz.component';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import 'rxjs/add/observable/of';
 
 class MockActivatedRoute {
-  public params = Observable.of([{ id: 1 }]);
-  public queryParams = Observable.of({
+  public params = of([{ id: 1 }]);
+  public queryParams = of({
     selectedTab: 0
   });
 }

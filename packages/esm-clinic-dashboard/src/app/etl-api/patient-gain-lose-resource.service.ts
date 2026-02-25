@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AppSettingsService } from '../app-settings/app-settings.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class PatientGainLoseResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;
@@ -48,7 +48,7 @@ export class PatientGainLoseResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;

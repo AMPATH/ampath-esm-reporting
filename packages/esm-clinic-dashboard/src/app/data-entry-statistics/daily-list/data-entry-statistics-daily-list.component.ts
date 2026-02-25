@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import * as _ from 'lodash';
 import dayjs from 'dayjs';
-import { GridOptions } from 'ag-grid-angular';
+import { GridOptions } from 'ag-grid-community';
 
 @Component({
   standalone: false,
@@ -25,19 +25,15 @@ export class DataEntryStatisticsDailyListComponent
   public totalEncounters = 0;
   public pinnedBottomRowData: any = [];
 
-  public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+  public gridOptions: any = {
     onGridSizeChanged: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any).sizeColumnsToFit();
       }
     },
     onGridReady: (params) => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any).sizeColumnsToFit();
         // this.gridOptions.groupDefaultExpanded = -1;
       }
     }
@@ -52,9 +48,9 @@ export class DataEntryStatisticsDailyListComponent
   public dataEntryStats: any = [];
   public dataEntryRowData: any[];
 
-  constructor(private _cd: ChangeDetectorRef) {}
+  constructor(private _cd: ChangeDetectorRef) { }
 
-  public ngOnInit() {}
+  public ngOnInit() { }
   public ngAfterViewInit(): void {
     this._cd.detectChanges();
   }

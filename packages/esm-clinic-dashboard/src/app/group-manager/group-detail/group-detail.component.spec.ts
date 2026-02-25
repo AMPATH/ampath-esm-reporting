@@ -4,20 +4,20 @@ import { GroupDetailComponent } from './group-detail.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
-import { ButtonsModule } from 'ngx-bootstrap';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { NgamrsSharedModule } from 'src/app/shared/ngamrs-shared.module';
 import { GroupDetailSummaryComponent } from './group-detail-summary.component';
 import { MatCardModule, MatRadioModule } from '@angular/material/tabs'; // TODO: split material imports
 import { PatientSearchComponent } from 'src/app/patient-search/patient-search.component';
 import { GroupEditorComponent } from '../group-editor/group-editor-component';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import 'rxjs/add/observable/of';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe, CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 
 class MockActivatedRoute {
-  public params = Observable.of([{ id: 1 }]);
+  public params = of([{ id: 1 }]);
   public snapshot = {
     queryParams: { filter: '' }
   };

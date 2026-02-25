@@ -34,10 +34,7 @@ export class DataEntryStatisticsFiltersComponent
   public today: any = dayjs().format();
   public params: any = [];
   public gridOptions: any = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300
   };
@@ -145,7 +142,7 @@ export class DataEntryStatisticsFiltersComponent
     private _dataEntryStatisticsService: DataEntryStatisticsService,
     private _visitResourceService: VisitResourceService,
     private _patientProgramService: PatientProgramResourceService
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.loadFilters();
@@ -165,7 +162,7 @@ export class DataEntryStatisticsFiltersComponent
     );
   }
 
-  public ngOnDestroy() {}
+  public ngOnDestroy() { }
 
   public ngAfterViewInit(): void {
     this._cd.detectChanges();
@@ -355,7 +352,7 @@ export class DataEntryStatisticsFiltersComponent
 
   public getLocations() {
     this._locationResourceService
-      .getLocations()
+      .getAllLocations()
       .pipe(take(1))
       .subscribe((result) => {
         const locations = result;
@@ -656,7 +653,7 @@ export class DataEntryStatisticsFiltersComponent
     this.viewSelected.emit(this.selectedView);
   }
 
-  public viewDeselect($event) {}
+  public viewDeselect($event) { }
 
   public searchProvider(providerSearchTerm) {
     if (providerSearchTerm.length > 3) {

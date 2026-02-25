@@ -13,9 +13,9 @@ export class DataAnalyticsDashboardService {
   private dataSubject = new ReplaySubject<any>(1);
   private dataIndicactorSubject = new ReplaySubject<any>(1);
   private dataMontthlyIndicactorSubject = new ReplaySubject<any>(1);
-  private reportFilters = new BehaviorSubject(this.selectedFilters);
-  private selectedLocations = new BehaviorSubject(this.locations);
-  private selectedIndicatorLocations = new BehaviorSubject(this.locations);
+  private reportFilters = new BehaviorSubject(null);
+  private selectedLocations = new BehaviorSubject(null);
+  private selectedIndicatorLocations = new BehaviorSubject(null);
   private isLoading = new BehaviorSubject(this.dataIsLoading);
   private currentTab = new Subject();
 

@@ -4,9 +4,9 @@
     <li>
       <div class="item-details">
         <div class="prescriptionform" style="padding: 12px">
-          <p-tabView>
+          <tabset>
             <div>
-              <p-tabPanel header="Monthly" leftIcon="fa-calendar-o">
+              <tab heading="Monthly" leftIcon="fa-calendar-o">
                 <report-filters
                   [enabledControls]="enabledControls"
                   [(startDate)]="startDate"
@@ -16,9 +16,9 @@
                   (generateReport)="generateReport()"
                 >
                 </report-filters>
-              </p-tabPanel>
+              </tab>
             </div>
-          </p-tabView>
+          </tabset>
 
           <div *ngIf="!isReleased" class="alert alert-warning">
             <span class="fa fa-info-circle"></span> This report is a draft and

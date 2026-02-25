@@ -30,7 +30,6 @@ import { MonthlyScheduleBaseComponent } from './monthly-schedule.component';
 import { MonthlyScheduleResourceService } from '../../etl-api/monthly-scheduled-resource.service';
 import { CalendarModule } from 'angular-calendar';
 
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { ClinicDashboardCacheService } from '../../clinic-dashboard-services/clinic-dashboard-cache.service';
 import { AppSettingsService } from '../../app-settings/app-settings.service';
 import { LocalStorageService } from '../../utils/local-storage.service';
@@ -40,17 +39,17 @@ import { AppFeatureAnalytics } from '../../shared/app-analytics/app-feature-anal
 import { FakeAppFeatureAnalytics } from '../../shared/app-analytics/app-feature-analytcis.mock';
 import { ProgramVisitEncounterSearchComponent } from './../../program-visit-encounter-search/program-visit-encounter-search.component';
 import { PatientProgramResourceService } from './../../etl-api/patient-program-resource.service';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { DepartmentProgramsConfigService } from './../../etl-api/department-programs-config.service';
 import { SelectDepartmentService } from './../../shared/services/select-department.service';
 class DataStub {
   public getMonthlySchedule(payload): Observable<any> {
-    return Observable.of({ status: 'okay' });
+    return of({ status: 'okay' });
   }
 }
 class ClinicDashboardCacheServiceStub {
   public getCurrentClinic() {
-    return Observable.of('');
+    return of('');
   }
 }
 const results = {
@@ -230,7 +229,7 @@ class MockRouter {
   public navigate = jasmine.createSpy('navigate');
 }
 class MockActivatedRoute {
-  public params = Observable.of([{ id: 1 }]);
+  public params = of([{ id: 1 }]);
   public snapshot = {
     queryParams: { date: '' }
   };
@@ -259,7 +258,6 @@ describe('MonthlyScheduleComponent', () => {
         MatNativeDateModule,
         MatSlideToggleModule,
         NgxMyDatePickerModule.forRoot(),
-        DateTimePickerModule
       ],
       declarations: [
         MonthlyScheduleBaseComponent,

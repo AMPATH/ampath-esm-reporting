@@ -6,9 +6,9 @@
   <span><i class="fa fa-spinner fa-spin"></i>Loading...</span>
 </div>
 
-<p-tabView>
+<tabset>
   <div>
-    <p-tabPanel header="Monthly" leftIcon="fa-calendar-o">
+    <tab heading="Monthly" leftIcon="fa-calendar-o">
       <report-filters
         [enabledControls]="enabledControls"
         [(startDate)]="startDate"
@@ -18,9 +18,9 @@
         (generateReport)="generateReport()"
       >
       </report-filters>
-    </p-tabPanel>
+    </tab>
   </div>
-</p-tabView>
+</tabset>
 
 <div class="alert alert-danger fade in" *ngIf="showInfoMessage">
   <a href="#" class="close" data-dismiss="alert">&times;</a>

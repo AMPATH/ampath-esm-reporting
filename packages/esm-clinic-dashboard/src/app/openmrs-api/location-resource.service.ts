@@ -14,7 +14,7 @@ export class LocationResourceService {
   constructor(
     protected http: HttpClient,
     protected windowRef: WindowRef,
-  ) {}
+  ) { }
 
   public getLocationByUuid(uuid: string): Observable<Location | undefined> {
     const url = this.getLocationByUuidUrl(uuid);
@@ -33,6 +33,26 @@ export class LocationResourceService {
     let url = '';
     searchText ? (url = this.getUrl(searchText)) : (url = this.getUrl());
     return this.http.get<ListResult<Location>>(url).pipe(map((r) => r.results));
+  }
+
+  public getFacilityMapping(): Observable<any> {
+    const url = 'https://etl.ampath.or.ke:8002/etl/location/facility-mapping';
+
+    return this.http.get(url).pipe(
+      map((response: any) => {
+        return response.results;
+      })
+    );
+  }
+
+  public getChildMapping(locationid: string): Observable<any> {
+    const url = `https://etl.ampath.or.ke:8002/etl/location/${locationid}/child-locations`;
+
+    return this.http.get(url).pipe(
+      map((response: any) => {
+        return response.results;
+      })
+    );
   }
 
   public getLocationByUuidUrl(uuid?: string) {

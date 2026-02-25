@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppSettingsService } from '../app-settings/app-settings.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import dayjs from 'dayjs';
 import { catchError, map, shareReplay } from 'rxjs/operators';
 import { DataCacheService } from '../shared/services/data-cache.service';
@@ -34,7 +34,7 @@ export class RegistersResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;
@@ -53,7 +53,7 @@ export class RegistersResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;
@@ -72,7 +72,7 @@ export class RegistersResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;
@@ -91,7 +91,7 @@ export class RegistersResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;
@@ -110,7 +110,7 @@ export class RegistersResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;
@@ -130,7 +130,7 @@ export class RegistersResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;
@@ -155,7 +155,7 @@ export class RegistersResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;
@@ -194,7 +194,7 @@ export class RegistersResourceService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: Response) => {
           return response;

@@ -42,7 +42,7 @@ export class ViewCohortListMembersComponent implements OnInit, OnDestroy {
     private cohortMemberResourceService: CohortMemberResourceService,
     private cohortResourceService: CohortResourceService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
   public ngOnInit() {
     this.selectedCohortUuid = this.route.snapshot.params['cohort_uuid'];
     this.viewCohortListMembers();
@@ -96,9 +96,9 @@ export class ViewCohortListMembersComponent implements OnInit, OnDestroy {
       return;
     }
     this.router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' +
+      patientUuid +
+      '/chart'
     ]);
   }
   public valueChange(newValue) {

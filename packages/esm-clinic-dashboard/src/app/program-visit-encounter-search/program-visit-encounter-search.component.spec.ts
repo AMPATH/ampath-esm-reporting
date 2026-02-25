@@ -9,11 +9,10 @@ import { AppFeatureAnalytics } from './../shared/app-analytics/app-feature-analy
 import { FakeAppFeatureAnalytics } from './../shared/app-analytics/app-feature-analytcis.mock';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PatientProgramResourceService } from './../etl-api/patient-program-resource.service';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { DepartmentProgramsConfigService } from './../etl-api/department-programs-config.service';
 import { IonicStorageModule } from '@ionic/storage';
 import { SelectDepartmentService } from './../shared/services/select-department.service';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 
 import { PatientService } from '../patient-dashboard/services/patient.service';
 import { delay } from 'rxjs/operators';
@@ -180,7 +179,6 @@ describe('Component: ProgramVisitEncounterSearch', () => {
       imports: [
         AngularMultiSelectModule,
         FormsModule,
-        DateTimePickerModule,
         IonicStorageModule.forRoot()
       ],
       declarations: [ProgramVisitEncounterSearchComponent],

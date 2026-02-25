@@ -25,10 +25,7 @@ export class DataEntryStatisticsProviderListComponent
   public allClicalEncounters: any = [];
 
   public gridOptions: any = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300,
     onGridReady: () => {}

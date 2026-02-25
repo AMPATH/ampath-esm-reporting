@@ -145,8 +145,8 @@ export class AddContactTraceComponent implements OnInit {
       .pipe(take(1))
       .subscribe((resp) => {
         this.patientEncounters = resp.reverse().filter((encounter) => {
-          if (encounter.form) {
-            return encounter.form.uuid === this.familyAndPartnerTestingFormUuid;
+          if ((encounter as any).form) {
+            return (encounter as any).form.uuid === this.familyAndPartnerTestingFormUuid;
           }
         });
       });

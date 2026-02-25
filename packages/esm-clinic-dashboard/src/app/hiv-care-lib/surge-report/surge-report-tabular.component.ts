@@ -6,7 +6,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { AgGridNg2 } from 'ag-grid-angular';
+import { AgGridAngular } from 'ag-grid-angular';
 import * as _ from 'lodash';
 import { isUndefined, isNullOrUndefined } from 'util';
 import { Location } from '@angular/common';
@@ -26,7 +26,7 @@ export class SurgeReportTabularComponent implements OnInit {
     columnDefs: []
   };
   @ViewChild('agGrid')
-  public agGrid: AgGridNg2;
+  public agGrid: AgGridAngular;
   public get surgeReportSummaryData(): Array<any> {
     return this._rowDefs;
   }
@@ -94,7 +94,7 @@ export class SurgeReportTabularComponent implements OnInit {
     }
     this.gridOptions.columnDefs = defs;
     if (this.agGrid && this.agGrid.api) {
-      this.agGrid.api.setColumnDefs(defs);
+      (this.agGrid.api as any)?.setGridOption("columnDefs", defs);
     }
   }
   private setCellSelection(col?) {
@@ -131,6 +131,6 @@ export class SurgeReportTabularComponent implements OnInit {
   }
 
   public exportAllData() {
-    this.agGrid.api.exportDataAsCsv();
+    (this.agGrid.api as any)?.sizeColumnsToFit();
   }
 }

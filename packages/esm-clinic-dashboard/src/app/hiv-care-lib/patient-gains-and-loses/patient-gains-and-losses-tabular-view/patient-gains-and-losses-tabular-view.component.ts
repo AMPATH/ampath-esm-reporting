@@ -29,10 +29,7 @@ export class PatientGainsAndLossesTabularViewComponent
   public gainsLossesColdef = [];
   public data = [];
   public gainsLossesGridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     groupDefaultExpanded: -1,
     onGridSizeChanged: () => {},
     onGridReady: () => {}

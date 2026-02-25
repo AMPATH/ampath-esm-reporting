@@ -50,7 +50,7 @@ import { ClinicFlowResource } from '../../etl-api/clinic-flow-resource-interface
 
 import dayjs from 'dayjs';
 import { HivClinicFlowResourceService } from '../../etl-api/hiv-clinic-flow-resource.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MockHivClinicFlowResourceService } from '../../etl-api/hiv-clinic-flow-resource.service.mock';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 

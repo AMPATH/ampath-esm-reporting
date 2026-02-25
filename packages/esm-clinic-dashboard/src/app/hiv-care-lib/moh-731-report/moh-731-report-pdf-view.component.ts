@@ -123,7 +123,7 @@ export class MOHReportComponent implements OnInit, OnDestroy {
 
   public resolveLationParams(): void {
     this.isBusy = true;
-    this.locationResourceService.getLocations().subscribe(
+    this.locationResourceService.getAllLocations().subscribe(
       (locations: any[]) => {
         // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < locations.length; i++) {

@@ -1,10 +1,12 @@
 import { Router } from '@angular/router';
 import { LocalStorageService } from '../utils/local-storage.service';
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import * as _ from 'lodash';
 
 @Component({
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule],
   selector: 'department-select',
   templateUrl: 'department-select.component.html',
   styleUrls: ['./department-select.component.css']
@@ -17,7 +19,7 @@ export class DepartmentSelectComponent implements OnInit {
   constructor(
     public locaStorageService: LocalStorageService,
     public router: Router
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.getCurrentDepartment();

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { PatientGainsAndLosesComponent } from './patient-gains-and-loses.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { GridOptions } from 'ag-grid-angular';
+import { GridOptions } from 'ag-grid-community';
 
 @Component({
   standalone: false,
@@ -18,15 +18,21 @@ export class ProgramEnrollmentSummaryComponent implements OnInit {
   @Input() public filterParams: any = [];
   @Output() public programSelected: EventEmitter<any> = new EventEmitter();
 
+  public gridApi: any;
+
   public summaryGridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // // enableColResize: true, // Deprecated in ag-grid v30+
+    // // Default in newer ag-grid versions, or column property
+    // // Default in newer ag-grid versions, or column property
+    // // Deprecated
     groupDefaultExpanded: -1,
-    onGridSizeChanged: () => {
-      if (this.summaryGridOptions.api) {
-        this.summaryGridOptions.api.sizeColumnsToFit();
+    onGridReady: (params) => {
+      this.gridApi = params.api;
+      (params.api as any)?.sizeColumnsToFit();
+    },
+    onGridSizeChanged: (params: any) => {
+      if (params.api) {
+        (params.api as any)?.sizeColumnsToFit();
       }
     },
     getRowStyle: (params) => {
@@ -39,11 +45,11 @@ export class ProgramEnrollmentSummaryComponent implements OnInit {
     {
       headerName: '#Enrolled',
       field: 'enrolled',
-      cellRenderer: (column) => {
-        if (typeof column.value !== 'undefined') {
+      cellRenderer: (params: any) => {
+        if (typeof params.value !== 'undefined') {
           return (
             '<a href="javascript:void(0);" title="Identifiers">' +
-            column.value +
+            params.value +
             '</a>'
           );
         } else {
@@ -71,21 +77,23 @@ export class ProgramEnrollmentSummaryComponent implements OnInit {
     height: '100%',
     boxSizing: 'border-box'
   };
-  constructor(private _router: Router) {}
+  constructor(private _router: Router) { }
 
-  public ngOnInit() {}
+  public ngOnInit() { }
 
   public exportPatientListToCsv() {
-    this.summaryGridOptions.api.exportDataAsCsv();
+    if (this.gridApi) {
+      this.gridApi.exportDataAsCsv();
+    }
   }
   public redirectTopatientInfo(patientUuid) {
     if (patientUuid === undefined || patientUuid === null) {
       return;
     } else {
       this._router.navigate([
-        '/patient-dashboard/patient/' +
-          patientUuid +
-          '/general/general/landing-page'
+        '/openmrs/spa/patient/' +
+        patientUuid +
+        '/chart'
       ]);
     }
   }

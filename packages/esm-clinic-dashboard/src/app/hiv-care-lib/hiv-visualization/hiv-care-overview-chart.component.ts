@@ -23,7 +23,7 @@ export class HivCareComparativeChartComponent implements OnInit {
   private virallySuppressed: Array<any> = [];
   private chartTitle = 'A comparative graph showing HIV Care analysis';
   private _options = new BehaviorSubject<any>(null);
-  private data: any;
+  public data: any;
   private _dates: any;
 
   constructor(

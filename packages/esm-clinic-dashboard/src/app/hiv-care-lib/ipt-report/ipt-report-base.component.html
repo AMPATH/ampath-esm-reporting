@@ -10,7 +10,7 @@
   <span><i class="fa fa-spinner fa-spin"></i>Loading...</span>
 </div>
 
-<p-tabView>
+<tabset>
   <report-filters
     [enabledControls]="enabledControls"
     [monthString]="month"
@@ -20,7 +20,7 @@
     [showAggregateControl]="true"
   >
   </report-filters>
-</p-tabView>
+</tabset>
 
 <div class="alert alert-danger fade in" *ngIf="showInfoMessage">
   <a href="#" class="close" data-dismiss="alert">&times;</a>
@@ -32,13 +32,13 @@
     <small>{{ errorMessage }}</small>
   </p>
 </div>
-<p-tabView>
-  <p-tabPanel header=" Report View" leftIcon="fa-file-pdf-o">
+<tabset>
+  <tab heading=" Report View" leftIcon="fa-file-pdf-o">
     <app-report-view
       [SummaryData]="iptReportData"
       [sectionDefs]="columnDefs"
       (CellSelection)="onIndicatorSelected($event)"
       [reportDetails]="params"
     ></app-report-view>
-  </p-tabPanel>
-</p-tabView>
+  </tab>
+</tabset>

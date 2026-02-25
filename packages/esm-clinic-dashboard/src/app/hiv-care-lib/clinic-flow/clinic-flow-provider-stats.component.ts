@@ -6,7 +6,7 @@ import { ClinicFlowResource } from '../../etl-api/clinic-flow-resource-interface
 import { ClinicFlowCacheService } from './clinic-flow-cache.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
-import { AgGridNg2 } from 'ag-grid-angular';
+import { AgGridAngular } from 'ag-grid-angular';
 import dayjs from 'dayjs';
 @Component({
   standalone: false,
@@ -27,7 +27,7 @@ export class ClinicFlowProviderStatsComponent implements OnInit, OnDestroy {
   private patientStatuses: any = [];
   private finalProviderReport: any = [];
   @ViewChild('agGrid')
-  private agGrid: AgGridNg2;
+  private agGrid: AgGridAngular;
   private currentLocationSubscription: Subscription;
   private selectedDateSubscription: Subscription;
   private clinicFlowSubscription: Subscription;
@@ -37,7 +37,7 @@ export class ClinicFlowProviderStatsComponent implements OnInit, OnDestroy {
     private router: Router,
     public route: ActivatedRoute,
     @Inject('ClinicFlowResource') private clinicFlowResource: ClinicFlowResource
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.currentLocationSubscription = this.clinicFlowCacheService
@@ -70,9 +70,7 @@ export class ClinicFlowProviderStatsComponent implements OnInit, OnDestroy {
     }
 
     this.router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' + patientUuid + '/chart'
     ]);
   }
 
@@ -106,9 +104,9 @@ export class ClinicFlowProviderStatsComponent implements OnInit, OnDestroy {
           field: keys.label,
           hide:
             keys.label === 'provider_uuid' ||
-            keys.label === 'provider_ecounters' ||
-            keys.label === 'visit_date' ||
-            keys.label === 'location_uuid'
+              keys.label === 'provider_ecounters' ||
+              keys.label === 'visit_date' ||
+              keys.label === 'location_uuid'
               ? true
               : false
         });
@@ -118,7 +116,7 @@ export class ClinicFlowProviderStatsComponent implements OnInit, OnDestroy {
     }
 
     if (this.agGrid && this.agGrid.api) {
-      this.agGrid.api.setColumnDefs(defs);
+      (this.agGrid.api as any)?.setGridOption("columnDefs", defs);
     }
   }
 
@@ -206,7 +204,7 @@ export class ClinicFlowProviderStatsComponent implements OnInit, OnDestroy {
       if (this.providerEncounters.hasOwnProperty(i)) {
         if (
           typeof uniqueProviderPersonIds[
-            this.providerEncounters[i].person_id
+          this.providerEncounters[i].person_id
           ] === 'undefined'
         ) {
           providersPersonIds.push(this.providerEncounters[i].person_id);

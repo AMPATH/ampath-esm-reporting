@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IAfterGuiAttachedParams } from 'ag-grid';
+import { IAfterGuiAttachedParams } from 'ag-grid-community';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 
 @Component({

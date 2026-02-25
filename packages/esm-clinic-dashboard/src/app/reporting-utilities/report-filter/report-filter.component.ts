@@ -6,11 +6,16 @@ import { IndicatorResourceService } from '../../etl-api/indicator-resource.servi
 import { LocationResourceService } from '../../openmrs-api/location-resource.service';
 import { FormsResourceService } from '../../openmrs-api/forms-resource.service';
 
+interface SelectItem {
+  label: string;
+  value: any;
+}
+
 @Component({
   standalone: false,
-  selector: 'report-filter',
-  templateUrl: 'report-filter.component.html',
-  styleUrls: ['report-filter.component.css']
+  selector: 'app-report-filter',
+  templateUrl: './report-filter.component.html',
+  styleUrls: ['./report-filter.component.css']
 })
 export class ReportFilterComponent implements OnInit {
   public genders: SelectItem[];
@@ -85,7 +90,7 @@ export class ReportFilterComponent implements OnInit {
 
   public fetchLocations(): void {
     this.locationResourceService
-      .getLocations()
+      .getAllLocations()
       .pipe(take(1))
       .subscribe(
         (locations: any[]) => {

@@ -9,8 +9,8 @@ import {
 import { take } from 'rxjs';
 import { RetentionReportResourceService } from '../../etl-api/retention-report-resource.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ChangeDetectorStatus } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   standalone: false,

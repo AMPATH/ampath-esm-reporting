@@ -123,7 +123,7 @@ export class LocationFilterComponent implements OnInit, AfterViewInit {
   constructor(
     private locationResourceService: LocationResourceService,
     private cd: ChangeDetectorRef
-  ) {}
+  ) { }
 
   public ngOnInit() {
     if (this.county) {
@@ -273,7 +273,7 @@ export class LocationFilterComponent implements OnInit, AfterViewInit {
   public resolveLocationDetails(): void {
     this.loading = true;
     this.locationResourceService
-      .getLocations()
+      .getAllLocations()
       .pipe(take(1))
       .subscribe(
         (locations: any[]) => {

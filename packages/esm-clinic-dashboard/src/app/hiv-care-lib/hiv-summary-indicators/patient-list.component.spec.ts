@@ -11,7 +11,6 @@ import { AgGridModule } from 'ag-grid-angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HivSummaryIndicatorsResourceService } from '../../etl-api/hiv-summary-indicators-resource.service';
 import { HivSummaryIndicatorsPatientListComponent } from './patient-list.component';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 
 class MockRouter {
   navigate = jasmine.createSpy('navigate');
@@ -36,7 +35,6 @@ describe('Component: HivSummaryIndicatorsPatientListComponent', () => {
         CommonModule,
         AgGridModule,
         DataListsModule,
-        DateTimePickerModule
       ]
     })
       .overrideComponent(HivSummaryIndicatorsPatientListComponent, {

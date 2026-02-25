@@ -1,3 +1,4 @@
+import { AgGridAngular } from 'ag-grid-angular';
 import {
   Component,
   OnInit,
@@ -10,7 +11,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import * as _ from 'lodash';
 import dayjs from 'dayjs';
-import { AgGridNg2 } from 'ag-grid-angular';
+import { AgGridModule } from 'ag-grid-angular';
 
 @Component({
   standalone: false,
@@ -24,10 +25,7 @@ export class OncologySummaryIndicatorsTableComponent
   public endDate: any;
   public locationUuids: any;
   public gridOptions: any = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     onGridSizeChanged: () => {},
     onGridReady: () => {},
     autoGroupColumnDef: {
@@ -46,7 +44,7 @@ export class OncologySummaryIndicatorsTableComponent
   public pinnedBottomRowData: any = [];
 
   @ViewChild('agGrid')
-  public agGrid: AgGridNg2;
+  public agGrid: AgGridAngular;
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   public ngOnInit() {}
@@ -290,7 +288,7 @@ export class OncologySummaryIndicatorsTableComponent
   }
 
   public exportCountsListToCsv() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
 
   public setPinnedRow() {

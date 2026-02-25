@@ -18,7 +18,6 @@ import { DataAnalyticsDashboardService } from '../../data-analytics-dashboard/se
 import { ProgramResourceService } from '../../openmrs-api/program-resource.service';
 import { ProgramWorkFlowResourceService } from '../../openmrs-api/program-workflow-resource.service';
 declare var jQuery;
-require('ion-rangeslider');
 import { DepartmentProgramsConfigService } from '../../etl-api/department-programs-config.service';
 import { SelectDepartmentService } from './../services/select-department.service';
 
@@ -226,7 +225,9 @@ export class ReportFiltersComponent
       value: 'all'
     }
   ];
-  public selectedLoactionType: any;
+  public selectedLocationType: any;
+  public selectedPatientType: any;
+  public selectedSampleSize: any;
   public selectedIndicatorTagsSelectedAll = false;
   public selectedProgramTagsSelectedAll = false;
   @Input() public selectedPeriod = '';
@@ -376,8 +377,8 @@ export class ReportFiltersComponent
   }
 
   // tslint:disable:no-shadowed-variable
-  public onChange = (_) => {};
-  public onTouched = () => {};
+  public onChange = (_) => { };
+  public onTouched = () => { };
 
   @Input()
   public set endDate(v: Date) {

@@ -1,9 +1,16 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { FamilyTestingService } from 'src/app/etl-api/family-testing-resource.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+export class DummyPatientService {
+  public currentlyLoadedPatient = new BehaviorSubject<any>(null);
+}
+
 import * as _ from 'lodash';
 import dayjs from 'dayjs';
-import { PatientService } from 'src/app/patient-dashboard/services/patient.service';
+
 
 @Component({
   standalone: false,
@@ -70,7 +77,7 @@ export class ContactListComponent implements OnInit {
     private familyTestingService: FamilyTestingService,
     public route: ActivatedRoute,
     public router: Router,
-    private patientService: PatientService
+    private patientService: DummyPatientService
   ) {}
 
   ngOnInit() {

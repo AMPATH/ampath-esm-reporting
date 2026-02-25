@@ -21,11 +21,10 @@
       ></hei-indicators-filter>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12">
-      <p-tabView (onChange)="onTabChanged($event)">
-        <p-tabPanel
-          header="Report View"
+      <tabset (onChange)="onTabChanged($event)">
+        <tab heading="Report View"
           leftIcon="fa-file-pdf-o "
-          [selected]="currentView === 'pdf'"
+          [active]="currentView === 'pdf'"
         >
           <app-report-view
             [SummaryData]="heiSummary"
@@ -33,11 +32,10 @@
             (CellSelection)="setCellSelection($event, $event)"
             [reportDetails]="params"
           ></app-report-view>
-        </p-tabPanel>
-        <p-tabPanel
-          header="Tabular View"
+        </tab>
+        <tab heading="Tabular View"
           leftIcon="fa-table"
-          [selected]="currentView === 'tabular'"
+          [active]="currentView === 'tabular'"
         >
           <hei-indicators-tabular
             [reportTitle]="summaryTitle"
@@ -46,8 +44,8 @@
             [sectionDefs]="sectionDefs"
             [reportType]="'hei-summary'"
           ></hei-indicators-tabular>
-        </p-tabPanel>
-      </p-tabView>
+        </tab>
+      </tabset>
     </div>
   </div>
 </div>

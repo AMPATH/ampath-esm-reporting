@@ -15,7 +15,6 @@ import { NgSelectModule } from '@ng-select/ng-select';
     PatientSearchModule,
     FormsModule,
     CommonModule,
-    DialogModule,
     NgSelectModule
   ],
   exports: [AddCohortMemberComponent, AddToCohortDialogComponent],
@@ -26,4 +25,4 @@ import { NgSelectModule } from '@ng-select/ng-select';
   ],
   providers: []
 })
-export class CohortMemberModule {}
+export class CohortMemberModule { }

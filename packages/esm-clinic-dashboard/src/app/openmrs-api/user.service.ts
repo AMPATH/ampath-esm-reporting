@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { SessionStorageService } from '../utils/session-storage.service';
 import { Constants } from '../utils/constants';

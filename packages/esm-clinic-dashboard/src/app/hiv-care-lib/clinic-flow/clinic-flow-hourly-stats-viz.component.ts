@@ -1,7 +1,10 @@
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import dayjs from 'dayjs';
+dayjs.extend(isSameOrBefore);
 import { Component, OnInit, Input } from '@angular/core';
 
 import * as _ from 'lodash';
-import dayjs from 'dayjs';
+
 
 @Component({
   standalone: false,

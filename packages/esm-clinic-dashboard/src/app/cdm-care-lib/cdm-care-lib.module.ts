@@ -7,13 +7,11 @@ import {
   MatTabsModule
 } from '@angular/material/tabs'; // TODO: split material imports
 
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { EtlApi } from '../etl-api/etl-api.module';
 import { DataListsModule } from '../shared/data-lists/data-lists.module';
 
 @NgModule({
   imports: [
-    DateTimePickerModule,
     EtlApi,
     DataListsModule,
     CommonModule,

@@ -1,4 +1,4 @@
-<busy *ngIf="!group && !error" [message]="'Loading Group...'"></busy>
+<!--busy-->
 <div class="alert alert-danger" *ngIf="error && errorMessage && !group">
   <b>{{ errorMessage }}</b>
 </div>
@@ -85,7 +85,7 @@
         [rowData]="membersData"
         [columnDefs]="columns"
         (cellClicked)="gridOnCellClick($event)"
-        [enableSorting]="true"
+        
         [enableFilter]="true"
       >
       </ag-grid-angular>
@@ -250,10 +250,7 @@
       The patient is not enrolled in this program.
     </div>
 
-    <busy
-      *ngIf="validatingEnrollment"
-      [message]="'Validating Enrollment...'"
-    ></busy>
+    <!--busy-->
     <app-patient-search
       (patientSelected)="validateMemberEnrollment($event)"
       [hideResults]="true"

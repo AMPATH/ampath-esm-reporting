@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import dayjs from 'dayjs';
 import { AppSettingsService } from '../app-settings/app-settings.service';
@@ -17,7 +17,7 @@ export class IptReportService {
   constructor(
     public http: HttpClient,
     public appSettingService: AppSettingsService
-  ) {}
+  ) { }
 
   public getIptReportData(params: {
     locationUuids: string;
@@ -26,10 +26,8 @@ export class IptReportService {
   }): Observable<IptReportResponse> {
     return this.http
       .get(
-        `${this.url}tb-preventive-monthly-summary?locationUuids=${
-          params.locationUuids
-        }&endDate=${moment(params.endDate).format('YYYY-MM-DD')}&isAggregated=${
-          params.isAggregated
+        `${this.url}tb-preventive-monthly-summary?locationUuids=${params.locationUuids
+        }&endDate=${dayjs(params.endDate).format('YYYY-MM-DD')}&isAggregated=${params.isAggregated
         }`
       )
       .pipe(
@@ -39,7 +37,7 @@ export class IptReportService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         }),
         map((response: any) => {
           return response;
@@ -54,9 +52,8 @@ export class IptReportService {
   }): Observable<IptReportResponse> {
     return this.http
       .get(
-        `${this.url}tb-preventive-monthly-summary-patient-list?indicators=${
-          params.indicators
-        }&locationUuids=${params.locationUuids}&endDate=${moment(
+        `${this.url}tb-preventive-monthly-summary-patient-list?indicators=${params.indicators
+        }&locationUuids=${params.locationUuids}&endDate=${dayjs(
           params.endDate
         ).format('YYYY-MM-DD')}`
       )
@@ -68,7 +65,7 @@ export class IptReportService {
             error: error.status,
             message: error.statusText
           };
-          return Observable.of(errorObj);
+          return of(errorObj);
         })
       );
   }

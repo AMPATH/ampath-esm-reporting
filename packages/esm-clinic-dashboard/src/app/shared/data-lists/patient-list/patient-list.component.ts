@@ -33,7 +33,7 @@ export class PatientListComponent implements OnInit {
   @Input() public hivColumns = false;
   private _data = new BehaviorSubject<any>([]);
   private _dataSource = new BehaviorSubject<any>({});
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   public ngOnInit() {
     this._data.subscribe((x) => {
@@ -98,9 +98,9 @@ export class PatientListComponent implements OnInit {
     }
 
     this.router.navigate([
-      '/patient-dashboard/patient/' +
-        patientUuid +
-        '/general/general/landing-page'
+      '/openmrs/spa/patient/' +
+      patientUuid +
+      '/chart'
     ]);
   }
 }

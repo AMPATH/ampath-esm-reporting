@@ -10,8 +10,7 @@ import * as pdfMake from 'pdfmake/build/pdfmake.js';
 import 'pdfmake/build/vfs_fonts.js';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 
-import { VERSION } from 'src/environments/version';
-import * as OncologyReportConfig from '../oncology-pdf-reports.json';
+const OncologyReportConfig = require('../oncology-pdf-reports.json');
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +18,7 @@ import * as OncologyReportConfig from '../oncology-pdf-reports.json';
 export class OncologyReportPdfService {
   public data: object = null;
 
-  public constructor() {}
+  public constructor() { }
 
   public constructPdfStructure(
     data: Array<any>,
@@ -457,9 +456,9 @@ export class OncologyReportPdfService {
           .subscribe(
             (pdfStructure) => {
               const pdfProxy = pdfMake.createPdf(pdfStructure);
-              pdfProxy.getBase64((output) => {
-                const int8Array: Uint8Array = this.base64ToUint8Array(output);
-                const blob = new Blob([int8Array], {
+              (pdfProxy as any).getBase64((output: any) => {
+                const int8Array: any = this.base64ToUint8Array(output);
+                const blob = new Blob([int8Array as any], {
                   type: 'application/pdf'
                 });
                 observer.next({
@@ -492,9 +491,9 @@ export class OncologyReportPdfService {
           .subscribe(
             (pdfStructure) => {
               const pdfProxy = pdfMake.createPdf(pdfStructure);
-              pdfProxy.getBase64((output) => {
-                const int8Array: Uint8Array = this.base64ToUint8Array(output);
-                const blob = new Blob([int8Array], {
+              (pdfProxy as any).getBase64((output: any) => {
+                const int8Array: any = this.base64ToUint8Array(output);
+                const blob = new Blob([int8Array as any], {
                   type: 'application/pdf'
                 });
                 observer.next({
@@ -519,11 +518,7 @@ export class OncologyReportPdfService {
   }
 
   private getAppVersion(): string {
-    try {
-      return VERSION.version + VERSION.hash;
-    } catch (e) {
-      return '2';
-    }
+    return '2';
   }
 
   private base64ToUint8Array(base64: any): Uint8Array {

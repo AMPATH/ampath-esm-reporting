@@ -3,11 +3,11 @@ import { ComponentFixture, async, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
-import { ButtonsModule } from 'ngx-bootstrap';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { NgamrsSharedModule } from 'src/app/shared/ngamrs-shared.module';
 import { MatCardModule, MatRadioModule } from '@angular/material/tabs'; // TODO: split material imports
 import { PatientSearchComponent } from 'src/app/patient-search/patient-search.component';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import 'rxjs/add/observable/of';
 import { ActivatedRoute } from '@angular/router';
 import { DatePipe, CommonModule } from '@angular/common';
@@ -18,7 +18,7 @@ import { CacheStorageService } from 'ionic-cache/dist/cache-storage';
 import { DepartmentProgramsConfigService } from 'src/app/etl-api/department-programs-config.service';
 
 class MockActivatedRoute {
-  public params = Observable.of([{ id: 1 }]);
+  public params = of([{ id: 1 }]);
   public snapshot = {
     queryParams: { filter: '' }
   };

@@ -17,9 +17,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CacheModule, CacheService } from 'ionic-cache';
 import { DataCacheService } from '../../shared/services/data-cache.service';
 import { NgamrsSharedModule } from '../../shared/ngamrs-shared.module';
-import { DateTimePickerModule } from '@openmrs/ngx-formentry';
 import { ProgramVisitEncounterSearchComponent } from './../../program-visit-encounter-search/program-visit-encounter-search.component';
-import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown/angular2-multiselect-dropdown';
+import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { DepartmentProgramsConfigService } from './../../etl-api/department-programs-config.service';
 
 class MockActivatedRoute {
@@ -76,7 +75,6 @@ describe('Component: DailyScheduleNotReturned', () => {
         CalendarModule,
         CacheModule.forRoot(),
         HttpClientTestingModule,
-        DateTimePickerModule,
         DataListsModule,
         AngularMultiSelectModule,
         NgamrsSharedModule

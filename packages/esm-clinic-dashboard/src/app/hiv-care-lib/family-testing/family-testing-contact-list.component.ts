@@ -8,9 +8,9 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { AgGridNg2 } from 'ag-grid-angular';
+import { AgGridAngular } from 'ag-grid-angular';
 import { take } from 'rxjs/operators';
-import { BsModalRef, BsModalService, ModalDirective } from 'ngx-bootstrap';
+import { BsModalRef, BsModalService, ModalDirective } from 'ngx-bootstrap/modal';
 import { FamilyTestingService } from 'src/app/etl-api/family-testing-resource.service';
 import { FamilyTestingButtonRendererComponent } from './button-render/button-renderer.component';
 import { EncounterResourceService } from 'src/app/openmrs-api/encounter-resource.service';
@@ -24,6 +24,9 @@ import dayjs from 'dayjs';
   styleUrls: ['./family-testing-contact-list.component.css']
 })
 export class FamilyTestingContactComponent implements OnInit {
+  public statusError: boolean = false;
+  public errorMessage: string = "";
+
   public selectedEncounter: any;
   public selectedRow: any;
   public onEncounterDetail: number;
@@ -31,10 +34,9 @@ export class FamilyTestingContactComponent implements OnInit {
   public obs: any;
   public showInfoMessage: boolean;
   public isHidden: Array<boolean> = [];
-  public errorMessage: string;
   public patientEncounters: Array<any> = [];
   public familyTestingContactList: Array<any> = [];
-  private frameworkComponents: any;
+  public frameworkComponents: any;
   public patientUuid: string;
   public gridOptions: any = {
     columnDefs: []
@@ -42,7 +44,7 @@ export class FamilyTestingContactComponent implements OnInit {
   public indexHasContacts: boolean;
   public params: any;
   @ViewChild('agGrid')
-  public agGrid: AgGridNg2;
+  public agGrid: AgGridAngular;
   @ViewChild('staticModal')
   public staticModal: ModalDirective;
   @ViewChild('actionModal')
@@ -222,8 +224,8 @@ export class FamilyTestingContactComponent implements OnInit {
       .pipe(take(1))
       .subscribe((resp) => {
         this.patientEncounters = resp.reverse().filter((encounter) => {
-          if (encounter.form) {
-            return encounter.form.uuid === this.familyAndPartnerTestingFormUuid;
+          if ((encounter as any).form) {
+            return (encounter as any).form.uuid === this.familyAndPartnerTestingFormUuid;
           }
         });
       });
@@ -256,7 +258,7 @@ export class FamilyTestingContactComponent implements OnInit {
   }
 
   public exportAllData() {
-    this.agGrid.api.exportDataAsCsv();
+    (this.agGrid.api as any)?.sizeColumnsToFit();
   }
 
   public toggleTreeView() {

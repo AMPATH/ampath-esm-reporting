@@ -51,11 +51,10 @@
       </oncology-summary-indicators-table>
     </div>
     <div *ngIf="isPdfReportAvailable">
-      <p-tabView (onChange)="onTabChanged($event)">
-        <p-tabPanel
-          header="Tabular View"
+      <tabset (onChange)="onTabChanged($event)">
+        <tab heading="Tabular View"
           leftIcon="fa-table"
-          [selected]="currentView === 'tabular'"
+          [active]="currentView === 'tabular'"
         >
           <div id="oncology-summary-indicators-table">
             <oncology-summary-indicators-table
@@ -64,11 +63,10 @@
             >
             </oncology-summary-indicators-table>
           </div>
-        </p-tabPanel>
-        <p-tabPanel
-          header="Report View"
+        </tab>
+        <tab heading="Report View"
           leftIcon="fa-file-pdf-o "
-          [selected]="currentView === 'pdf'"
+          [active]="currentView === 'pdf'"
         >
           <div>
             <oncology-report-pdf-view
@@ -79,11 +77,10 @@
             >
             </oncology-report-pdf-view>
           </div>
-        </p-tabPanel>
-        <p-tabPanel
-          header="Aggregate Report View"
+        </tab>
+        <tab heading="Aggregate Report View"
           leftIcon="fa-file-pdf-o "
-          [selected]="currentView === 'agg-pdf'"
+          [active]="currentView === 'agg-pdf'"
         >
           <div>
             <oncology-aggregate-report-view
@@ -94,8 +91,8 @@
             >
             </oncology-aggregate-report-view>
           </div>
-        </p-tabPanel>
-      </p-tabView>
+        </tab>
+      </tabset>
     </div>
   </div>
 </div>

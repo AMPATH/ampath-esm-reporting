@@ -59,13 +59,10 @@ export class ProgramEnrollmentPatientListComponent
   };
 
   public gridOptions: any = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     paginationPageSize: 300,
     onGridSizeChanged: () => {
-      // this.gridOptions.api.sizeColumnsToFit();
+      // (this.gridOptions.api as any)?.sizeColumnsToFit();
     },
     getRowHeight: (params) => {
       // assuming 50 characters per line, working how how many lines we need
@@ -87,7 +84,7 @@ export class ProgramEnrollmentPatientListComponent
     private _location: Location,
     private localStorageService: LocalStorageService,
     private _patientProgramEnrollmentService: PatientProgramEnrollmentService
-  ) {}
+  ) { }
 
   public ngOnInit() {
     const userDefaultDepartment: any = JSON.parse(
@@ -197,7 +194,7 @@ export class ProgramEnrollmentPatientListComponent
     );
   }
 
-  public ngOnDestroy() {}
+  public ngOnDestroy() { }
   public getEnrolledPatientList(params) {
     this.busyIndicator = {
       busy: true,
@@ -298,16 +295,16 @@ export class ProgramEnrollmentPatientListComponent
   }
 
   public exportPatientListToCsv() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
   public redirectTopatientInfo(patientUuid) {
     if (patientUuid === undefined || patientUuid === null) {
       return;
     } else {
       this._router.navigate([
-        '/patient-dashboard/patient/' +
-          patientUuid +
-          '/general/general/landing-page'
+        '/openmrs/spa/patient/' +
+        patientUuid +
+        '/chart'
       ]);
     }
   }

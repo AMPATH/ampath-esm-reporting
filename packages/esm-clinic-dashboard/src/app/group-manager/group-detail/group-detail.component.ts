@@ -8,12 +8,12 @@ import {
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { BsModalService } from 'ngx-bootstrap';
-import { BsModalRef } from 'ngx-bootstrap';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Observable, Subscription, forkJoin } from 'rxjs';
 import dayjs from 'dayjs';
 import * as _ from 'lodash';
-import { AgGridNg2 } from 'ag-grid-angular';
+import { AgGridAngular } from 'ag-grid-angular';
 import { Group } from '../group-model';
 import { Patient } from '../../models/patient.model';
 import { CommunityGroupService } from '../../openmrs-api/community-group-resource.service';
@@ -21,7 +21,7 @@ import { VisitResourceService } from '../../openmrs-api/visit-resource.service';
 import { DatePickerModalComponent } from '../modals/date-picker-modal.component';
 import { CommunityGroupMemberService } from '../../openmrs-api/community-group-member-resource.service';
 import { SuccessModalComponent } from '../modals/success-modal.component';
-import { GridOptions } from 'ag-grid';
+import { GridOptions } from 'ag-grid-community';
 import { GroupTransferModalComponent } from '../modals/group-transfer-modal.component';
 import { RetrospectiveDataEntryService } from '../../retrospective-data-entry/services/retrospective-data-entry.service';
 import { CohortOtzModuleResourceService } from 'src/app/etl-api/cohort-otz-module-resource.service';
@@ -47,17 +47,14 @@ export class GroupDetailComponent implements OnInit, OnDestroy, AfterViewInit {
   patientModels: any[] = [];
 
   public successMessage: string;
-  @ViewChild(AgGridNg2) dataGrid: AgGridNg2;
+  @ViewChild(AgGridAngular) dataGrid: AgGridAngular;
   @ViewChild('startGroupVisitModal') startGroupVisitModal: TemplateRef<any>;
   @ViewChild('enrollMembers') enrollMembers: TemplateRef<any>;
   @ViewChild('startPatientVisitWarningModal')
   startPatientVisitWarningModal: TemplateRef<any>;
   public filter = 'current';
   public gridOptions: GridOptions = {
-    enableColResize: true,
-    enableSorting: true,
-    enableFilter: true,
-    showToolPanel: false,
+    // enableColResize: true,
     pagination: true,
     paginationPageSize: 300,
     isExternalFilterPresent: this.isExternalFilterPresent.bind(this),
@@ -65,17 +62,17 @@ export class GroupDetailComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressHorizontalScroll: false,
     onGridSizeChanged: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     },
     onGridReady: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     },
     onRowDataChanged: () => {
       if (this.gridOptions.api) {
-        this.gridOptions.api.sizeColumnsToFit();
+        (this.gridOptions.api as any)?.sizeColumnsToFit();
       }
     }
   };
@@ -140,7 +137,7 @@ export class GroupDetailComponent implements OnInit, OnDestroy, AfterViewInit {
     private cohortOtzModuleResourceService: CohortOtzModuleResourceService,
 
     private http: HttpClient
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
@@ -293,15 +290,9 @@ export class GroupDetailComponent implements OnInit, OnDestroy, AfterViewInit {
       }
 
       if (programUuid && personUuid) {
-        this.router.navigate(
-          [
-            `/patient-dashboard/patient/${personUuid}/`,
-            'hiv',
-            programUuid.value,
-            'visit'
-          ],
-          { queryParams: { groupUuid: this.group.uuid } }
-        );
+        this.router.navigate([
+          '/openmrs/spa/patient/' + personUuid + '/chart'
+        ]);
       }
     }
   }
@@ -369,9 +360,8 @@ export class GroupDetailComponent implements OnInit, OnDestroy, AfterViewInit {
       )
       .subscribe(
         (response) => {
-          const successMsg = `Successfully ended membership for ${
-            member.patient.person.display
-          } on ${moment(date).format('DD MMMM YYYY')}`;
+          const successMsg = `Successfully ended membership for ${member.patient.person.display
+            } on ${dayjs(date).format('DD MMMM YYYY')}`;
           this.reloadData();
           this.showSuccessModal(successMsg);
         },
@@ -455,10 +445,9 @@ export class GroupDetailComponent implements OnInit, OnDestroy, AfterViewInit {
     this.communityGroupService.startGroupVisit(groupVisit).subscribe(
       (result) => {
         this.showSuccessModal(
-          `${
-            this.isOtzProgram
-              ? 'OTZ'
-              : this.getVisitTypeDisplayName(visitTypeToUse)
+          `${this.isOtzProgram
+            ? 'OTZ'
+            : this.getVisitTypeDisplayName(visitTypeToUse)
           } Visit started successfully!`
         );
         this.savingVisit = false;
@@ -880,9 +869,24 @@ export class GroupDetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public enrollPatienttoProgram() {
     this.closeModal(this.enrollMembers);
-    this.router.navigate(this.enrollMentModel.enrollMentUrl, {
-      queryParams: this.enrollMentModel.queryParams
-    });
+    // The original navigation was to a program-manager step, which is not directly replaceable
+    // with a patient chart link. Commenting out the original navigation.
+    // this.router.navigate(this.enrollMentModel.enrollMentUrl, {
+    //   queryParams: this.enrollMentModel.queryParams
+    // });
+
+    // If the intent is to navigate to the patient's chart after enrollment,
+    // you would need the patient's UUID here. Assuming `this.selectedPatient` holds it.
+    // If `this.selectedPatient` is not available or not the correct patient,
+    // this part might need adjustment based on how the patient UUID is obtained after enrollment.
+    if (this.selectedPatient && this.selectedPatient.uuid) {
+      this.router.navigate([
+        '/openmrs/spa/patient/' + this.selectedPatient.uuid + '/chart'
+      ]);
+    } else {
+      console.warn('Cannot navigate to patient chart: patient UUID not available.');
+      // Optionally, navigate to a default page or show an error
+    }
   }
   private showEnrollButton(patient) {
     this.showEnrollmentButton = true;
@@ -1018,7 +1022,7 @@ export class GroupDetailComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   public exportAllData() {
-    this.gridOptions.api.exportDataAsCsv();
+    (this.gridOptions.api as any)?.sizeColumnsToFit();
   }
 
   public enableRetrospectiveMode() {
