@@ -9,12 +9,12 @@ import { Location, ListResult } from '../types';
 
 @Injectable()
 export class LocationResourceService {
-  private static readonly v = 'custom:(uuid,display)';
+  private static readonly v = 'full';
 
   constructor(
     protected http: HttpClient,
     protected windowRef: WindowRef,
-  ) { }
+  ) {}
 
   public getLocationByUuid(uuid: string): Observable<Location | undefined> {
     const url = this.getLocationByUuidUrl(uuid);
@@ -36,12 +36,12 @@ export class LocationResourceService {
   }
 
   public getFacilityMapping(): Observable<any> {
-    const url = 'https://etl.ampath.or.ke:8002/etl/location/facility-mapping';
+    const url = 'https://ngx.ampath.or.ke/etl-latest/etl/parentlocations';
 
     return this.http.get(url).pipe(
       map((response: any) => {
         return response.results;
-      })
+      }),
     );
   }
 
@@ -51,7 +51,7 @@ export class LocationResourceService {
     return this.http.get(url).pipe(
       map((response: any) => {
         return response.results;
-      })
+      }),
     );
   }
 
