@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 import { WindowRef } from '../window-ref';
 import { Location, ListResult } from '../types';
+import { AppSettingsService } from '../app-settings/app-settings.service';
 
 @Injectable()
 export class LocationResourceService {
@@ -36,7 +37,8 @@ export class LocationResourceService {
   }
 
   public getFacilityMapping(): Observable<any> {
-    const url = 'https://ngx.ampath.or.ke/etl-latest/etl/parentlocations';
+    const baseUrl = AppSettingsService.DEFAULT_ETL_SERVER_URL;
+    const url = `${baseUrl}/parentlocations`;
 
     return this.http.get(url).pipe(
       map((response: any) => {
